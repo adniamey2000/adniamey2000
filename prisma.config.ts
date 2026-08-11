@@ -1,5 +1,21 @@
 import "dotenv/config";
-import { defineConfig, env } from "prisma/config";
+import { defineConfig } from "prisma/config";
+
+function resolveDatabaseUrl(): string {
+  const candidates = [
+    process.env.DATABASE_URL,
+    process.env.adniamey2000_db_DATABASE_URL,
+    process.env.adniamey2000_db_POSTGRES_URL,
+    process.env.POSTGRES_PRISMA_URL,
+    process.env.POSTGRES_URL,
+    process.env.adniamey2000_db_DATABASE_URL_UNPOOLED,
+    process.env.adniamey2000_db_POSTGRES_URL_NON_POOLING,
+    process.env.POSTGRES_URL_NON_POOLING,
+  ];
+  const url = candidates.find((c) => c && c.length > 0);
+  if (!url) throw new Error("DATABASE_URL manquante");
+  return url;
+}
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
@@ -8,6 +24,6 @@ export default defineConfig({
     seed: "tsx prisma/seed.ts",
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    url: resolveDatabaseUrl(),
   },
 });
