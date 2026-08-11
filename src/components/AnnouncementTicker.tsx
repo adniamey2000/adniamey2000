@@ -1,0 +1,77 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
+type Item = { id: number; text: string };
+
+const REPEAT = 4;
+
+export default function AnnouncementTicker({
+  items,
+  label,
+  href,
+}: {
+  items: Item[];
+  label: string;
+  href: string;
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [duration, setDuration] = useState(30);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const update = () => {
+      const half = el.scrollWidth / 2;
+      setDuration(Math.max(16, half / 45));
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [items.length]);
+
+  if (items.length === 0) return null;
+
+  const Group = ({ hidden }: { hidden: boolean }) => (
+    <div className="flex shrink-0 items-center gap-10 pr-10" aria-hidden={hidden}>
+      {items.map((item) => (
+        <span
+          key={item.id}
+          className="flex items-center gap-10 whitespace-nowrap text-sm text-ink"
+        >
+          <span className="font-semibold text-primary-dark">{item.text}</span>
+          <span className="h-1 w-1 shrink-0 rounded-full bg-primary-bright" />
+        </span>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="sticky top-16 z-30 border-b border-primary-soft bg-primary-soft/90 shadow-sm backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-2.5 sm:px-6">
+        <Link
+          href={href}
+          className="flex shrink-0 items-center gap-1.5 rounded-full bg-primary-dark px-3 py-1 text-xs font-bold text-white shadow-sm transition hover:opacity-90"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 11l18-5v12L3 13v-2zM11.6 16.8a3 3 0 11-5.8-1.6" />
+          </svg>
+          {label}
+        </Link>
+        <div className="relative min-w-0 flex-1 overflow-hidden">
+          <div
+            ref={trackRef}
+            className="ticker-track flex w-max will-change-transform"
+            style={{ animationDuration: `${duration}s` }}
+          >
+            {Array.from({ length: REPEAT }).map((_, i) => (
+              <Group key={i} hidden={i > 0} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

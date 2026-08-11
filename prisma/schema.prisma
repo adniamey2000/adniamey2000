@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        Int                 @id @default(autoincrement())
+  name      String?
+  email     String              @unique
+  password  String
+  role      String              @default("admin")
+  createdAt DateTime            @default(now())
+  sessions  Session[]
+  passwordResetTokens PasswordResetToken[]
+}
+
+model PasswordResetToken {
+  id        Int      @id @default(autoincrement())
+  tokenHash String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Sermon {
+  id        Int       @id @default(autoincrement())
+  titleFr   String
+  titleEn   String
+  videoUrl  String
+  date      DateTime  @default(now())
+  speaker   String
+  summaryFr String
+  summaryEn String
+  createdAt DateTime  @default(now())
+}
+
+model ChurchEvent {
+  id        Int       @id @default(autoincrement())
+  titleFr   String
+  titleEn   String
+  date      DateTime
+  time      String
+  place     String
+  summaryFr String
+  summaryEn String
+  imageUrl  String?
+  createdAt DateTime  @default(now())
+}
+
+model Department {
+  id          Int      @id @default(autoincrement())
+  nameFr      String
+  nameEn      String
+  descFr      String
+  descEn      String
+  imageUrl    String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Leader {
+  id        Int      @id @default(autoincrement())
+  name      String
+  titleFr   String
+  titleEn   String
+  bioFr     String   @default("")
+  bioEn     String   @default("")
+  imageUrl  String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model ScheduleItem {
+  id        Int     @id @default(autoincrement())
+  dayFr     String
+  dayEn     String
+  time      String
+  nameFr    String
+  nameEn    String
+  sortOrder Int     @default(0)
+}
+
+model DonationInfo {
+  id        Int    @id @default(autoincrement())
+  label     String
+  value     String
+  sortOrder Int    @default(0)
+}
+
+model GalleryImage {
+  id        Int      @id @default(autoincrement())
+  url       String
+  captionFr String
+  captionEn String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model SiteSetting {
+  id       Int     @id @default(autoincrement())
+  key      String  @unique
+  valueFr  String
+  valueEn  String
+}
+
+model NewsletterSubscriber {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Announcement {
+  id          Int      @id @default(autoincrement())
+  titleFr     String
+  titleEn     String
+  contentFr   String
+  contentEn   String
+  date        DateTime
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

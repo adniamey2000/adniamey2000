@@ -1,0 +1,88 @@
+/*
+ * ============================================================
+ *  PALETTE DE COULEURS DU SITE — AD Niamey 2000
+ *  Modifie les valeurs ici pour changer les couleurs partout.
+ *
+ *  Palette dérivée du logo : indigo doux #3A41C7, pervenche
+ *  #5256C7, pervenche très claire #EEF0FB.
+ * ============================================================
+ */
+
+@theme {
+  /* Pervenche (couleur principale du logo) — boutons, liens, accents */
+  --color-primary: #5256c7;
+
+  /* Indigo doux — titres, pied de page, survol */
+  --color-primary-dark: #3a41c7;
+
+  /* Perle claire pour accents sur fond sombre */
+  --color-primary-bright: #b0b2ea;
+
+  /* Pervenche très clair — arrière-plans doux */
+  --color-primary-soft: #eef0fb;
+
+  /* Doré chaud — accent secondaire (étoile, chiffres, citations) */
+  --color-accent: #c9992f;
+  --color-accent-bright: #d9b45b;
+  --color-accent-soft: #f5ecd8;
+
+  /* Texte principal (bleu très foncé, presque noir) */
+  --color-ink: #1b2a4a;
+
+  /* Texte secondaire (gris bleuté) */
+  --color-muted: #5b6b8c;
+
+  /* Polices */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-lora), ui-serif, Georgia, serif;
+}
+
+/* Animation douce d'apparition */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
+
+.fade-up-delay-1 {
+  animation: fade-up 0.6s ease-out 0.1s both;
+}
+
+.fade-up-delay-2 {
+  animation: fade-up 0.6s ease-out 0.2s both;
+}
+
+/* Bandeau défilant des annonces */
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker-scroll 32s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .fade-up-delay-1,
+  .fade-up-delay-2 {
+    animation: none;
+  }
+}
