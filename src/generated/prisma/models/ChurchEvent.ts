@@ -1169,6 +1169,7 @@ export type ChurchEventCreateManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * The data used to create many ChurchEvents.
    */
   data: Prisma.ChurchEventCreateManyInput | Prisma.ChurchEventCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1187,6 +1188,7 @@ export type ChurchEventCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ext
    * The data used to create many ChurchEvents.
    */
   data: Prisma.ChurchEventCreateManyInput | Prisma.ChurchEventCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

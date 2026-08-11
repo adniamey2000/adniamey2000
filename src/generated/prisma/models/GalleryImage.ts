@@ -1063,6 +1063,7 @@ export type GalleryImageCreateManyArgs<ExtArgs extends runtime.Types.Extensions.
    * The data used to create many GalleryImages.
    */
   data: Prisma.GalleryImageCreateManyInput | Prisma.GalleryImageCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1081,6 +1082,7 @@ export type GalleryImageCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * The data used to create many GalleryImages.
    */
   data: Prisma.GalleryImageCreateManyInput | Prisma.GalleryImageCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

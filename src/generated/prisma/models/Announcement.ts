@@ -1145,6 +1145,7 @@ export type AnnouncementCreateManyArgs<ExtArgs extends runtime.Types.Extensions.
    * The data used to create many Announcements.
    */
   data: Prisma.AnnouncementCreateManyInput | Prisma.AnnouncementCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1163,6 +1164,7 @@ export type AnnouncementCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * The data used to create many Announcements.
    */
   data: Prisma.AnnouncementCreateManyInput | Prisma.AnnouncementCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

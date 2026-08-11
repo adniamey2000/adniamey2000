@@ -1141,6 +1141,7 @@ export type SermonCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * The data used to create many Sermons.
    */
   data: Prisma.SermonCreateManyInput | Prisma.SermonCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1159,6 +1160,7 @@ export type SermonCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * The data used to create many Sermons.
    */
   data: Prisma.SermonCreateManyInput | Prisma.SermonCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

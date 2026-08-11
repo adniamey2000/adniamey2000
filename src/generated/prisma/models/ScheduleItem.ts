@@ -1091,6 +1091,7 @@ export type ScheduleItemCreateManyArgs<ExtArgs extends runtime.Types.Extensions.
    * The data used to create many ScheduleItems.
    */
   data: Prisma.ScheduleItemCreateManyInput | Prisma.ScheduleItemCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1109,6 +1110,7 @@ export type ScheduleItemCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * The data used to create many ScheduleItems.
    */
   data: Prisma.ScheduleItemCreateManyInput | Prisma.ScheduleItemCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

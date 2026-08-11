@@ -2,7 +2,7 @@
 
 Site officiel de l'Assemblée de Dieu Niamey 2000 — une famille de foi où l'amour de Dieu transforme des vies.
 
-Construit avec [Next.js](https://nextjs.org) (App Router), [Prisma](https://www.prisma.io), SQLite, Tailwind CSS v4 et i18n FR/EN.
+Construit avec [Next.js](https://nextjs.org) (App Router), [Prisma](https://www.prisma.io), Postgres, Tailwind CSS v4 et i18n FR/EN.
 
 ## Fonctionnalités
 
@@ -33,7 +33,7 @@ Variables disponibles :
 
 | Variable | Description |
 | --- | --- |
-| `DATABASE_URL` | URL de la base SQLite (ex. `file:./dev.db`) |
+| `DATABASE_URL` | URL de connexion Postgres (Vercel Postgres, Neon, Supabase…) |
 | `SMTP_HOST` | Serveur SMTP pour l'envoi des e-mails |
 | `SMTP_PORT` | Port SMTP (587 par défaut) |
 | `SMTP_SECURE` | `true` si SMTP sécurisé (TLS) |
@@ -48,7 +48,7 @@ Variables disponibles :
 Initialisez la base et le compte administrateur :
 
 ```bash
-npx prisma db push
+npx prisma migrate dev
 npx prisma db seed
 ```
 
@@ -76,8 +76,14 @@ Ouvrez [http://localhost:3000](http://localhost:3000).
 ### Vercel
 
 1. Poussez le dépôt sur GitHub et importez-le dans Vercel.
-2. Renseignez les variables d'environnement (voir tableau ci-dessus).
-3. **Base de données** : le site utilise SQLite en local. Sur Vercel, la base est éphémère et non persistante — pour un déploiement durable, basculez sur Postgres (ex. Neon ou Supabase) et mettez à jour `prisma/schema.prisma` (`provider = "postgresql"`) avec `DATABASE_URL` correspondante, puis `npx prisma migrate deploy`.
+2. Créez un store **Postgres** depuis l'onglet Storage du projet (Vercel ajoute automatiquement les variables `DATABASE_URL` / `POSTGRES_URL`).
+3. Renseignez les autres variables d'environnement (SMTP, `CONTACT_TO`, `NEXT_PUBLIC_SITE_URL`…).
+4. Le build applique les migrations (`prisma migrate deploy`) puis génère le client.
+5. Peuplez la base (compte admin + contenus de départ) :
+
+```bash
+DATABASE_URL="postgresql://…" npx prisma db seed
+```
 
 ## Structure
 

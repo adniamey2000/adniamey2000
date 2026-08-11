@@ -1147,6 +1147,7 @@ export type LeaderCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * The data used to create many Leaders.
    */
   data: Prisma.LeaderCreateManyInput | Prisma.LeaderCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1165,6 +1166,7 @@ export type LeaderCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * The data used to create many Leaders.
    */
   data: Prisma.LeaderCreateManyInput | Prisma.LeaderCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

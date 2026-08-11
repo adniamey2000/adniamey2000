@@ -1007,6 +1007,7 @@ export type DonationInfoCreateManyArgs<ExtArgs extends runtime.Types.Extensions.
    * The data used to create many DonationInfos.
    */
   data: Prisma.DonationInfoCreateManyInput | Prisma.DonationInfoCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1025,6 +1026,7 @@ export type DonationInfoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * The data used to create many DonationInfos.
    */
   data: Prisma.DonationInfoCreateManyInput | Prisma.DonationInfoCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
