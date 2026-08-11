@@ -48,8 +48,6 @@ export type Dict = {
       title: string;
       highlight: string;
       subtitle: string;
-      subtitle2: string;
-      points: { label: string; text: string }[];
       cta1: string;
       cta2: string;
     };
@@ -225,18 +223,11 @@ const fr: Dict = {
   },
   home: {
     hero: {
-      badge: "Bienvenue à",
-      title: "La bonne nouvelle de",
-      highlight: "Jésus-Christ",
+      badge: "AD Niamey 2000 · Assemblée de Dieu au Niger",
+      title: "Bienvenue dans la maison du",
+      highlight: "Seigneur",
       subtitle:
-        "Une communauté de foi à Niamey, ouverte à tous, où la Parole de Dieu est partagée avec amour et espérance.",
-      subtitle2:
-        "Venez adorer, grandir dans la foi et rencontrer Dieu au sein d'une famille qui vous accueille tel que vous êtes.",
-      points: [
-        { label: "Adoration & louange", text: "Des cultes vivants centrés sur Christ." },
-        { label: "Enseignement biblique", text: "La Parole de Dieu expliquée avec clarté." },
-        { label: "Famille & fraternité", text: "Une communauté d'amour et d'entraide." },
-      ],
+        "Une famille de foi où l'amour de Dieu transforme des vies. Nous vous accueillons avec joie pour grandir ensemble dans la grâce et la connaissance de notre Seigneur. Rejoignez-nous pour adorer le Seigneur et grandir dans Sa Parole, au cœur du quartier Yantala à Niamey. Que vous soyez membre, visiteur ou de passage, vous êtes chez vous ici.",
       cta1: "Rejoignez-nous",
       cta2: "Écouter un sermon",
     },
@@ -464,18 +455,11 @@ const en: Dict = {
   },
   home: {
     hero: {
-      badge: "Welcome to",
-      title: "The good news of",
-      highlight: "Jesus Christ",
+      badge: "AD Niamey 2000 · Assemblies of God in Niger",
+      title: "Welcome to the house of",
+      highlight: "the Lord",
       subtitle:
-        "A community of faith in Niamey, open to everyone, where the Word of God is shared with love and hope.",
-      subtitle2:
-        "Come and worship, grow in faith and meet God within a family that welcomes you as you are.",
-      points: [
-        { label: "Worship & praise", text: "Lively services centered on Christ." },
-        { label: "Biblical teaching", text: "The Word of God explained with clarity." },
-        { label: "Family & fellowship", text: "A community of love and mutual support." },
-      ],
+        "A family of faith where the love of God transforms lives. We welcome you with joy to grow together in the grace and knowledge of our Lord. Join us to worship the Lord and grow in His Word, in the heart of the Yantala district in Niamey. Whether you are a member, a visitor or just passing through, you are at home here.",
       cta1: "Join us",
       cta2: "Listen to a sermon",
     },

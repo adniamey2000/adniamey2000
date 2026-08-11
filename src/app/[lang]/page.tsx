@@ -6,7 +6,6 @@ import DonationSection from "@/components/DonationSection";
 import VerseOfTheDay from "@/components/VerseOfTheDay";
 import {
   churchName,
-  churchFullName,
   getDict,
   isLocale,
   pick,
@@ -77,7 +76,7 @@ export default async function HomePage({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-accent">
               <path d="M12 2l2.4 6.6L21 9.2l-5 4.4 1.5 6.4-5.5-3.7L6.5 20 8 13.6 3 9.2l6.6-.6L12 2z" />
             </svg>
-            {dict.home.hero.badge} {churchFullName}
+            {dict.home.hero.badge}
           </span>
           <h1 className="max-w-4xl font-serif text-4xl font-bold leading-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl">
             {dict.home.hero.title}{" "}
@@ -86,34 +85,6 @@ export default async function HomePage({
           <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/90 drop-shadow sm:text-lg">
             {dict.home.hero.subtitle}
           </p>
-          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-white/80 drop-shadow sm:text-base">
-            {dict.home.hero.subtitle2}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {dict.home.hero.points.map((point) => (
-              <div
-                key={point.label}
-                className="flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur"
-              >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="shrink-0 text-accent"
-                >
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-                <span className="text-xs font-semibold text-white sm:text-sm">
-                  {point.label}
-                </span>
-              </div>
-            ))}
-          </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href={`/${lang}/contact`}
