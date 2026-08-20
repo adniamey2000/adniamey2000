@@ -24,8 +24,16 @@ export async function generateMetadata({
   if (!isLocale(lang)) return {};
   const dict = getDict(lang);
   return {
-    title: churchName,
+    title: lang === "en" ? "Home" : "Accueil",
     description: dict.meta.description,
+    openGraph: {
+      title: "AD Niamey 2000 — Assemblée de Dieu au Niger",
+      description: dict.meta.description,
+      url: "https://adniamey2000.vercel.app",
+      siteName: "AD Niamey 2000",
+      type: "website",
+      locale: lang === "fr" ? "fr_FR" : "en_US",
+    },
   };
 }
 
@@ -59,6 +67,38 @@ export default async function HomePage({
   const homeAnnouncements = announcements.slice(0, 3);
 
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Church",
+            name: "AD Niamey 2000 — Assemblée de Dieu au Niger",
+            alternateName: "Assemblies of God Niamey 2000",
+            url: "https://adniamey2000.vercel.app",
+            description:
+              "Site officiel de l'Assemblée de Dieu Niamey 2000 — Annoncer la bonne nouvelle de Christ à Niamey, au Niger et au-delà.",
+            email: "adniamey2000@gmail.com",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Niamey",
+              addressCountry: "NE",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: 13.5127,
+              longitude: 2.1128,
+            },
+            sameAs: [],
+            foundingDate: "2000",
+            areaServed: {
+              "@type": "City",
+              name: "Niamey",
+            },
+          }),
+        }}
+      />
     <div>
       {/* Hero */}
       <section className="relative isolate bg-slate-950">

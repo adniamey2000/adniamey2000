@@ -198,6 +198,12 @@ export type Dict = {
   };
   meta: {
     description: string;
+    aboutDescription: string;
+    sermonsDescription: string;
+    eventsDescription: string;
+    announcementsDescription: string;
+    contactDescription: string;
+    galleryDescription: string;
   };
 };
 
@@ -430,6 +436,18 @@ const fr: Dict = {
   meta: {
     description:
       "Site officiel de l'Assemblée de Dieu Niamey 2000 — Annoncer la bonne nouvelle de Christ à Niamey, au Niger et au-delà.",
+    aboutDescription:
+      "Découvrez l'Assemblée de Dieu Niamey 2000 — notre mission, notre histoire, nos valeurs et l'équipe qui conduit l'œuvre de Dieu à Niamey.",
+    sermonsDescription:
+      "Retrouvez les prédications et enseignements bibliques de l'AD Niamey 2000. Écoutez ou téléchargez les messages pour grandir dans la foi.",
+    eventsDescription:
+      "Consultez les événements, retraites et conférences à venir à l'AD Niamey 2000. Ne manquez aucune occasion de grandir spirituellement.",
+    announcementsDescription:
+      "Les dernières annonces et actualités de l'AD Niamey 2000. Restez informé des activités et initiatives de l'église.",
+    contactDescription:
+      "Contactez l'AD Niamey 2000 — envoyez-nous un message, posez vos questions ou planifiez votre visite. Nous serons ravis de vous entendre.",
+    galleryDescription:
+      "Découvrez les photos et moments forts de la vie de l'AD Niamey 2000 — cultes, événements, baptêmes et vie communautaire.",
   },
 };
 
@@ -661,6 +679,18 @@ const en: Dict = {
   meta: {
     description:
       "Official website of the Assemblies of God Niamey 2000 — Proclaiming the good news of Christ in Niamey, Niger and beyond.",
+    aboutDescription:
+      "Discover the Assemblies of God Niamey 2000 — our mission, history, values and the team leading God's work in Niamey.",
+    sermonsDescription:
+      "Browse the sermons and Bible teachings from AD Niamey 2000. Listen to or download messages to grow in your faith.",
+    eventsDescription:
+      "Check out upcoming events, retreats and conferences at AD Niamey 2000. Don't miss any opportunity for spiritual growth.",
+    announcementsDescription:
+      "The latest announcements and news from AD Niamey 2000. Stay informed about church activities and initiatives.",
+    contactDescription:
+      "Contact AD Niamey 2000 — send us a message, ask questions or plan your visit. We'd love to hear from you.",
+    galleryDescription:
+      "Discover photos and highlights from the life of AD Niamey 2000 — services, events, baptisms and community life.",
   },
 };
 

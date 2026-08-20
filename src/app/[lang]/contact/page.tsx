@@ -17,7 +17,7 @@ export async function generateMetadata({
   const dict = getDict(lang);
   return {
     title: `${dict.nav.contact} — AD Niamey 2000`,
-    description: dict.meta.description,
+    description: dict.meta.contactDescription,
   };
 }
 
