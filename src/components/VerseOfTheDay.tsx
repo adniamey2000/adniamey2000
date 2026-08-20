@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getDailyVerse } from "@/lib/verses";
 
 type Verse = { text: string; reference: string };
 
@@ -25,9 +24,7 @@ export default function VerseOfTheDay({
           setVerse({ text: data.text, reference: data.reference });
         }
       })
-      .catch(() => {
-        if (active) setVerse(getDailyVerse());
-      });
+      .catch(() => {});
     return () => {
       active = false;
     };

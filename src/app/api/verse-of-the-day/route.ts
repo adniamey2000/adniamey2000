@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { dayOfYear, getDailyVerse, youVersionApiKey, type Verse } from "@/lib/verses";
+import { dayOfYear, youVersionApiKey, type Verse } from "@/lib/verses";
 
 export const dynamic = "force-dynamic";
 
@@ -44,23 +44,15 @@ async function fetchYouVersion(): Promise<Verse | null> {
     if (!res.ok) return null;
 
     const json = await res.json();
-    const arr = Array.isArray(json) ? json : Array.isArray(json?.data) ? json.data : null;
-    const first = arr?.[0];
-    if (!first) return null;
+    const passageId = json?.passage_id;
+    if (typeof passageId !== "string" || !passageId) return null;
 
-    const refs = Array.isArray(first?.usfm)
-      ? (first.usfm as string[])
-      : typeof first?.passage_id === "string"
-        ? [first.passage_id]
-        : null;
-    if (!refs || refs.length === 0) return null;
-
-    const text = await extractText(refs, key);
+    const text = await extractText([passageId], key);
     if (!text) return null;
 
     return {
       text,
-      reference: refs.join(" ; ").replace(/_/g, " "),
+      reference: passageId.replace(/_/g, " "),
     };
   } catch {
     return null;
@@ -118,10 +110,14 @@ export async function GET(req: Request) {
 
   const fromYouVersion = await fetchYouVersion();
   const fromOurManna = fromYouVersion ? null : await fetchOurManna();
-  let verse = fromYouVersion ?? fromOurManna ?? getDailyVerse();
-  const source = fromYouVersion ? "youversion" : fromOurManna ? "ourmanna" : "lsg";
+  let verse = fromYouVersion ?? fromOurManna ?? null;
+  const source = fromYouVersion ? "youversion" : fromOurManna ? "ourmanna" : null;
 
-  if (lang === "fr" && source !== "lsg") {
+  if (!verse) {
+    return NextResponse.json({ text: null, reference: null, date: new Date().toISOString().slice(0, 10), source: null });
+  }
+
+  if (lang === "fr" && source === "youversion") {
     verse = await translateToFrench(verse);
   }
 

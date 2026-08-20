@@ -7,7 +7,6 @@ import {
   type Locale,
 } from "@/lib/i18n";
 import { getSchedule, getSettings, settingValue } from "@/lib/site";
-import { getDailyVerse } from "@/lib/verses";
 
 export default async function Footer({
   dict,
@@ -20,8 +19,6 @@ export default async function Footer({
     getSettings(),
     getSchedule(lang),
   ]);
-
-  const verse = getDailyVerse();
 
   const links = [
     { href: "", label: dict.nav.home },
@@ -152,10 +149,6 @@ export default async function Footer({
       </div>
 
       <div className="border-t border-white/10">
-        <p className="mx-auto max-w-4xl px-4 pt-8 text-center font-serif text-sm italic leading-relaxed text-white/85 sm:px-6">
-          « {verse.text} » —{" "}
-          <span className="font-semibold text-primary-soft">{verse.reference}</span>
-        </p>
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6">
           <p className="text-center text-xs leading-relaxed text-white/60">
             © {new Date().getFullYear()} {churchName}. {dict.footer.rights}{" "}
