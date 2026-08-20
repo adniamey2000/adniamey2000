@@ -224,10 +224,10 @@ const fr: Dict = {
   home: {
     hero: {
       badge: "AD Niamey 2000 · Assemblée de Dieu au Niger",
-      title: "Bienvenue dans la maison du",
-      highlight: "Seigneur",
+      title: "Bienvenue à l'",
+      highlight: "AD Niamey 2000",
       subtitle:
-        "Une famille de foi où l'amour de Dieu transforme des vies. Nous vous accueillons avec joie pour grandir ensemble dans la grâce et la connaissance de notre Seigneur. Rejoignez-nous pour adorer le Seigneur et grandir dans Sa Parole, au cœur du quartier Yantala à Niamey. Que vous soyez membre, visiteur ou de passage, vous êtes chez vous ici.",
+        "Une communauté de foi au cœur de Niamey. Venez adorer, grandir et servir ensemble.",
       cta1: "Rejoignez-nous",
       cta2: "Écouter un sermon",
     },
@@ -456,10 +456,10 @@ const en: Dict = {
   home: {
     hero: {
       badge: "AD Niamey 2000 · Assemblies of God in Niger",
-      title: "Welcome to the house of",
-      highlight: "the Lord",
+      title: "Welcome to ",
+      highlight: "AD Niamey 2000",
       subtitle:
-        "A family of faith where the love of God transforms lives. We welcome you with joy to grow together in the grace and knowledge of our Lord. Join us to worship the Lord and grow in His Word, in the heart of the Yantala district in Niamey. Whether you are a member, a visitor or just passing through, you are at home here.",
+        "A community of faith in the heart of Niamey. Come worship, grow and serve together.",
       cta1: "Join us",
       cta2: "Listen to a sermon",
     },

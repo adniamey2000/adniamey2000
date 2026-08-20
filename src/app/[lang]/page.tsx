@@ -72,7 +72,7 @@ export default async function HomePage({
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-slate-900/45 to-slate-900/15" />
         <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 py-28 text-center sm:px-6 md:py-40">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/90 backdrop-blur">
+          <span className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/90 backdrop-blur">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-accent">
               <path d="M12 2l2.4 6.6L21 9.2l-5 4.4 1.5 6.4-5.5-3.7L6.5 20 8 13.6 3 9.2l6.6-.6L12 2z" />
             </svg>
