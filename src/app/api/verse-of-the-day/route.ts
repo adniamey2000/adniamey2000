@@ -1,58 +1,39 @@
 import { NextResponse } from "next/server";
-import { dayOfYear, youVersionApiKey, type Verse } from "@/lib/verses";
+import { ApiClient, BibleClient } from "@youversion/platform-core";
+import { dayOfYear, type Verse } from "@/lib/verses";
 
 export const dynamic = "force-dynamic";
 
-function extractText(refs: string[], key: string): Promise<string | null> {
-  const bibleId = process.env.YVP_LSG_BIBLE_ID ?? "1160";
-  return fetch(`https://api.youversion.com/v1/bibles/${bibleId}/passages/${refs.join(",")}`, {
-    headers: { "X-YVP-App-Key": key, Accept: "application/json" },
-    next: { revalidate: 86400 },
-  })
-    .then((res) => (res.ok ? res.json() : null))
-    .then((json) => {
-      if (!json) return null;
-      const source = json.data ?? json;
-      const passage = source.passage ?? source;
-      const candidates = [
-        passage.html,
-        passage.text,
-        passage.content,
-        source.html,
-        source.text,
-        source.content,
-      ];
-      for (const c of candidates) {
-        if (typeof c === "string" && c.trim()) {
-          return c.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
-        }
-      }
-      return null;
-    })
-    .catch(() => null);
-}
+const FRENCH_BIBLE_ID = Number(process.env.YVP_FRENCH_BIBLE_ID ?? "1160");
 
 async function fetchYouVersion(): Promise<Verse | null> {
-  const key = youVersionApiKey();
+  const key = process.env.YVP_APP_KEY ?? process.env.YOUVERSION_API_KEY ?? "";
   if (!key) return null;
 
   try {
-    const res = await fetch(`https://api.youversion.com/v1/verse_of_the_days/${dayOfYear()}`, {
-      headers: { "X-YVP-App-Key": key, Accept: "application/json" },
-      next: { revalidate: 86400 },
-    });
-    if (!res.ok) return null;
+    const apiClient = new ApiClient({ appKey: key });
+    const bibleClient = new BibleClient(apiClient);
 
-    const json = await res.json();
-    const passageId = json?.passage_id;
-    if (typeof passageId !== "string" || !passageId) return null;
+    const votd = await bibleClient.getVOTD(dayOfYear());
+    const passage = await bibleClient.getPassage(
+      FRENCH_BIBLE_ID,
+      votd.passage_id,
+      "text",
+      undefined,
+      undefined,
+      false
+    );
+    if (!passage?.content) return null;
 
-    const text = await extractText([passageId], key);
+    const text = passage.content
+      .replace(/<[^>]*>/g, "")
+      .replace(/&nbsp;/g, " ")
+      .trim();
     if (!text) return null;
 
     return {
       text,
-      reference: passageId.replace(/_/g, " "),
+      reference: passage.reference || votd.passage_id.replace(/_/g, " "),
     };
   } catch {
     return null;
@@ -61,15 +42,20 @@ async function fetchYouVersion(): Promise<Verse | null> {
 
 async function fetchOurManna(): Promise<Verse | null> {
   try {
-    const res = await fetch("https://beta.ourmanna.com/api/v1/get?format=json&order=daily", {
-      next: { revalidate: 86400 },
-    });
+    const res = await fetch(
+      "https://beta.ourmanna.com/api/v1/get?format=json&order=daily",
+      { next: { revalidate: 86400 } }
+    );
     if (!res.ok) return null;
 
     const json = await res.json();
     const text = json?.verse?.details?.text;
     const reference = json?.verse?.details?.reference;
-    if (typeof text !== "string" || !text.trim() || typeof reference !== "string") {
+    if (
+      typeof text !== "string" ||
+      !text.trim() ||
+      typeof reference !== "string"
+    ) {
       return null;
     }
 
@@ -114,10 +100,15 @@ export async function GET(req: Request) {
   const source = fromYouVersion ? "youversion" : fromOurManna ? "ourmanna" : null;
 
   if (!verse) {
-    return NextResponse.json({ text: null, reference: null, date: new Date().toISOString().slice(0, 10), source: null });
+    return NextResponse.json({
+      text: null,
+      reference: null,
+      date: new Date().toISOString().slice(0, 10),
+      source: null,
+    });
   }
 
-  if (lang === "fr" && source === "youversion") {
+  if (lang === "fr" && source === "ourmanna") {
     verse = await translateToFrench(verse);
   }
 
