@@ -113,8 +113,8 @@ export default async function Footer({
             {dict.footer.contactTitle}
           </h4>
           <ul className="mt-4 space-y-3 text-sm text-white/85">
-            {contactRows.map((row) => (
-              <li key={row.label} className="flex items-start gap-2.5">
+            {contactRows.map((row, i) => (
+              <li key={i} className="flex items-start gap-2.5">
                 <svg
                   width="16"
                   height="16"
