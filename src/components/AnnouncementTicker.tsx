@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Item = { id: number; text: string };
 
-const REPEAT = 4;
+const REPEAT = 8;
 
 export default function AnnouncementTicker({
   items,

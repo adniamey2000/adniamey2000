@@ -4,29 +4,91 @@ import { dayOfYear } from "@/lib/verses";
 
 export const dynamic = "force-dynamic";
 
-const BIBLE_IDS: Record<string, number> = {
-  fr: Number(process.env.YVP_BIBLE_ID_FR ?? "1160"),
-  en: Number(process.env.YVP_BIBLE_ID_EN ?? "59"),
-};
+function usfmToBibleApiRef(usfm: string): string {
+  const BOOK_MAP: Record<string, string> = {
+    GEN: "Genesis", EXO: "Exodus", LEV: "Leviticus", NUM: "Numbers",
+    DEU: "Deuteronomy", JOS: "Joshua", JDG: "Judges", RUT: "Ruth",
+    "1SA": "1 Samuel", "2SA": "2 Samuel", "1KI": "1 Kings", "2KI": "2 Kings",
+    "1CH": "1 Chronicles", "2CH": "2 Chronicles", EZR: "Ezra", NEH: "Nehemiah",
+    EST: "Esther", JOB: "Job", PSA: "Psalms", PRO: "Proverbs",
+    ECC: "Ecclesiastes", SNG: "Song of Solomon", ISA: "Isaiah", JER: "Jeremiah",
+    LAM: "Lamentations", EZK: "Ezekiel", DAN: "Daniel", HOS: "Hosea",
+    JOL: "Joel", AMO: "Amos", OBA: "Obadiah", JON: "Jonah", MIC: "Micah",
+    NAM: "Nahum", HAB: "Habakkuk", ZEP: "Zephaniah", HAG: "Haggai",
+    ZEC: "Zechariah", MAL: "Malachi", MAT: "Matthew", MRK: "Mark",
+    LUK: "Luke", JHN: "John", ACT: "Acts", ROM: "Romans", "1CO": "1 Corinthians",
+    "2CO": "2 Corinthians", GAL: "Galatians", EPH: "Ephesians", PHP: "Philippians",
+    COL: "Colossians", "1TH": "1 Thessalonians", "2TH": "2 Thessalonians",
+    "1TI": "1 Timothy", "2TI": "2 Timothy", TIT: "Titus", PHM: "Philemon",
+    HEB: "Hebrews", JAS: "James", "1PE": "1 Peter", "2PE": "2 Peter",
+    "1JN": "1 John", "2JN": "2 John", "3JN": "3 John", JUD: "Jude", REV: "Revelation",
+  };
 
-export async function GET(req: Request) {
-  const key = process.env.YVP_APP_KEY ?? process.env.YOUVERSION_API_KEY ?? "";
-  if (!key) {
-    return NextResponse.json(
-      { text: null, reference: null, date: new Date().toISOString().slice(0, 10), source: null },
-      { status: 500 }
-    );
+  const parts = usfm.split(".");
+  const bookCode = parts[0];
+  const chapter = parts[1];
+  const verse = parts[2] || "";
+  const bookName = BOOK_MAP[bookCode] || bookCode;
+  return verse ? `${bookName}+${chapter}:${verse}` : `${bookName}+${chapter}`;
+}
+
+async function fetchVerseText(usfm: string, lang: string): Promise<{ text: string; reference: string } | null> {
+  const bibleApiRef = usfmToBibleApiRef(usfm);
+  const translation = lang === "fr" ? "kjv" : "web";
+
+  const res = await fetch(
+    `https://bible-api.com/${bibleApiRef}?translation=${translation}`,
+    { next: { revalidate: 86400 } }
+  );
+  if (!res.ok) return null;
+
+  const json = await res.json();
+  const text = json?.text?.trim();
+  const reference = json?.reference?.trim();
+  if (!text) return null;
+
+  if (lang === "fr") {
+    const translated = await translateToFrench(text);
+    const translatedRef = reference ? await translateToFrench(reference) : null;
+    return { text: translated || text, reference: translatedRef || reference || usfm.replace(/\./g, " ") };
   }
 
+  return { text, reference: reference || usfm.replace(/\./g, " ") };
+}
+
+async function translateToFrench(text: string): Promise<string | null> {
+  try {
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=fr&dt=t&q=${encodeURIComponent(text)}`;
+    const res = await fetch(url, { next: { revalidate: 86400 } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!Array.isArray(data) || !Array.isArray(data[0])) return null;
+    return data[0]
+      .map((seg: unknown[]) => (Array.isArray(seg) ? seg[0] : ""))
+      .join("")
+      .trim() || null;
+  } catch {
+    return null;
+  }
+}
+
+export async function GET(req: Request) {
   const lang = new URL(req.url).searchParams.get("lang") ?? "fr";
-  const bibleId = BIBLE_IDS[lang] ?? BIBLE_IDS.fr;
+  const key = process.env.YVP_APP_KEY ?? process.env.YOUVERSION_API_KEY ?? "";
 
   try {
-    const apiClient = new ApiClient({ appKey: key });
-    const bibleClient = new BibleClient(apiClient);
+    let passageId: string | null = null;
 
-    const votd = await bibleClient.getVOTD(dayOfYear());
-    if (!votd?.passage_id) {
+    if (key) {
+      try {
+        const apiClient = new ApiClient({ appKey: key });
+        const bibleClient = new BibleClient(apiClient);
+        const votd = await bibleClient.getVOTD(dayOfYear());
+        if (votd?.passage_id) passageId = votd.passage_id;
+      } catch {}
+    }
+
+    if (!passageId) {
       return NextResponse.json({
         text: null,
         reference: null,
@@ -35,21 +97,8 @@ export async function GET(req: Request) {
       });
     }
 
-    const passage = await bibleClient.getPassage(
-      bibleId,
-      votd.passage_id,
-      "text",
-      undefined,
-      undefined,
-      false
-    );
-
-    const text = passage?.content
-      ?.replace(/<[^>]*>/g, "")
-      .replace(/&nbsp;/g, " ")
-      .trim();
-
-    if (!text) {
+    const verse = await fetchVerseText(passageId, lang);
+    if (!verse) {
       return NextResponse.json({
         text: null,
         reference: null,
@@ -59,8 +108,8 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({
-      text,
-      reference: passage.reference || votd.passage_id.replace(/_/g, " "),
+      text: verse.text,
+      reference: verse.reference,
       date: new Date().toISOString().slice(0, 10),
       source: "youversion",
     });
