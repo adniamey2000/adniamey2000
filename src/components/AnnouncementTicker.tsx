@@ -50,17 +50,8 @@ export default function AnnouncementTicker({
 
   return (
     <div className="sticky top-16 z-30 border-b border-primary-soft bg-primary-soft/90 shadow-sm backdrop-blur">
-      <div className="flex items-center gap-4 px-4 py-4 sm:px-6 sm:py-5">
-        <Link
-          href={href}
-          className="flex shrink-0 items-center gap-1.5 rounded-full bg-primary-dark px-4 py-1.5 text-xs font-bold text-white shadow-sm transition hover:opacity-90"
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 11l18-5v12L3 13v-2zM11.6 16.8a3 3 0 11-5.8-1.6" />
-          </svg>
-          {label}
-        </Link>
-        <div className="relative min-w-0 flex-1 overflow-hidden">
+      <div className="relative">
+        <div className="overflow-hidden py-4 sm:py-5">
           <div
             ref={trackRef}
             className="ticker-track flex w-max will-change-transform"
@@ -71,6 +62,15 @@ export default function AnnouncementTicker({
             ))}
           </div>
         </div>
+        <Link
+          href={href}
+          className="absolute left-3 top-1/2 z-10 flex -translate-y-1/2 items-center gap-1.5 rounded-full bg-primary-dark px-4 py-1.5 text-xs font-bold text-white shadow-md transition hover:opacity-90 sm:left-5"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 11l18-5v12L3 13v-2zM11.6 16.8a3 3 0 11-5.8-1.6" />
+          </svg>
+          {label}
+        </Link>
       </div>
     </div>
   );

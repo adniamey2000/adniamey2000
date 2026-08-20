@@ -221,7 +221,7 @@ export default async function HomePage({
                   className="group rounded-2xl border border-primary-soft bg-white p-6 shadow-sm transition hover:shadow-md"
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-primary-dark">
+                    <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-primary-dark">
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M3 11l18-5v12L3 13v-2z" />
                       </svg>
