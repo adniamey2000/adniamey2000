@@ -33,6 +33,14 @@ export async function generateMetadata({
       siteName: "AD Niamey 2000",
       type: "website",
       locale: lang === "fr" ? "fr_FR" : "en_US",
+      images: [
+        {
+          url: "/og-default.jpg",
+          width: 1200,
+          height: 630,
+          alt: "AD Niamey 2000 — Assemblée de Dieu au Niger",
+        },
+      ],
     },
   };
 }

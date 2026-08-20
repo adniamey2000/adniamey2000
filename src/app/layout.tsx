@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     url: "https://adniamey2000.vercel.app",
     images: [
       {
-        url: "/images/og-default.jpg",
+        url: "/og-default.jpg",
         width: 1200,
         height: 630,
         alt: "AD Niamey 2000 — Assemblée de Dieu au Niger",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "AD Niamey 2000 — Assemblée de Dieu au Niger",
     description:
       "Site officiel de l'Assemblée de Dieu Niamey 2000 — Annoncer la bonne nouvelle de Christ à Niamey, au Niger et au-delà.",
-    images: ["/images/og-default.jpg"],
+    images: ["/og-default.jpg"],
   },
   alternates: {
     canonical: "https://adniamey2000.vercel.app",
@@ -67,9 +67,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  icons: {
-    icon: "/icon.jpg",
   },
 };
 
