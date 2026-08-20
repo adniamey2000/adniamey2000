@@ -82,7 +82,7 @@ export default async function ContactPage({
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-2">
-          <div className="grid content-start gap-5">
+          <div className="grid content-start gap-5 order-last lg:order-none">
             {infos.map((info) => (
               <div
                 key={info.label}

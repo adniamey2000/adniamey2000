@@ -137,7 +137,7 @@ export default function ContactForm({
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
               </svg>
               <span className="truncate">
-                {fileName || dict.contact.form.documentHint}
+                {fileName || "Choisir un fichier…"}
               </span>
               <span className="sr-only">{dict.contact.form.document}</span>
             </label>
