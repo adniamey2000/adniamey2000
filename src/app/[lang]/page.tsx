@@ -495,5 +495,6 @@ export default async function HomePage({
       {/* Donation */}
       <DonationSection dict={dict} />
     </div>
+    </>
   );
 }

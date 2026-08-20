@@ -71,9 +71,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.jpg",
   },
-  contact: {
-    email: "adniamey2000@gmail.com",
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -83,6 +80,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${lora.variable} antialiased`}
     >
+      <head>
+        <meta name="contact" content="adniamey2000@gmail.com" />
+      </head>
       <body className="flex min-h-screen flex-col bg-white font-sans text-ink">
         {children}
       </body>
