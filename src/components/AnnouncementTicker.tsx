@@ -39,7 +39,7 @@ export default function AnnouncementTicker({
       {items.map((item) => (
         <span
           key={item.id}
-          className="flex items-center gap-10 whitespace-nowrap text-sm text-ink"
+          className="flex items-center gap-10 whitespace-nowrap text-base text-ink"
         >
           <span className="font-semibold text-primary-dark">{item.text}</span>
           <span className="h-1 w-1 shrink-0 rounded-full bg-primary-bright" />
@@ -50,10 +50,10 @@ export default function AnnouncementTicker({
 
   return (
     <div className="sticky top-16 z-30 border-b border-primary-soft bg-primary-soft/90 shadow-sm backdrop-blur">
-      <div className="flex items-center gap-4 px-4 py-2.5 sm:px-6">
+      <div className="flex items-center gap-4 px-4 py-4 sm:px-6 sm:py-5">
         <Link
           href={href}
-          className="flex shrink-0 items-center gap-1.5 rounded-full bg-primary-dark px-3 py-1 text-xs font-bold text-white shadow-sm transition hover:opacity-90"
+          className="flex shrink-0 items-center gap-1.5 rounded-full bg-primary-dark px-4 py-1.5 text-xs font-bold text-white shadow-sm transition hover:opacity-90"
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
             <path d="M3 11l18-5v12L3 13v-2zM11.6 16.8a3 3 0 11-5.8-1.6" />
