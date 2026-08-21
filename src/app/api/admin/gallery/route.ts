@@ -1,5 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
+import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { requireAdmin, unauthorized } from "@/lib/admin";
@@ -8,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 const MAX_SIZE = 10 * 1024 * 1024;
 const ALLOWED = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export async function POST(request: Request) {
   const session = await requireAdmin();
@@ -35,16 +34,17 @@ export async function POST(request: Request) {
     );
   }
 
-  const ext = path.extname(file.name).toLowerCase() || ".jpg";
-  const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
-  const dir = path.join(process.cwd(), "public", "uploads", "gallery");
-  await mkdir(dir, { recursive: true });
-  const buffer = Buffer.from(await file.arrayBuffer());
-  await writeFile(path.join(dir, safeName), buffer);
+  const ext = file.name.split(".").pop() || "jpg";
+  const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+
+  const blob = await put(`gallery/${safeName}`, file, {
+    access: "public",
+    contentType: file.type,
+  });
 
   const image = await prisma.galleryImage.create({
     data: {
-      url: `/uploads/gallery/${safeName}`,
+      url: blob.url,
       captionFr,
       captionEn,
     },

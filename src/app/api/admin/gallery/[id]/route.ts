@@ -1,11 +1,10 @@
-import { unlink } from "node:fs/promises";
-import path from "node:path";
+import { del } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { requireAdmin, unauthorized } from "@/lib/admin";
 import { prisma } from "@/lib/prisma";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export async function DELETE(
   _request: Request,
@@ -24,11 +23,10 @@ export async function DELETE(
 
   await prisma.galleryImage.delete({ where: { id: image.id } });
 
-  const filePath = path.join(process.cwd(), "public", image.url.replace(/^\//, ""));
   try {
-    await unlink(filePath);
+    await del(image.url);
   } catch {
-    // Le fichier peut déjà avoir été supprimé ou être hors du dossier public.
+    // Blob may already be deleted
   }
 
   revalidatePath("/", "layout");
