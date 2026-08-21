@@ -80,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="contact" content="adniamey2000@gmail.com" />
         <meta name="google-site-verification" content="TXAQ3P0aYcCFOJvZrrDnxQY0V4OTXJi_jlY0TxlCGeU" />
+        <meta name="msvalidate.01" content="C1B2B591B7E5F16F07AF49BCF2784DFC" />
       </head>
       <body className="flex min-h-screen flex-col bg-white font-sans text-ink">
         {children}
