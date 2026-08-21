@@ -4,6 +4,7 @@ import { defineConfig } from "prisma/config";
 function resolveDatabaseUrl(): string {
   const candidates = [
     process.env.DATABASE_URL,
+    process.env.adniamey2000_PRISMA_DATABASE_URL,
     process.env.adniamey2000_db_DATABASE_URL,
     process.env.adniamey2000_db_POSTGRES_URL,
     process.env.POSTGRES_PRISMA_URL,
@@ -13,7 +14,7 @@ function resolveDatabaseUrl(): string {
     process.env.POSTGRES_URL_NON_POOLING,
   ];
   const url = candidates.find((c) => c && c.length > 0);
-  if (!url) throw new Error("DATABASE_URL manquante");
+  if (!url) return "postgresql://localhost:5432/dummy?sslmode=require";
   return url;
 }
 

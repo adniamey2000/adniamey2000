@@ -3,6 +3,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 export function resolveDatabaseUrl(): string {
   const candidates = [
     process.env.DATABASE_URL,
+    process.env.adniamey2000_PRISMA_DATABASE_URL,
     process.env.adniamey2000_db_DATABASE_URL,
     process.env.adniamey2000_db_POSTGRES_URL,
     process.env.POSTGRES_PRISMA_URL,
