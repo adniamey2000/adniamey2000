@@ -1,99 +1,125 @@
 # AD Niamey 2000
 
-Site officiel de l'Assemblée de Dieu Niamey 2000 — une famille de foi où l'amour de Dieu transforme des vies.
+**Assemblée de Dieu Niamey 2000** — Site officiel de l'église
 
-Construit avec [Next.js](https://nextjs.org) (App Router), [Prisma](https://www.prisma.io), Postgres, Tailwind CSS v4 et i18n FR/EN.
+> *Annoncer la bonne nouvelle de Christ à Niamey, au Niger et au-delà.*
 
-## Fonctionnalités
+📍 Niamey, Niger — Quartier Yantala
+📧 adniamey2000@gmail.com
+🌐 [adniamey2000.vercel.app](https://adniamey2000.vercel.app)
 
-- Pages publiques : Accueil, À propos, Équipe, Sermons, Événements, Galerie, Blog (annonces), Contact
-- Bilingue FR / EN (toutes les pages)
-- Ruban d'annonces défilant (type télé) sur toutes les pages
-- Verset du jour (`/api/verse-of-the-day`) — traduit automatiquement en français
-- Formulaire de contact avec pièce jointe (PDF, Word, Excel, image — 10 Mo max)
-- Espace d'administration (`/admin`) : sermons, événements, départements, équipe, galerie, horaires, annonces, dons, paramètres
-- Bouton « Faire un don » avec les moyens de paiement (Mobile Money, banque, PayPal…)
-- Inscription newsletter
+---
+
+## Notre mission
+
+L'Assemblée de Dieu Niamey 2000 est une communauté chrétienne vivante qui annonce l'Évangile de Jésus-Christ. Nous sommes une famille de foi où l'amour de Dieu transforme des vies. Que vous soyez membre, visiteur ou de passage, vous êtes chez vous ici.
+
+### Horaires des cultes
+
+- **Dimanche** — Culte principal : 9h00
+- **Mercredi** — Étude biblique : 18h00
+- **Vendredi** — Prière : 18h00
+
+---
+
+## Le site
+
+Site bilingue **FR / EN** construit avec les technologies modernes du web.
+
+### Fonctionnalités
+
+- **Pages publiques** : Accueil, À propos, Sermons, Événements, Galerie, Annonces, Contact
+- **Bilingue** : français et anglais sur toutes les pages
+- **Ruban d'annonces** défilant sur toutes les pages
+- **Verset du jour** via l'API YouVersion, traduit automatiquement en français
+- **Formulaire de contact** avec pièce jointe (PDF, Word, Excel, image)
+- **Espace d'administration** complet (`/admin`)
+- **Bouton don** (Mobile Money, banque, PayPal)
+- **SEO optimisé** : Open Graph, JSON-LD, sitemap, robots.txt
+- **Responsive** : adapté mobile, tablette et desktop
+
+### Espace d'administration
+
+- Gestion des sermons (YouTube)
+- Gestion des événements
+- Gestion des départements et de l'équipe
+- Galerie photos
+- Annonces et horaires
+- Paramètres du site
+
+---
+
+## Stack technique
+
+| Technologie | Usage |
+|---|---|
+| [Next.js 16](https://nextjs.org) | Framework (App Router, Turbopack) |
+| [Prisma 7](https://www.prisma.io) | ORM + Prisma Postgres |
+| [Tailwind CSS v4](https://tailwindcss.com) | Styling |
+| [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) | Stockage images |
+| [Vercel](https://vercel.com) | Déploiement |
+| [YouVersion API](https://developers.bible.com) | Verset du jour |
+
+---
 
 ## Démarrage
 
 Prérequis : Node.js 20+, npm.
 
 ```bash
+git clone https://github.com/adniamey2000/adniamey2000.git
+cd adniamey2000
 npm install
-```
-
-Copiez le fichier d'environnement et renseignez les variables :
-
-```bash
 cp .env.example .env
 ```
 
-Variables disponibles :
-
-| Variable | Description |
-| --- | --- |
-| `DATABASE_URL` | URL de connexion Postgres (Vercel Postgres, Neon, Supabase…) |
-| `SMTP_HOST` | Serveur SMTP pour l'envoi des e-mails |
-| `SMTP_PORT` | Port SMTP (587 par défaut) |
-| `SMTP_SECURE` | `true` si SMTP sécurisé (TLS) |
-| `SMTP_USER` | Utilisateur SMTP |
-| `SMTP_PASS` | Mot de passe SMTP |
-| `SMTP_FROM` | Expéditeur des e-mails |
-| `CONTACT_TO` | Destinataire des messages du formulaire de contact |
-| `NEXT_PUBLIC_SITE_URL` | URL publique du site |
-| `YOUVERSION_API_KEY` / `YVP_APP_KEY` | Clé API YouVersion (optionnel, pour le verset du jour) |
-| `YVP_LSG_BIBLE_ID` | ID de la traduction LSG (optionnel) |
-
-Initialisez la base et le compte administrateur :
+Configurez les variables dans `.env` puis :
 
 ```bash
 npx prisma migrate dev
 npx prisma db seed
-```
-
-> Le seed crée un compte administrateur par défaut : `admin@adniamey2000.org` / `admin123` — **changez ce mot de passe immédiatement**.
-
-Lancez le serveur de développement :
-
-```bash
 npm run dev
 ```
 
 Ouvrez [http://localhost:3000](http://localhost:3000).
 
+> Le seed crée un compte admin : `admin@adniamey2000.org` / `admin123` — changez-le immédiatement.
+
+---
+
 ## Scripts
 
 | Commande | Description |
-| --- | --- |
+|--- | --- |
 | `npm run dev` | Serveur de développement |
 | `npm run build` | Build de production |
-| `npm run start` | Lancement du build de production |
 | `npm run lint` | ESLint |
 
-## Déploiement
+---
 
-### Vercel
+## Déploiement Vercel
 
-1. Poussez le dépôt sur GitHub et importez-le dans Vercel.
-2. Créez un store **Postgres** depuis l'onglet Storage du projet (Vercel ajoute automatiquement les variables `DATABASE_URL` / `POSTGRES_URL`).
-3. Renseignez les autres variables d'environnement (SMTP, `CONTACT_TO`, `NEXT_PUBLIC_SITE_URL`…).
-4. Le build applique les migrations (`prisma migrate deploy`) puis génère le client.
-5. Peuplez la base (compte admin + contenus de départ) :
+1. Importez le dépôt sur [vercel.com](https://vercel.com/new)
+2. Créez un store **Blob** (Settings → Storage)
+3. Ajoutez les variables d'environnement (voir `.env.example`)
+4. Le site se déploie automatiquement à chaque push
 
-```bash
-DATABASE_URL="postgresql://…" npx prisma db seed
-```
+---
 
 ## Structure
 
 ```
-prisma/              Schéma Prisma, migrations et seed
-public/images/       Images statiques (hero, en-têtes, à-propos, logo…)
+prisma/              Schéma, migrations et seed
+public/images/       Images statiques (hero, en-têtes, logo)
 src/app/[lang]/      Pages publiques (fr / en)
 src/app/admin/       Espace d'administration
-src/app/api/         Routes API (contact, verset, newsletter, admin…)
-src/components/      Composants (header, footer, formulaires…)
+src/app/api/         Routes API (contact, blob, newsletter, admin)
+src/components/      Composants React
 src/lib/             i18n, mail, versets, prisma, paramètres
-src/generated/prisma Client Prisma généré
 ```
+
+---
+
+## Licence
+
+© 2026 AD Niamey 2000 — Assemblée de Dieu au Niger. Tous droits réservés.

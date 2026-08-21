@@ -7,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 const MAX_SIZE = 10 * 1024 * 1024;
 const ALLOWED = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   const session = await requireAdmin();

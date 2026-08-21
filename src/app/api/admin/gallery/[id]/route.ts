@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { requireAdmin, unauthorized } from "@/lib/admin";
 import { prisma } from "@/lib/prisma";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function DELETE(
   _request: Request,
