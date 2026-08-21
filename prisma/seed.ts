@@ -1,19 +1,22 @@
 import "dotenv/config";
 import bcrypt from "bcryptjs";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
-import { buildPrismaAdapter } from "../src/lib/db";
 
-const prisma = new PrismaClient({ adapter: buildPrismaAdapter() });
+const url = process.env.DATABASE_URL || process.env.adniamey2000_PRISMA_DATABASE_URL;
+const adapter = new PrismaPg({ connectionString: url! });
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   const adminEmail = "adniamey2000@gmail.com";
+  const adminPassword = process.env.ADMIN_PASSWORD || "change-me-after-first-login";
   const existing = await prisma.user.findUnique({ where: { email: adminEmail } });
   if (!existing) {
-    const password = await bcrypt.hash("1aout2000", 10);
+    const password = await bcrypt.hash(adminPassword, 10);
     await prisma.user.create({
       data: { email: adminEmail, name: "Administrateur", password },
     });
-    console.log(`Admin créé : ${adminEmail} / 1aout2000`);
+    console.log(`Admin créé : ${adminEmail}`);
   }
 
   await prisma.sermon.deleteMany();
