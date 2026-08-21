@@ -38,13 +38,13 @@ export async function POST(request: Request) {
   const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
   const blob = await put(`gallery/${safeName}`, file, {
-    access: "public",
+    access: "private",
     contentType: file.type,
   });
 
   const image = await prisma.galleryImage.create({
     data: {
-      url: blob.url,
+      url: `/api/blob?pathname=${encodeURIComponent(blob.pathname)}`,
       captionFr,
       captionEn,
     },

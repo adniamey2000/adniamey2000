@@ -23,8 +23,13 @@ export async function DELETE(
 
   await prisma.galleryImage.delete({ where: { id: image.id } });
 
+  // Extract pathname from /api/blob?pathname=...
   try {
-    await del(image.url);
+    const url = new URL(image.url, "http://localhost");
+    const pathname = url.searchParams.get("pathname");
+    if (pathname) {
+      await del(pathname);
+    }
   } catch {
     // Blob may already be deleted
   }

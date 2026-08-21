@@ -34,9 +34,9 @@ export async function POST(request: Request) {
   const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
   const blob = await put(`uploads/${safeName}`, file, {
-    access: "public",
+    access: "private",
     contentType: file.type,
   });
 
-  return NextResponse.json({ url: blob.url });
+  return NextResponse.json({ url: `/api/blob?pathname=${encodeURIComponent(blob.pathname)}` });
 }
