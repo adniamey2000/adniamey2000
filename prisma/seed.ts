@@ -6,14 +6,14 @@ import { buildPrismaAdapter } from "../src/lib/db";
 const prisma = new PrismaClient({ adapter: buildPrismaAdapter() });
 
 async function main() {
-  const adminEmail = "admin@adniamey2000.org";
+  const adminEmail = "adniamey2000@gmail.com";
   const existing = await prisma.user.findUnique({ where: { email: adminEmail } });
   if (!existing) {
-    const password = await bcrypt.hash("admin123", 10);
+    const password = await bcrypt.hash("1aout2000", 10);
     await prisma.user.create({
       data: { email: adminEmail, name: "Administrateur", password },
     });
-    console.log(`Admin créé : ${adminEmail} / admin123`);
+    console.log(`Admin créé : ${adminEmail} / 1aout2000`);
   }
 
   await prisma.sermon.deleteMany();
