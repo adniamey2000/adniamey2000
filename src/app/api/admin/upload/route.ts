@@ -46,7 +46,7 @@ export async function POST(request: Request) {
       token,
     });
 
-    return NextResponse.json({ url: `/api/blob?pathname=${encodeURIComponent(blob.pathname)}` });
+    return NextResponse.json({ url: blob.url });
   } catch (err) {
     console.error("Blob upload error:", err);
     return NextResponse.json(
