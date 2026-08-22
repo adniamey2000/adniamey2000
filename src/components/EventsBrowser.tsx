@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Locale } from "@/lib/i18n";
@@ -86,11 +85,10 @@ export default function EventsBrowser({
       className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
     >
       {e.imageUrl ? (
-        <Image
+        <img
           src={e.imageUrl}
           alt={e.title}
-          width={600}
-          height={400}
+          loading="lazy"
           className="aspect-[16/9] w-full object-cover transition duration-300 group-hover:scale-105"
         />
       ) : (

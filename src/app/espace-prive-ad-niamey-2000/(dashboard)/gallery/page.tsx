@@ -1,4 +1,3 @@
-import Image from "next/image";
 import GalleryUploadForm from "@/components/admin/GalleryUploadForm";
 import DeleteButton from "@/components/admin/DeleteButton";
 import { prisma } from "@/lib/prisma";
@@ -41,12 +40,11 @@ export default async function AdminGalleryPage() {
                 className="overflow-hidden rounded-2xl border border-primary-soft bg-white shadow-sm"
               >
                 <div className="relative aspect-[3/2] w-full bg-slate-100">
-                  <Image
+                  <img
                     src={image.url}
                     alt={image.captionFr || image.captionEn || "Photo de la galerie"}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover"
+                    loading="lazy"
+                    className="h-full w-full object-cover"
                   />
                 </div>
                 <div className="p-3">

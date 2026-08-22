@@ -50,8 +50,11 @@ export const metadata: Metadata = {
       "Site officiel de l'Assemblée de Dieu Niamey 2000 — Annoncer la bonne nouvelle de Christ à Niamey, au Niger et au-delà.",
     images: ["/og-default.jpg"],
   },
+  other: {
+    "theme-color": "#5256C7",
+  },
   alternates: {
-    canonical: "https://adniamey2000.vercel.app",
+    canonical: "https://adniamey2000.vercel.app/fr",
     languages: {
       "fr": "https://adniamey2000.vercel.app/fr",
       "en": "https://adniamey2000.vercel.app/en",
@@ -78,6 +81,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} ${lora.variable} antialiased`}
     >
       <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#5256C7" />
         <meta name="contact" content="adniamey2000@gmail.com" />
         <meta name="google-site-verification" content="TXAQ3P0aYcCFOJvZrrDnxQY0V4OTXJi_jlY0TxlCGeU" />
         <meta name="msvalidate.01" content="C1B2B591B7E5F16F07AF49BCF2784DFC" />

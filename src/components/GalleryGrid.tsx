@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
 type GalleryItem = {
@@ -51,11 +50,10 @@ export default function GalleryGrid({ images }: { images: GalleryItem[] }) {
             className="group overflow-hidden rounded-2xl border border-slate-200 shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <div className="relative aspect-[3/2] w-full overflow-hidden">
-              <Image
+              <img
                 src={image.url}
                 alt={image.caption || "Photo de la galerie"}
-                width={600}
-                height={400}
+                loading="lazy"
                 className="aspect-[3/2] w-full object-cover transition duration-300 group-hover:scale-105"
               />
             </div>
@@ -113,11 +111,10 @@ export default function GalleryGrid({ images }: { images: GalleryItem[] }) {
             className="relative max-h-[85vh] max-w-4xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
+            <img
               src={active.url}
               alt={active.caption || "Photo de la galerie"}
-              width={1200}
-              height={800}
+              loading="lazy"
               className="max-h-[80vh] w-auto rounded-lg object-contain shadow-2xl"
             />
             {active.caption && (

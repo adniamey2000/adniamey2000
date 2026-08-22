@@ -463,11 +463,10 @@ export default async function HomePage({
                   className="group overflow-hidden rounded-2xl border border-primary-soft bg-white shadow-sm transition hover:shadow-md"
                 >
                   {isValidImageUrl(event.imageUrl) && (
-                    <Image
+                    <img
                       src={event.imageUrl}
                       alt={pick(lang, event.titleFr, event.titleEn)}
-                      width={600}
-                      height={400}
+                      loading="lazy"
                       className="aspect-[16/9] w-full object-cover transition duration-300 group-hover:scale-105"
                     />
                   )}

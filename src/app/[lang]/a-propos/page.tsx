@@ -233,11 +233,10 @@ export default async function AboutPage({
               className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
             >
               {isValidImageUrl(dept.imageUrl) ? (
-                <Image
+                <img
                   src={dept.imageUrl}
                   alt={pick(lang, dept.nameFr, dept.nameEn)}
-                  width={600}
-                  height={400}
+                  loading="lazy"
                   className="aspect-[16/9] w-full object-cover"
                 />
               ) : (
@@ -277,12 +276,11 @@ export default async function AboutPage({
               <div className="grid sm:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
                 <div className="relative aspect-[4/3] sm:aspect-auto">
                   {isValidImageUrl(senior.imageUrl) ? (
-                    <Image
+                    <img
                       src={senior.imageUrl}
                       alt={senior.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 40vw"
-                      className="object-cover"
+                      loading="lazy"
+                      className="h-full w-full object-cover"
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-slate-100">
@@ -319,12 +317,11 @@ export default async function AboutPage({
                 >
                   <div className="relative aspect-[16/10]">
                     {isValidImageUrl(member.imageUrl) ? (
-                      <Image
+                      <img
                         src={member.imageUrl}
                         alt={member.name}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover"
+                        loading="lazy"
+                        className="h-full w-full object-cover"
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center bg-slate-100">

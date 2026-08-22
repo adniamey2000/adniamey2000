@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
 export default function ImageUploadInput({
@@ -51,7 +50,7 @@ export default function ImageUploadInput({
       {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
       {value && (
         <div className="relative mt-3 aspect-video w-full max-w-xs overflow-hidden rounded-xl border border-primary-soft bg-slate-100">
-          <Image src={value} alt="Aperçu" fill sizes="320px" className="object-cover" />
+          <img src={value} alt="Aperçu" className="h-full w-full object-cover" />
           <button
             type="button"
             onClick={() => onChange("")}

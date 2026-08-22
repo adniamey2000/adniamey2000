@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/PageHeader";
@@ -57,11 +56,10 @@ export default async function EventDetailPage({
 
         <div className="mt-6 overflow-hidden rounded-3xl border border-primary-soft bg-white shadow-sm">
           {isValidImageUrl(event.imageUrl) && (
-            <Image
+            <img
               src={event.imageUrl}
               alt={pick(lang, event.titleFr, event.titleEn)}
-              width={1200}
-              height={675}
+              loading="lazy"
               className="aspect-[16/9] w-full object-cover"
             />
           )}

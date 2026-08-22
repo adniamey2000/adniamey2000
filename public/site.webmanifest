@@ -1,0 +1,13 @@
+{
+  "name": "AD Niamey 2000",
+  "short_name": "AD Niamey",
+  "description": "Site officiel de l'Assemblée de Dieu Niamey 2000",
+  "start_url": "/fr",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#5256C7",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" }
+  ]
+}
