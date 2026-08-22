@@ -113,6 +113,16 @@ const navItems = [
       </>
     ),
   },
+  {
+    href: "/espace-prive-ad-niamey-2000/profile",
+    label: "Mon profil",
+    icon: (
+      <>
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 21v-2a6 6 0 0112 0v2" />
+      </>
+    ),
+  },
 ];
 
 function Icon({
@@ -141,8 +151,10 @@ function Icon({
 
 export default function AdminShell({
   children,
+  user,
 }: {
   children: React.ReactNode;
+  user: { name: string; imageUrl: string };
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -188,6 +200,24 @@ export default function AdminShell({
             </div>
           )}
         </div>
+
+        {!collapsed && (
+          <Link
+            href="/espace-prive-ad-niamey-2000/profile"
+            className="flex items-center gap-3 border-b border-primary-soft px-5 py-3 transition hover:bg-primary-soft/50"
+          >
+            {user.imageUrl ? (
+              <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full border border-primary-soft">
+                <Image src={user.imageUrl} alt={user.name} fill sizes="32px" className="object-cover" />
+              </div>
+            ) : (
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-soft text-xs font-bold text-primary-dark">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+            )}
+            <span className="truncate text-sm font-medium text-ink">{user.name}</span>
+          </Link>
+        )}
 
         <nav className="flex-1 space-y-1 px-3 py-4">
           {navItems.map((item) => {
@@ -288,6 +318,22 @@ export default function AdminShell({
                   <p className="text-xs text-muted">Administration</p>
                 </div>
               </div>
+              <Link
+                href="/espace-prive-ad-niamey-2000/profile"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 border-b border-primary-soft px-5 py-3 transition hover:bg-primary-soft/50"
+              >
+                {user.imageUrl ? (
+                  <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full border border-primary-soft">
+                    <Image src={user.imageUrl} alt={user.name} fill sizes="32px" className="object-cover" />
+                  </div>
+                ) : (
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-soft text-xs font-bold text-primary-dark">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <span className="truncate text-sm font-medium text-ink">{user.name}</span>
+              </Link>
               <button
                 type="button"
                 aria-label="Fermer le menu"

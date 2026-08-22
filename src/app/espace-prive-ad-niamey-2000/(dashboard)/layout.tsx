@@ -15,5 +15,11 @@ export default async function AdminLayout({
   const session = await getSession();
   if (!session) redirect("/espace-prive-ad-niamey-2000/login");
 
-  return <AdminShell>{children}</AdminShell>;
+  return (
+    <AdminShell
+      user={{ name: session.user.name ?? "Admin", imageUrl: session.user.imageUrl ?? "" }}
+    >
+      {children}
+    </AdminShell>
+  );
 }
