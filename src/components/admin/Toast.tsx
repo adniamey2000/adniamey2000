@@ -63,8 +63,8 @@ export default function ToastProvider() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100]" style={{ animation: "slideUp 0.2s ease-out" }}>
-      <div className={`flex items-center gap-3 rounded-full ${colors[type]} px-5 py-3 text-sm font-semibold text-white shadow-lg`}>
+    <div className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center" style={{ animation: "fadeIn 0.15s ease-out" }}>
+      <div className={`pointer-events-auto flex items-center gap-3 rounded-full ${colors[type]} px-6 py-3.5 text-sm font-semibold text-white shadow-2xl`}>
         {icons[type]}
         {message}
       </div>
