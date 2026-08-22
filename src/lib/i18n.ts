@@ -196,6 +196,48 @@ export type Dict = {
     rights: string;
     madeWith: string;
     admin: string;
+    terms: string;
+    privacy: string;
+  };
+  conditions: {
+    title: string;
+    updated: string;
+    s1Title: string;
+    s1Text: string;
+    s2Title: string;
+    s2Text: string;
+    s3Title: string;
+    s3Text: string;
+    s3List: string[];
+    s4Title: string;
+    s4Text: string;
+    s5Title: string;
+    s5Text: string;
+    s6Title: string;
+    s6Text: string;
+  };
+  confidentialite: {
+    title: string;
+    updated: string;
+    s1Title: string;
+    s1Text: string;
+    s1List: { strong: string; text: string }[];
+    s2Title: string;
+    s2Text: string;
+    s2List: string[];
+    s3Title: string;
+    s3Text: string;
+    s4Title: string;
+    s4Text: string;
+    s5Title: string;
+    s5Text: string;
+    s6Title: string;
+    s6Text: string;
+    s6List: { strong: string; text: string }[];
+    s7Title: string;
+    s7Text: string;
+    s8Title: string;
+    s8Text: string;
   };
   meta: {
     description: string;
@@ -442,6 +484,65 @@ const fr: Dict = {
     rights: "Tous droits réservés.",
     madeWith: "Avec amour pour Dieu et pour vous.",
     admin: "Espace admin",
+    terms: "Conditions d'utilisation",
+    privacy: "Politique de confidentialité",
+  },
+  conditions: {
+    title: "Conditions d'utilisation",
+    updated: "Dernière mise à jour : 22 août 2026",
+    s1Title: "1. Acceptation des conditions",
+    s1Text: "En accédant et en utilisant le site web de l'Assemblée de Dieu Niamey 2000 (« AD Niamey 2000 »), vous acceptez les présentes conditions d'utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser ce site.",
+    s2Title: "2. Description du site",
+    s2Text: "Ce site a pour objet de fournir au public des informations sur les activités, les services, les sermons et les événements de l'Assemblée de Dieu Niamey 2000. Le contenu est fourni à titre informatif uniquement.",
+    s3Title: "3. Utilisation du site",
+    s3Text: "Vous vous engagez à :",
+    s3List: [
+      "Utiliser le site de manière respectueuse et conforme à la loi",
+      "Ne pas tenter d'accéder aux parties sécurisées du site sans autorisation",
+      "Ne pas utiliser le site à des fins commerciales non autorisées",
+      "Ne pas perturber ou endommager le fonctionnement du site",
+    ],
+    s4Title: "4. Propriété intellectuelle",
+    s4Text: "Le contenu de ce site (textes, images, logos, vidéos, sermons) est la propriété de l'AD Niamey 2000 ou de ses partenaires et est protégé par les lois en vigueur sur la propriété intellectuelle. Toute reproduction non autorisée est interdite.",
+    s5Title: "5. Liens externes",
+    s5Text: "Ce site peut contenir des liens vers des sites tiers (YouTube, etc.). L'AD Niamey 2000 n'exerce aucun contrôle sur le contenu de ces sites et décline toute responsabilité concernant leur contenu ou leurs pratiques.",
+    s6Title: "6. Contact",
+    s6Text: "Pour toute question concernant ces conditions d'utilisation, vous pouvez nous contacter à l'adresse :",
+  },
+  confidentialite: {
+    title: "Politique de confidentialité",
+    updated: "Dernière mise à jour : 22 août 2026",
+    s1Title: "1. Données collectées",
+    s1Text: "Le site de l'AD Niamey 2000 collecte les données suivantes :",
+    s1List: [
+      { strong: "Formulaire de contact :", text: "nom, adresse e-mail, sujet et message. Ces données sont utilisées uniquement pour répondre à votre demande." },
+      { strong: "Newsletter :", text: "adresse e-mail. Utilisée uniquement pour l'envoi de la newsletter de l'église, avec votre consentement explicite (double opt-in)." },
+    ],
+    s2Title: "2. Utilisation des données",
+    s2Text: "Vos données personnelles sont utilisées exclusivement pour :",
+    s2List: [
+      "Répondre aux messages envoyés via le formulaire de contact",
+      "Vous envoyer la newsletter si vous y avez souscrit",
+      "Assurer le bon fonctionnement technique du site",
+    ],
+    s3Title: "3. Partage des données",
+    s3Text: "L'AD Niamey 2000 ne vend, ne loue et ne partage pas vos données personnelles avec des tiers, sauf obligation légale.",
+    s4Title: "4. Sécurité",
+    s4Text: "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte ou modification.",
+    s5Title: "5. Cookies",
+    s5Text: "Ce site utilise uniquement des cookies techniques nécessaires à son bon fonctionnement (session d'administration). Aucun cookie publicitaire ou de suivi n'est utilisé.",
+    s6Title: "6. Vos droits",
+    s6Text: "Conformément à la réglementation en vigueur, vous disposez des droits suivants concernant vos données personnelles :",
+    s6List: [
+      { strong: "Droit d'accès :", text: "obtenir une copie de vos données" },
+      { strong: "Droit de rectification :", text: "corriger des données inexactes" },
+      { strong: "Droit de suppression :", text: "demander la suppression de vos données" },
+      { strong: "Droit de désinscription :", text: "vous désinscrire de la newsletter à tout moment" },
+    ],
+    s7Title: "7. Durée de conservation",
+    s7Text: "Vos données de contact sont conservées le temps nécessaire au traitement de votre demande. Les données de newsletter sont conservées tant que votre abonnement est actif.",
+    s8Title: "8. Contact",
+    s8Text: "Pour toute question relative à la protection de vos données personnelles, contactez-nous à :",
   },
   meta: {
     description:
@@ -694,6 +795,65 @@ const en: Dict = {
     rights: "All rights reserved.",
     madeWith: "With love for God and for you.",
     admin: "Admin area",
+    terms: "Terms of Service",
+    privacy: "Privacy Policy",
+  },
+  conditions: {
+    title: "Terms of Service",
+    updated: "Last updated: August 22, 2026",
+    s1Title: "1. Acceptance of terms",
+    s1Text: "By accessing and using the website of the Assemblies of God Niamey 2000 (\"AD Niamey 2000\"), you agree to these terms of service. If you do not agree to these terms, please do not use this site.",
+    s2Title: "2. Description of the site",
+    s2Text: "This site aims to provide the public with information about the activities, services, sermons and events of the Assemblies of God Niamey 2000. The content is provided for informational purposes only.",
+    s3Title: "3. Use of the site",
+    s3Text: "You agree to:",
+    s3List: [
+      "Use the site in a respectful and lawful manner",
+      "Not attempt to access secured parts of the site without authorization",
+      "Not use the site for unauthorized commercial purposes",
+      "Not disrupt or damage the operation of the site",
+    ],
+    s4Title: "4. Intellectual property",
+    s4Text: "The content of this site (texts, images, logos, videos, sermons) is the property of AD Niamey 2000 or its partners and is protected by applicable intellectual property laws. Any unauthorized reproduction is prohibited.",
+    s5Title: "5. External links",
+    s5Text: "This site may contain links to third-party sites (YouTube, etc.). AD Niamey 2000 exercises no control over the content of these sites and declines all responsibility regarding their content or practices.",
+    s6Title: "6. Contact",
+    s6Text: "For any questions regarding these terms of service, you may contact us at:",
+  },
+  confidentialite: {
+    title: "Privacy Policy",
+    updated: "Last updated: August 22, 2026",
+    s1Title: "1. Data collected",
+    s1Text: "The AD Niamey 2000 website collects the following data:",
+    s1List: [
+      { strong: "Contact form:", text: "name, email address, subject and message. This data is used solely to respond to your request." },
+      { strong: "Newsletter:", text: "email address. Used only for sending the church newsletter, with your explicit consent (double opt-in)." },
+    ],
+    s2Title: "2. Use of data",
+    s2Text: "Your personal data is used exclusively to:",
+    s2List: [
+      "Respond to messages sent via the contact form",
+      "Send you the newsletter if you have subscribed",
+      "Ensure proper technical operation of the site",
+    ],
+    s3Title: "3. Data sharing",
+    s3Text: "AD Niamey 2000 does not sell, rent or share your personal data with third parties, except as required by law.",
+    s4Title: "4. Security",
+    s4Text: "We implement appropriate technical and organizational measures to protect your data against unauthorized access, loss or modification.",
+    s5Title: "5. Cookies",
+    s5Text: "This site uses only technical cookies necessary for its proper functioning (admin session). No advertising or tracking cookies are used.",
+    s6Title: "6. Your rights",
+    s6Text: "In accordance with applicable regulations, you have the following rights regarding your personal data:",
+    s6List: [
+      { strong: "Right of access:", text: "obtain a copy of your data" },
+      { strong: "Right to rectification:", text: "correct inaccurate data" },
+      { strong: "Right to deletion:", text: "request the deletion of your data" },
+      { strong: "Right to unsubscribe:", text: "unsubscribe from the newsletter at any time" },
+    ],
+    s7Title: "7. Retention period",
+    s7Text: "Your contact data is retained for the time necessary to process your request. Newsletter data is retained as long as your subscription is active.",
+    s8Title: "8. Contact",
+    s8Text: "For any questions regarding the protection of your personal data, contact us at:",
   },
   meta: {
     description:

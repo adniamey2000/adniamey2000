@@ -159,14 +159,14 @@ export default async function Footer({
               href={`/${lang}/conditions`}
               className="transition hover:text-white/90"
             >
-              Conditions d&apos;utilisation
+              {dict.footer.terms}
             </Link>
             <span className="text-white/30">·</span>
             <Link
               href={`/${lang}/confidentialite`}
               className="transition hover:text-white/90"
             >
-              Politique de confidentialité
+              {dict.footer.privacy}
             </Link>
           </div>
         </div>

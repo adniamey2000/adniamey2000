@@ -93,19 +93,22 @@ export default function MobileMenu({
 
             <div className="flex flex-col items-center gap-4 border-t border-primary-soft px-6 py-6">
               <div className="flex items-center gap-1 rounded-full bg-primary-soft p-1">
-                {locales.map((l) => (
-                  <Link
-                    key={l}
-                    href={`/${l}`}
-                    className={`rounded-full px-3.5 py-1.5 text-sm font-semibold uppercase transition ${
-                      lang === l
-                        ? "bg-primary-dark text-white"
-                        : "text-primary-dark hover:bg-white"
-                    }`}
-                  >
-                    {l}
-                  </Link>
-                ))}
+                {locales.map((l) => {
+                  const switchPath = pathname.replace(`/${lang}`, `/${l}`) || `/${l}`;
+                  return (
+                    <Link
+                      key={l}
+                      href={switchPath}
+                      className={`rounded-full px-3.5 py-1.5 text-sm font-semibold uppercase transition ${
+                        lang === l
+                          ? "bg-primary-dark text-white"
+                          : "text-primary-dark hover:bg-white"
+                      }`}
+                    >
+                      {l}
+                    </Link>
+                  );
+                })}
               </div>
               <p className="text-xs text-muted">© {churchName}</p>
             </div>

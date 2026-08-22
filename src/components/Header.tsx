@@ -27,16 +27,16 @@ export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-primary-soft bg-white/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href={`/${lang}`} className="flex items-center gap-3">
           <Image
             src="/adlogo.jpg"
             alt={churchName}
             width={40}
             height={40}
-            className="h-10 w-10 rounded-full object-cover"
+            className="h-12 w-12 rounded-full object-cover"
           />
-          <span className="font-serif text-lg font-bold tracking-tight text-ink">
+          <span className="font-serif text-xl font-bold tracking-tight text-ink">
             {churchName}
           </span>
         </Link>
@@ -48,7 +48,7 @@ export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
               <Link
                 key={link.href}
                 href={`/${lang}${link.href}`}
-                className={`group relative text-sm font-medium transition ${
+                className={`group relative text-base font-medium transition ${
                   active
                     ? "font-bold text-primary-dark"
                     : "text-ink/80 hover:text-primary-dark"
@@ -73,19 +73,22 @@ export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
             {dict.actions.joinUs}
           </Link>
           <div className="flex items-center gap-1 rounded-full bg-primary-soft p-1">
-            {locales.map((l) => (
-              <Link
-                key={l}
-                href={`/${l}`}
-                className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase transition ${
-                  lang === l
-                    ? "bg-primary-dark text-white"
-                    : "text-primary-dark hover:bg-white"
-                }`}
-              >
-                {l}
-              </Link>
-            ))}
+            {locales.map((l) => {
+              const switchPath = pathname.replace(`/${lang}`, `/${l}`) || `/${l}`;
+              return (
+                <Link
+                  key={l}
+                  href={switchPath}
+                  className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase transition ${
+                    lang === l
+                      ? "bg-primary-dark text-white"
+                      : "text-primary-dark hover:bg-white"
+                  }`}
+                >
+                  {l}
+                </Link>
+              );
+            })}
           </div>
           <MobileMenu lang={lang} links={links} />
         </div>

@@ -1,99 +1,99 @@
 import type { Metadata } from "next";
+import { type Locale, getDict } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Politique de confidentialité — AD Niamey 2000",
-  description: "Politique de confidentialité du site web de l'Assemblée de Dieu Niamey 2000.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const dict = getDict(lang);
+  return {
+    title: `${dict.confidentialite.title} — AD Niamey 2000`,
+    description:
+      lang === "fr"
+        ? "Politique de confidentialité du site web de l'Assemblée de Dieu Niamey 2000."
+        : "Privacy policy for the Assemblies of God Niamey 2000 website.",
+  };
+}
 
-export default function ConfidentialitePage() {
+export default async function ConfidentialitePage({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
+  const dict = getDict(lang);
+  const p = dict.confidentialite;
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <h1 className="font-serif text-3xl font-bold text-ink">
-        Politique de confidentialité
-      </h1>
-      <p className="mt-2 text-sm text-muted">Dernière mise à jour : 22 août 2026</p>
+      <h1 className="font-serif text-3xl font-bold text-ink">{p.title}</h1>
+      <p className="mt-2 text-sm text-muted">{p.updated}</p>
 
       <div className="prose-sm mt-8 space-y-6 text-ink/85 leading-relaxed">
         <section>
-          <h2 className="font-serif text-lg font-bold text-ink">1. Données collectées</h2>
-          <p>
-            Le site de l&apos;AD Niamey 2000 collecte les données suivantes :
-          </p>
+          <h2 className="font-serif text-lg font-bold text-ink">{p.s1Title}</h2>
+          <p>{p.s1Text}</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>
-              <strong>Formulaire de contact :</strong> nom, adresse e-mail, sujet et message.
-              Ces données sont utilisées uniquement pour répondre à votre demande.
-            </li>
-            <li>
-              <strong>Newsletter :</strong> adresse e-mail. Utilisée uniquement pour l&apos;envoi
-              de la newsletter de l&apos;église, avec votre consentement explicite (double opt-in).
-            </li>
+            {p.s1List.map((item, i) => (
+              <li key={i}>
+                <strong>{item.strong}</strong> {item.text}
+              </li>
+            ))}
           </ul>
         </section>
 
         <section>
-          <h2 className="font-serif text-lg font-bold text-ink">2. Utilisation des données</h2>
-          <p>Vos données personnelles sont utilisées exclusivement pour :</p>
+          <h2 className="font-serif text-lg font-bold text-ink">{p.s2Title}</h2>
+          <p>{p.s2Text}</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Répondre aux messages envoyés via le formulaire de contact</li>
-            <li>Vous envoyer la newsletter si vous y avez souscrit</li>
-            <li>Assurer le bon fonctionnement technique du site</li>
+            {p.s2List.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
           </ul>
         </section>
 
         <section>
-          <h2 className="font-serif text-lg font-bold text-ink">3. Partage des données</h2>
-          <p>
-            L&apos;AD Niamey 2000 ne vend, ne loue et ne partage pas vos données personnelles
-            avec des tiers, sauf obligation légale.
-          </p>
+          <h2 className="font-serif text-lg font-bold text-ink">{p.s3Title}</h2>
+          <p>{p.s3Text}</p>
         </section>
 
         <section>
-          <h2 className="font-serif text-lg font-bold text-ink">4. Sécurité</h2>
-          <p>
-            Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour
-            protéger vos données contre tout accès non autorisé, perte ou modification.
-          </p>
+          <h2 className="font-serif text-lg font-bold text-ink">{p.s4Title}</h2>
+          <p>{p.s4Text}</p>
         </section>
 
         <section>
-          <h2 className="font-serif text-lg font-bold text-ink">5. Cookies</h2>
-          <p>
-            Ce site utilise uniquement des cookies techniques nécessaires à son bon
-            fonctionnement (session d&apos;administration). Aucun cookie publicitaire ou de
-            suivi n&apos;est utilisé.
-          </p>
+          <h2 className="font-serif text-lg font-bold text-ink">{p.s5Title}</h2>
+          <p>{p.s5Text}</p>
         </section>
 
         <section>
-          <h2 className="font-serif text-lg font-bold text-ink">6. Vos droits</h2>
-          <p>
-            Conformément à la réglementation en vigueur, vous disposez des droits suivants
-            concernant vos données personnelles :
-          </p>
+          <h2 className="font-serif text-lg font-bold text-ink">{p.s6Title}</h2>
+          <p>{p.s6Text}</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><strong>Droit d&apos;accès :</strong> obtenir une copie de vos données</li>
-            <li><strong>Droit de rectification :</strong> corriger des données inexactes</li>
-            <li><strong>Droit de suppression :</strong> demander la suppression de vos données</li>
-            <li><strong>Droit de désinscription :</strong> vous désinscrire de la newsletter à tout moment</li>
+            {p.s6List.map((item, i) => (
+              <li key={i}>
+                <strong>{item.strong}</strong> {item.text}
+              </li>
+            ))}
           </ul>
         </section>
 
         <section>
-          <h2 className="font-serif text-lg font-bold text-ink">7. Durée de conservation</h2>
-          <p>
-            Vos données de contact sont conservées le temps nécessaire au traitement de votre
-            demande. Les données de newsletter sont conservées tant que votre abonnement est actif.
-          </p>
+          <h2 className="font-serif text-lg font-bold text-ink">{p.s7Title}</h2>
+          <p>{p.s7Text}</p>
         </section>
 
         <section>
-          <h2 className="font-serif text-lg font-bold text-ink">8. Contact</h2>
+          <h2 className="font-serif text-lg font-bold text-ink">{p.s8Title}</h2>
           <p>
-            Pour toute question relative à la protection de vos données personnelles, contactez-nous
-            à :{" "}
-            <a href="mailto:adniamey2000@gmail.com" className="text-primary-dark font-semibold hover:underline">
+            {p.s8Text}{" "}
+            <a
+              href="mailto:adniamey2000@gmail.com"
+              className="font-semibold text-primary-dark hover:underline"
+            >
               adniamey2000@gmail.com
             </a>
           </p>
