@@ -154,7 +154,21 @@ export default async function Footer({
             © {new Date().getFullYear()} {churchName}. {dict.footer.rights}{" "}
             {dict.footer.madeWith}
           </p>
-
+          <div className="flex items-center gap-4 text-xs text-white/60">
+            <Link
+              href={`/${lang}/conditions`}
+              className="transition hover:text-white/90"
+            >
+              Conditions d&apos;utilisation
+            </Link>
+            <span className="text-white/30">·</span>
+            <Link
+              href={`/${lang}/confidentialite`}
+              className="transition hover:text-white/90"
+            >
+              Politique de confidentialité
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
