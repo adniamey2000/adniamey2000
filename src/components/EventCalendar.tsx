@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { toDetailPath } from "@/lib/slug";
 
 type CalendarEvent = {
   id: number;
   title: string;
+  titleFr: string;
   date: string;
   time: string;
   place: string;
@@ -154,7 +156,7 @@ export default function EventCalendar({
           {selectedEvents.map((e) => (
             <li key={e.id}>
               <a
-                href={`/${langPrefix}/evenements/${e.id}`}
+                href={toDetailPath("evenements", e.id, e.titleFr, langPrefix as "fr" | "en")}
                 className="block rounded-xl border border-primary-soft bg-primary-soft/40 p-3 transition hover:bg-primary-soft"
               >
                 <p className="text-xs font-semibold uppercase tracking-wide text-primary-dark">

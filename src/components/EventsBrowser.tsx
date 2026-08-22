@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Locale } from "@/lib/i18n";
+import { toDetailPath } from "@/lib/slug";
 
 export type EventItem = {
   id: number;
   title: string;
+  titleFr: string;
   summary: string;
   dateISO: string;
   time: string;
@@ -81,7 +83,7 @@ export default function EventsBrowser({
   const card = (e: EventItem) => (
     <Link
       key={e.id}
-      href={`/${lang}/evenements/${e.id}`}
+      href={toDetailPath("evenements", e.id, e.titleFr, lang)}
       className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
     >
       {e.imageUrl ? (

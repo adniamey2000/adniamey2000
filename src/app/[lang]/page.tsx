@@ -14,6 +14,7 @@ import {
 import { images, isValidImageUrl } from "@/lib/images";
 import { prisma } from "@/lib/prisma";
 import { getSchedule } from "@/lib/site";
+import { toDetailPath } from "@/lib/slug";
 
 export async function generateMetadata({
   params,
@@ -264,8 +265,9 @@ export default async function HomePage({
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {homeAnnouncements.map((announcement) => (
-                <div
+                <Link
                   key={announcement.id}
+                  href={toDetailPath("annonces", announcement.id, announcement.titleFr, lang)}
                   className="group rounded-2xl border border-primary-soft bg-white p-6 shadow-sm transition hover:shadow-md"
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -291,7 +293,7 @@ export default async function HomePage({
                   <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">
                     {pick(lang, announcement.contentFr, announcement.contentEn)}
                   </p>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -388,7 +390,7 @@ export default async function HomePage({
               >
                 {youtubeThumb(sermon.videoUrl) && (
                   <Link
-                    href={`/${lang}/sermons/${sermon.id}`}
+                    href={toDetailPath("sermons", sermon.id, sermon.titleFr, lang)}
                     className="group relative block aspect-video w-full bg-slate-950"
                   >
                     <Image
@@ -409,7 +411,7 @@ export default async function HomePage({
                 )}
                 <div className="p-5">
                   <Link
-                    href={`/${lang}/sermons/${sermon.id}`}
+                    href={toDetailPath("sermons", sermon.id, sermon.titleFr, lang)}
                     className="font-serif text-lg font-bold transition hover:text-primary-dark"
                   >
                     {pick(lang, sermon.titleFr, sermon.titleEn)}
@@ -422,7 +424,7 @@ export default async function HomePage({
                     {pick(lang, sermon.summaryFr, sermon.summaryEn)}
                   </p>
                   <Link
-                    href={`/${lang}/sermons/${sermon.id}`}
+                    href={toDetailPath("sermons", sermon.id, sermon.titleFr, lang)}
                     className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-dark transition hover:text-ink"
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -459,7 +461,7 @@ export default async function HomePage({
               {events.map((event) => (
                 <Link
                   key={event.id}
-                  href={`/${lang}/evenements/${event.id}`}
+                  href={toDetailPath("evenements", event.id, event.titleFr, lang)}
                   className="group overflow-hidden rounded-2xl border border-primary-soft bg-white shadow-sm transition hover:shadow-md"
                 >
                   {isValidImageUrl(event.imageUrl) && (

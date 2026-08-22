@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "culte chrétien Niamey",
     "prière Niger",
     "évangile Niger",
-    "Yantala Niamey",
+    "Niamey 2000",
     "église évangélique Niger",
   ],
   authors: [{ name: "AD Niamey 2000" }],

@@ -2,37 +2,62 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/PageHeader";
-import { getDict, isLocale, pick, youtubeEmbed } from "@/lib/i18n";
+import ShareButtons from "@/components/ShareButtons";
+import { getDict, isLocale, pick, youtubeEmbed, youtubeThumb } from "@/lib/i18n";
 import { images } from "@/lib/images";
 import { prisma } from "@/lib/prisma";
+import { extractIdFromSlug, toDetailPath } from "@/lib/slug";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ lang: string; id: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
-  const { lang, id } = await params;
+  const { lang, slug } = await params;
   if (!isLocale(lang)) return {};
-  const sermon = await prisma.sermon.findUnique({ where: { id: Number(id) } });
+  const id = extractIdFromSlug(slug);
+  const sermon = await prisma.sermon.findUnique({ where: { id } });
+  if (!sermon) return {};
+  const title = pick(lang, sermon.titleFr, sermon.titleEn);
+  const description = pick(lang, sermon.summaryFr, sermon.summaryEn).slice(0, 200);
+  const url = toDetailPath("sermons", sermon.id, sermon.titleFr, lang);
+  const thumb = youtubeThumb(sermon.videoUrl) || "/og-default.jpg";
   return {
-    title: `${sermon ? pick(lang, sermon.titleFr, sermon.titleEn) : "Sermon"} — AD Niamey 2000`,
+    title: `${title} — AD Niamey 2000`,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://adniamey2000.vercel.app${url}`,
+      type: "article",
+      siteName: "AD Niamey 2000",
+      images: [{ url: thumb, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [thumb],
+    },
   };
 }
 
 export default async function SermonDetailPage({
   params,
 }: {
-  params: Promise<{ lang: string; id: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { lang, id } = await params;
+  const { lang, slug } = await params;
   if (!isLocale(lang)) notFound();
+  const id = extractIdFromSlug(slug);
   const dict = getDict(lang);
 
-  const sermon = await prisma.sermon.findUnique({ where: { id: Number(id) } });
+  const sermon = await prisma.sermon.findUnique({ where: { id } });
   if (!sermon) notFound();
 
   const title = pick(lang, sermon.titleFr, sermon.titleEn);
   const summary = pick(lang, sermon.summaryFr, sermon.summaryEn);
+  const sharePath = toDetailPath("sermons", sermon.id, sermon.titleFr, lang);
 
   return (
     <div>
@@ -69,9 +94,11 @@ export default async function SermonDetailPage({
             <h1 className="mt-2 font-serif text-2xl font-bold sm:text-3xl">{title}</h1>
             <p className="mt-6 text-lg leading-relaxed text-ink">{summary}</p>
           </div>
+          <div className="border-t border-slate-100 px-6 py-5 sm:px-8">
+            <ShareButtons url={sharePath} title={title} />
+          </div>
         </div>
       </section>
-
     </div>
   );
 }

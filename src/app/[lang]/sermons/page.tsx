@@ -48,6 +48,7 @@ export default async function SermonsPage({
             sermons={sermons.map((sermon) => ({
               id: sermon.id,
               title: pick(lang, sermon.titleFr, sermon.titleEn),
+              titleFr: sermon.titleFr,
               summary: pick(lang, sermon.summaryFr, sermon.summaryEn),
               dateISO: sermon.date.toISOString(),
               speaker: sermon.speaker,

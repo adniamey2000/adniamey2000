@@ -5,6 +5,7 @@ import PageHeader from "@/components/PageHeader";
 import { getDict, isLocale, pick } from "@/lib/i18n";
 import { images } from "@/lib/images";
 import { prisma } from "@/lib/prisma";
+import { toDetailPath } from "@/lib/slug";
 
 export async function generateMetadata({
   params,
@@ -83,6 +84,12 @@ export default async function AnnouncementsPage({
                   <p className="whitespace-pre-line leading-relaxed text-muted">
                     {pick(lang, announcement.contentFr, announcement.contentEn)}
                   </p>
+                  <Link
+                    href={toDetailPath("annonces", announcement.id, announcement.titleFr, lang)}
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-dark transition hover:text-ink"
+                  >
+                    {dict.announcements.readMore} →
+                  </Link>
                 </div>
               </article>
             ))}

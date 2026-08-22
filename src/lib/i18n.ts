@@ -92,6 +92,7 @@ export type Dict = {
     subtitle: string;
     empty: string;
     publishedOn: string;
+    readMore: string;
   };
   verse: {
     title: string;
@@ -289,6 +290,7 @@ const fr: Dict = {
     subtitle: "Retrouvez les annonces de chaque dimanche et les dernières nouvelles de l'église.",
     empty: "Aucune annonce pour le moment. Revenez bientôt !",
     publishedOn: "Publiée le",
+    readMore: "Lire la suite",
   },
   verse: {
     title: "Verset du jour",
@@ -541,6 +543,7 @@ const en: Dict = {
     subtitle: "Find the announcements of each Sunday and the latest church news.",
     empty: "No announcements yet. Come back soon!",
     publishedOn: "Posted on",
+    readMore: "Read more",
   },
   verse: {
     title: "Verse of the Day",

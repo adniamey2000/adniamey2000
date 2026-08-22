@@ -4,7 +4,7 @@
 
 > *Annoncer la bonne nouvelle de Christ à Niamey, au Niger et au-delà.*
 
-📍 Niamey, Niger — Quartier Yantala
+📍 Niamey, Niger — Quartier Niamey 2000
 📧 adniamey2000@gmail.com
 🌐 [adniamey2000.vercel.app](https://adniamey2000.vercel.app)
 

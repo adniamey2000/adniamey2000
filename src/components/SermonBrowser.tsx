@@ -1,13 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { Locale } from "@/lib/i18n";
+import { toDetailPath } from "@/lib/slug";
 
 export type SermonItem = {
   id: number;
   title: string;
+  titleFr: string;
   summary: string;
   dateISO: string;
   speaker: string;
@@ -107,16 +108,15 @@ export default function SermonBrowser({
               className="overflow-hidden rounded-2xl border border-primary-soft bg-white shadow-sm transition hover:shadow-md"
             >
               <Link
-                href={`/${lang}/sermons/${sermon.id}`}
+                href={toDetailPath("sermons", sermon.id, sermon.titleFr, lang)}
                 className="group relative block aspect-video w-full bg-slate-950"
               >
                 {sermon.thumb ? (
-                  <Image
+                  <img
                     src={sermon.thumb}
                     alt={sermon.title}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover opacity-90 transition duration-300 group-hover:scale-105 group-hover:opacity-100"
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-300 group-hover:scale-105 group-hover:opacity-100"
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950">
@@ -135,7 +135,7 @@ export default function SermonBrowser({
               </Link>
               <div className="p-6">
                 <Link
-                  href={`/${lang}/sermons/${sermon.id}`}
+                  href={toDetailPath("sermons", sermon.id, sermon.titleFr, lang)}
                   className="font-serif text-xl font-bold transition hover:text-primary-dark"
                 >
                   {sermon.title}
@@ -148,7 +148,7 @@ export default function SermonBrowser({
                   {sermon.summary}
                 </p>
                 <Link
-                  href={`/${lang}/sermons/${sermon.id}`}
+                  href={toDetailPath("sermons", sermon.id, sermon.titleFr, lang)}
                   className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary-dark px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">

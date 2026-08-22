@@ -48,6 +48,7 @@ export default async function EventsPage({
     events.map((e) => ({
       id: e.id,
       title: pick(lang, e.titleFr, e.titleEn),
+      titleFr: e.titleFr,
       summary: pick(lang, e.summaryFr, e.summaryEn),
       dateISO: e.date.toISOString(),
       time: e.time,
@@ -69,6 +70,7 @@ export default async function EventsPage({
             events={upcoming.map((e) => ({
               id: e.id,
               title: pick(lang, e.titleFr, e.titleEn),
+              titleFr: e.titleFr,
               date: e.date.toISOString(),
               time: e.time,
               place: e.place,
