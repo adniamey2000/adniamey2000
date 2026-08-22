@@ -36,6 +36,7 @@ export async function POST(request: Request) {
   const blob = await put(`uploads/${safeName}`, file, {
     access: "private",
     contentType: file.type,
+    storeId: process.env.adniamey2000_STORE_ID,
   });
 
   return NextResponse.json({ url: `/api/blob?pathname=${encodeURIComponent(blob.pathname)}` });

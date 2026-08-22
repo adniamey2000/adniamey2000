@@ -9,14 +9,17 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Missing pathname" }, { status: 400 });
   }
 
-  const result = await get(pathname, { access: "private" });
+  const result = await get(pathname, {
+    access: "private",
+    storeId: process.env.adniamey2000_STORE_ID,
+  });
   if (result === null) {
     return new NextResponse("Not found", { status: 404 });
   }
 
   return new NextResponse(result.stream, {
     headers: {
-      "Cache-Control": "public, max-age=31536000, immutable",
+      "Cache-Control": "private, no-cache",
       "Content-Type": result.blob.contentType ?? "application/octet-stream",
       "X-Content-Type-Options": "nosniff",
     },
