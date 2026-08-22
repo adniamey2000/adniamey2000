@@ -81,7 +81,7 @@ export default async function AdminMessagesPage() {
                     <p className={`truncate text-sm ${!msg.read ? "font-bold text-ink" : "font-medium text-ink/80"}`}>
                       {msg.name}
                     </p>
-                    <p className="text-[11px] text-muted/60">{msg.email}</p>
+                    <p className="text-[11px] text-muted">{msg.email}</p>
                   </div>
                 </div>
                 <span className="shrink-0 text-[11px] text-muted">{timeAgo(msg.createdAt)}</span>

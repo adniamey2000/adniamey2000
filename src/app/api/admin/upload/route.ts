@@ -34,11 +34,19 @@ export async function POST(request: Request) {
   const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
   try {
+    const token = process.env.BLOB_READ_WRITE_TOKEN || process.env.adniamey2000_BLOB_READ_WRITE_TOKEN;
+    if (!token) {
+      return NextResponse.json(
+        { error: "BLOB_READ_WRITE_TOKEN non configuré" },
+        { status: 500 }
+      );
+    }
     const blob = await put(`uploads/${safeName}`, file, {
-      access: "public",
+      access: "private",
+      token,
     });
 
-    return NextResponse.json({ url: blob.url });
+    return NextResponse.json({ url: `/api/blob?pathname=${encodeURIComponent(blob.pathname)}` });
   } catch (err) {
     console.error("Blob upload error:", err);
     return NextResponse.json(
