@@ -15,7 +15,7 @@ export default async function AdminMessagesPage() {
   const unreadCount = messages.filter((m) => !m.read).length;
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <div>
         <h1 className="font-serif text-2xl font-bold text-ink sm:text-3xl">
           Messages de contact
@@ -38,26 +38,26 @@ export default async function AdminMessagesPage() {
           <Link
             key={msg.id}
             href={`/espace-prive-ad-niamey-2000/messages/${msg.id}`}
-            className={`flex flex-wrap items-center justify-between gap-4 rounded-2xl border p-5 shadow-sm transition hover:shadow-md ${
+            className={`flex items-center gap-4 overflow-hidden rounded-2xl border p-5 shadow-sm transition hover:shadow-md ${
               msg.read
                 ? "border-primary-soft bg-white"
                 : "border-primary bg-primary-soft/50"
             }`}
           >
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <p className="font-serif text-base font-bold text-ink">
+                <p className="truncate font-serif text-base font-bold text-ink">
                   {msg.name}
                 </p>
                 {!msg.read && (
-                  <span className="rounded-full bg-primary-dark px-2 py-0.5 text-[11px] font-semibold text-white">
+                  <span className="shrink-0 rounded-full bg-primary-dark px-2 py-0.5 text-[11px] font-semibold text-white">
                     Nouveau
                   </span>
                 )}
               </div>
-              <p className="mt-0.5 text-xs text-muted">{msg.email}</p>
+              <p className="mt-0.5 truncate text-xs text-muted">{msg.email}</p>
               {msg.subject && (
-                <p className="mt-1 text-sm font-medium text-ink/80">
+                <p className="mt-1 truncate text-sm font-medium text-ink/80">
                   {msg.subject}
                 </p>
               )}

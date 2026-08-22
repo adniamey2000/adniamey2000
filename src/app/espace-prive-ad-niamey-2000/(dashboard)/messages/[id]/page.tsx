@@ -29,7 +29,7 @@ export default async function AdminMessageDetailPage({
   }
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <Link
         href="/espace-prive-ad-niamey-2000/messages"
         className="inline-flex items-center gap-2 text-sm font-medium text-primary-dark transition hover:text-ink"
@@ -56,7 +56,7 @@ export default async function AdminMessageDetailPage({
           <DeleteMessageButton id={msg.id} />
         </div>
 
-        <div className="mt-6 whitespace-pre-wrap text-sm leading-relaxed text-ink/85">
+        <div className="mt-6 whitespace-pre-wrap break-words text-sm leading-relaxed text-ink/85">
           {msg.message}
         </div>
 
