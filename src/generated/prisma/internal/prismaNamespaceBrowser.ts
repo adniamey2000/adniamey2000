@@ -64,6 +64,7 @@ export const ModelName = {
   SiteSetting: 'SiteSetting',
   NewsletterSubscriber: 'NewsletterSubscriber',
   ContactMessage: 'ContactMessage',
+  MessageReply: 'MessageReply',
   Announcement: 'Announcement'
 } as const
 
@@ -246,6 +247,17 @@ export const ContactMessageScalarFieldEnum = {
 } as const
 
 export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
+
+
+export const MessageReplyScalarFieldEnum = {
+  id: 'id',
+  messageId: 'messageId',
+  userId: 'userId',
+  body: 'body',
+  createdAt: 'createdAt'
+} as const
+
+export type MessageReplyScalarFieldEnum = (typeof MessageReplyScalarFieldEnum)[keyof typeof MessageReplyScalarFieldEnum]
 
 
 export const AnnouncementScalarFieldEnum = {

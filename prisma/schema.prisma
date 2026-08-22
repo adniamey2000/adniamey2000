@@ -127,13 +127,23 @@ model NewsletterSubscriber {
 }
 
 model ContactMessage {
-  id        Int      @id @default(autoincrement())
+  id        Int             @id @default(autoincrement())
   name      String
   email     String
   subject   String
   message   String
   fileName  String?
-  read      Boolean  @default(false)
+  read      Boolean         @default(false)
+  createdAt DateTime        @default(now())
+  replies   MessageReply[]
+}
+
+model MessageReply {
+  id        Int      @id @default(autoincrement())
+  messageId Int
+  message   ContactMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  userId    Int
+  body      String
   createdAt DateTime @default(now())
 }
 

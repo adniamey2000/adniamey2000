@@ -19,6 +19,7 @@ function timeAgo(date: Date): string {
 export default async function AdminMessagesPage() {
   const messages = await prisma.contactMessage.findMany({
     orderBy: { createdAt: "desc" },
+    include: { _count: { select: { replies: true } } },
   });
 
   const unread = messages.filter((m) => !m.read).length;
@@ -35,6 +36,8 @@ export default async function AdminMessagesPage() {
                   {unread}
                 </span>
                 {" "}non lu{unread > 1 ? "s" : ""}
+                {" · "}
+                {messages.length} message{messages.length !== 1 ? "s" : ""}
               </>
             ) : (
               <>{messages.length} message{messages.length !== 1 ? "s" : ""}</>
@@ -54,51 +57,60 @@ export default async function AdminMessagesPage() {
           <p className="text-sm text-muted">Aucun message pour le moment.</p>
         </div>
       ) : (
-        <div className="mt-6 divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {messages.map((msg) => (
             <Link
               key={msg.id}
               href={`/espace-prive-ad-niamey-2000/messages/${msg.id}`}
-              className={`flex gap-4 px-5 py-4 transition hover:bg-slate-50/80 ${
-                !msg.read ? "bg-primary-soft/20" : ""
+              className={`group flex flex-col rounded-2xl border p-5 transition hover:shadow-md ${
+                !msg.read
+                  ? "border-primary bg-primary-soft/20 shadow-sm"
+                  : "border-slate-200 bg-white"
               }`}
             >
-              {/* Avatar */}
-              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${
-                !msg.read ? "bg-primary-dark" : "bg-slate-300"
-              }`}>
-                {msg.name.charAt(0).toUpperCase()}
-              </div>
-
-              {/* Content */}
-              <div className="min-w-0 flex-1">
-                <div className="flex items-baseline justify-between gap-3">
-                  <div className="min-w-0 flex-1">
-                    <span className={`text-sm ${!msg.read ? "font-bold text-ink" : "font-medium text-ink/80"}`}>
-                      {msg.name}
-                    </span>
-                    {msg.subject && (
-                      <span className="ml-2 text-sm text-muted">
-                        — {msg.subject}
-                      </span>
-                    )}
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${
+                      !msg.read ? "bg-primary-dark" : "bg-slate-300"
+                    }`}
+                  >
+                    {msg.name.charAt(0).toUpperCase()}
                   </div>
-                  <span className="shrink-0 text-[11px] text-muted">
-                    {timeAgo(msg.createdAt)}
-                  </span>
+                  <div className="min-w-0">
+                    <p className={`truncate text-sm ${!msg.read ? "font-bold text-ink" : "font-medium text-ink/80"}`}>
+                      {msg.name}
+                    </p>
+                    <p className="text-[11px] text-muted/60">{msg.email}</p>
+                  </div>
                 </div>
-                <p className="mt-0.5 text-xs text-muted/60">{msg.email}</p>
-                <p className="mt-1 line-clamp-1 text-sm text-muted">
-                  {msg.message}
-                </p>
+                <span className="shrink-0 text-[11px] text-muted">{timeAgo(msg.createdAt)}</span>
               </div>
 
-              {/* Unread dot */}
-              {!msg.read && (
-                <div className="mt-2 shrink-0">
-                  <div className="h-2.5 w-2.5 rounded-full bg-primary-dark" />
-                </div>
+              {msg.subject && (
+                <p className="mt-3 truncate text-sm font-medium text-ink/70">{msg.subject}</p>
               )}
+
+              <p className="mt-1.5 line-clamp-2 flex-1 text-xs leading-relaxed text-muted">
+                {msg.message}
+              </p>
+
+              <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3">
+                {msg._count.replies > 0 ? (
+                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-primary-dark">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 10h10a5 5 0 015 5v4" />
+                      <path d="M7 14L3 10l4-4" />
+                    </svg>
+                    {msg._count.replies} réponse{msg._count.replies > 1 ? "s" : ""}
+                  </span>
+                ) : (
+                  <span />
+                )}
+                {!msg.read && (
+                  <span className="h-2 w-2 rounded-full bg-primary-dark" />
+                )}
+              </div>
             </Link>
           ))}
         </div>

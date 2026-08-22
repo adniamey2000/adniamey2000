@@ -410,6 +410,7 @@ export const ModelName = {
   SiteSetting: 'SiteSetting',
   NewsletterSubscriber: 'NewsletterSubscriber',
   ContactMessage: 'ContactMessage',
+  MessageReply: 'MessageReply',
   Announcement: 'Announcement'
 } as const
 
@@ -426,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "passwordResetToken" | "session" | "sermon" | "churchEvent" | "department" | "leader" | "scheduleItem" | "donationInfo" | "galleryImage" | "siteSetting" | "newsletterSubscriber" | "contactMessage" | "announcement"
+    modelProps: "user" | "passwordResetToken" | "session" | "sermon" | "churchEvent" | "department" | "leader" | "scheduleItem" | "donationInfo" | "galleryImage" | "siteSetting" | "newsletterSubscriber" | "contactMessage" | "messageReply" | "announcement"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1392,6 +1393,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MessageReply: {
+      payload: Prisma.$MessageReplyPayload<ExtArgs>
+      fields: Prisma.MessageReplyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MessageReplyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MessageReplyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>
+        }
+        findFirst: {
+          args: Prisma.MessageReplyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MessageReplyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>
+        }
+        findMany: {
+          args: Prisma.MessageReplyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>[]
+        }
+        create: {
+          args: Prisma.MessageReplyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>
+        }
+        createMany: {
+          args: Prisma.MessageReplyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MessageReplyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>[]
+        }
+        delete: {
+          args: Prisma.MessageReplyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>
+        }
+        update: {
+          args: Prisma.MessageReplyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>
+        }
+        deleteMany: {
+          args: Prisma.MessageReplyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MessageReplyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MessageReplyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>[]
+        }
+        upsert: {
+          args: Prisma.MessageReplyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessageReplyPayload>
+        }
+        aggregate: {
+          args: Prisma.MessageReplyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMessageReply>
+        }
+        groupBy: {
+          args: Prisma.MessageReplyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessageReplyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MessageReplyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessageReplyCountAggregateOutputType> | number
+        }
+      }
+    }
     Announcement: {
       payload: Prisma.$AnnouncementPayload<ExtArgs>
       fields: Prisma.AnnouncementFieldRefs
@@ -1670,6 +1745,17 @@ export const ContactMessageScalarFieldEnum = {
 export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
 
 
+export const MessageReplyScalarFieldEnum = {
+  id: 'id',
+  messageId: 'messageId',
+  userId: 'userId',
+  body: 'body',
+  createdAt: 'createdAt'
+} as const
+
+export type MessageReplyScalarFieldEnum = (typeof MessageReplyScalarFieldEnum)[keyof typeof MessageReplyScalarFieldEnum]
+
+
 export const AnnouncementScalarFieldEnum = {
   id: 'id',
   titleFr: 'titleFr',
@@ -1941,6 +2027,7 @@ export type GlobalOmitConfig = {
   siteSetting?: Prisma.SiteSettingOmit
   newsletterSubscriber?: Prisma.NewsletterSubscriberOmit
   contactMessage?: Prisma.ContactMessageOmit
+  messageReply?: Prisma.MessageReplyOmit
   announcement?: Prisma.AnnouncementOmit
 }
 

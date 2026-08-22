@@ -107,6 +107,11 @@ export type NewsletterSubscriber = Prisma.NewsletterSubscriberModel
  */
 export type ContactMessage = Prisma.ContactMessageModel
 /**
+ * Model MessageReply
+ * 
+ */
+export type MessageReply = Prisma.MessageReplyModel
+/**
  * Model Announcement
  * 
  */
