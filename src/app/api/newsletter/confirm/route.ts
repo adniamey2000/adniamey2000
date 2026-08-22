@@ -26,6 +26,6 @@ export async function GET(request: Request) {
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://adniamey2000.vercel.app";
 
   return NextResponse.redirect(
-    new URL(`${siteUrl}/fr?newsletter=confirmed`)
+    new URL(`${siteUrl}/fr/newsletter-confirmee`)
   );
 }
