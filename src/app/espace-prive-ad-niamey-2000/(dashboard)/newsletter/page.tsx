@@ -9,6 +9,8 @@ export default async function AdminNewsletterPage() {
     orderBy: { createdAt: "desc" },
   });
 
+  const confirmedCount = subscribers.filter((s) => s.confirmed).length;
+
   return (
     <div>
       <div>
@@ -16,7 +18,7 @@ export default async function AdminNewsletterPage() {
           Newsletter
         </h1>
         <p className="mt-1 text-sm text-muted">
-          Les adresses inscrites à la newsletter depuis le site.
+          {confirmedCount} abonné{confirmedCount > 1 ? "s" : ""} confirmé{confirmedCount > 1 ? "s" : ""} · {subscribers.length} inscription{subscribers.length > 1 ? "s" : ""} au total.
         </p>
       </div>
 
@@ -33,7 +35,12 @@ export default async function AdminNewsletterPage() {
                 className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-primary-soft bg-white p-5 shadow-sm"
               >
                 <div className="min-w-0">
-                  <p className="font-serif text-base font-bold text-ink">{sub.email}</p>
+                  <div className="flex items-center gap-2">
+                    <p className="font-serif text-base font-bold text-ink">{sub.email}</p>
+                    <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${sub.confirmed ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
+                      {sub.confirmed ? "Confirmé" : "En attente"}
+                    </span>
+                  </div>
                   <p className="mt-1 text-xs text-muted">
                     Inscrit le {new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium", timeStyle: "short" }).format(sub.createdAt)}
                   </p>
@@ -46,7 +53,7 @@ export default async function AdminNewsletterPage() {
       </div>
 
       <div className="mt-10">
-        <NewsletterComposer subscriberCount={subscribers.length} />
+        <NewsletterComposer subscriberCount={confirmedCount} />
       </div>
     </div>
   );

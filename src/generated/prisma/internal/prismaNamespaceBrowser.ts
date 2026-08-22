@@ -224,6 +224,8 @@ export type SiteSettingScalarFieldEnum = (typeof SiteSettingScalarFieldEnum)[key
 export const NewsletterSubscriberScalarFieldEnum = {
   id: 'id',
   email: 'email',
+  confirmed: 'confirmed',
+  confirmToken: 'confirmToken',
   createdAt: 'createdAt'
 } as const
 

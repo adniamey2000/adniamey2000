@@ -49,7 +49,7 @@ export default function SermonForm({
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
-    router.push("/admin/sermons");
+    router.push("/espace-prive-ad-niamey-2000/sermons");
     router.refresh();
   }
 
@@ -134,7 +134,7 @@ export default function SermonForm({
         </button>
         <button
           type="button"
-          onClick={() => router.push("/admin/sermons")}
+          onClick={() => router.push("/espace-prive-ad-niamey-2000/sermons")}
           className="rounded-full border border-primary-soft px-6 py-2.5 text-sm font-semibold text-muted transition hover:bg-slate-50"
         >
           Annuler

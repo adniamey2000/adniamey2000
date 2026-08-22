@@ -23,7 +23,7 @@ export default async function AdminSermonsPage() {
           </p>
         </div>
         <Link
-          href="/admin/sermons/new"
+          href="/espace-prive-ad-niamey-2000/sermons/new"
           className="rounded-full bg-primary-dark px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
         >
           + Nouveau sermon
@@ -44,7 +44,7 @@ export default async function AdminSermonsPage() {
           >
             <div className="min-w-0">
               <Link
-                href={`/admin/sermons/${sermon.id}`}
+                href={`/espace-prive-ad-niamey-2000/sermons/${sermon.id}`}
                 className="font-serif text-base font-bold text-ink transition hover:text-primary-dark"
               >
                 {sermon.titleFr}
@@ -56,12 +56,12 @@ export default async function AdminSermonsPage() {
             </div>
             <div className="flex items-center gap-2">
               <Link
-                href={`/admin/sermons/${sermon.id}`}
+                href={`/espace-prive-ad-niamey-2000/sermons/${sermon.id}`}
                 className="rounded-full border border-primary-soft px-4 py-1.5 text-xs font-semibold text-primary-dark transition hover:bg-primary-soft"
               >
                 Modifier
               </Link>
-              <DeleteButton url={`/api/admin/sermons/${sermon.id}`} />
+              <DeleteButton url={`/api/espace-prive-ad-niamey-2000/sermons/${sermon.id}`} />
             </div>
           </div>
         ))}

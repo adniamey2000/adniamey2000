@@ -52,7 +52,7 @@ export default function EventForm({
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
-    router.push("/admin/events");
+    router.push("/espace-prive-ad-niamey-2000/events");
     router.refresh();
   }
 
@@ -145,7 +145,7 @@ export default function EventForm({
         </button>
         <button
           type="button"
-          onClick={() => router.push("/admin/events")}
+          onClick={() => router.push("/espace-prive-ad-niamey-2000/events")}
           className="rounded-full border border-primary-soft px-6 py-2.5 text-sm font-semibold text-muted transition hover:bg-slate-50"
         >
           Annuler

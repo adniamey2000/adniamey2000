@@ -48,7 +48,7 @@ export default async function AdminDashboardPage() {
     prisma.scheduleItem.count(),
     prisma.donationInfo.count(),
     prisma.galleryImage.count(),
-    prisma.newsletterSubscriber.count(),
+    prisma.newsletterSubscriber.count({ where: { confirmed: true } }),
     prisma.siteSetting.count(),
     prisma.leader.count(),
     prisma.churchEvent.findMany({ select: { date: true } }),
@@ -56,16 +56,16 @@ export default async function AdminDashboardPage() {
   ]);
 
   const stats = [
-    { label: "Sermons", value: sermons, href: "/admin/sermons" },
-    { label: "Événements", value: events, href: "/admin/events" },
-    { label: "Annonces", value: announcements, href: "/admin/announcements" },
-    { label: "Départements", value: departments, href: "/admin/departments" },
-    { label: "Équipe", value: leaders, href: "/admin/leaders" },
-    { label: "Horaires", value: schedule, href: "/admin/schedule" },
-    { label: "Dons", value: donations, href: "/admin/donations" },
-    { label: "Photos", value: gallery, href: "/admin/gallery" },
-    { label: "Newsletter", value: newsletter, href: "/admin/newsletter" },
-    { label: "Contact", value: settings, href: "/admin/contact" },
+    { label: "Sermons", value: sermons, href: "/espace-prive-ad-niamey-2000/sermons" },
+    { label: "Événements", value: events, href: "/espace-prive-ad-niamey-2000/events" },
+    { label: "Annonces", value: announcements, href: "/espace-prive-ad-niamey-2000/announcements" },
+    { label: "Départements", value: departments, href: "/espace-prive-ad-niamey-2000/departments" },
+    { label: "Équipe", value: leaders, href: "/espace-prive-ad-niamey-2000/leaders" },
+    { label: "Horaires", value: schedule, href: "/espace-prive-ad-niamey-2000/schedule" },
+    { label: "Dons", value: donations, href: "/espace-prive-ad-niamey-2000/donations" },
+    { label: "Photos", value: gallery, href: "/espace-prive-ad-niamey-2000/gallery" },
+    { label: "Newsletter", value: newsletter, href: "/espace-prive-ad-niamey-2000/newsletter" },
+    { label: "Contact", value: settings, href: "/espace-prive-ad-niamey-2000/contact" },
   ];
 
   const months = monthlyBuckets();

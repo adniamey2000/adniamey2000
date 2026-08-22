@@ -166,3 +166,17 @@ export function newsletterTemplate({
   `;
   return layout(subject, content);
 }
+
+export function newsletterConfirmTemplate({
+  confirmUrl,
+}: {
+  confirmUrl: string;
+}) {
+  const content = `
+    ${heading("Confirmez votre inscription")}
+    ${text("Merci de vous être inscrit(e) à la newsletter de l'AD Niamey 2000. Veuillez cliquer sur le bouton ci-dessous pour confirmer votre adresse e-mail.")}
+    ${ctaButton(confirmUrl, "Confirmer mon inscription")}
+    ${text("Si vous n'avez pas demandé cette inscription, vous pouvez ignorer cet e-mail.", { muted: true, small: true })}
+  `;
+  return layout("Confirmation d'inscription", content);
+}

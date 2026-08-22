@@ -154,16 +154,7 @@ export default async function Footer({
             © {new Date().getFullYear()} {churchName}. {dict.footer.rights}{" "}
             {dict.footer.madeWith}
           </p>
-          <Link
-            href="/admin"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-xs font-semibold text-white transition hover:bg-primary-dark"
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" />
-              <path d="M7 11V7a5 5 0 0110 0v4" />
-            </svg>
-            {dict.footer.admin}
-          </Link>
+
         </div>
       </div>
     </footer>

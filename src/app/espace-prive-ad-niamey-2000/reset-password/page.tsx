@@ -15,7 +15,7 @@ export default async function ResetPasswordPage({
   searchParams: Promise<{ token?: string }>;
 }) {
   const session = await getSession();
-  if (session) redirect("/admin");
+  if (session) redirect("/espace-prive-ad-niamey-2000");
 
   const { token } = await searchParams;
 
@@ -42,7 +42,7 @@ export default async function ResetPasswordPage({
           </div>
         )}
         <Link
-          href="/admin/login"
+          href="/espace-prive-ad-niamey-2000/login"
           className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2 text-sm font-medium text-ink transition hover:bg-slate-100"
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

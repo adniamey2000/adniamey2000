@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin/"],
+        disallow: ["/admin/", "/espace-prive-ad-niamey-2000/"],
       },
     ],
     sitemap: "https://adniamey2000.vercel.app/sitemap.xml",

@@ -4,7 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function LoginForm() {
+export default function LoginForm({
+  captchaA,
+  captchaB,
+}: {
+  captchaA: number;
+  captchaB: number;
+}) {
   const router = useRouter();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,6 +22,13 @@ export default function LoginForm() {
     setLoading(true);
 
     const form = new FormData(event.currentTarget);
+    const captchaAnswer = Number(form.get("captcha"));
+    if (captchaAnswer !== captchaA + captchaB) {
+      setError("Réponse incorrecte. Veuillez réessayer.");
+      setLoading(false);
+      return;
+    }
+
     const res = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -32,7 +45,7 @@ export default function LoginForm() {
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
-    router.push("/admin");
+    router.push("/espace-prive-ad-niamey-2000");
     router.refresh();
   }
 
@@ -72,7 +85,7 @@ export default function LoginForm() {
             Mot de passe
           </label>
           <Link
-            href="/admin/forgot-password"
+            href="/espace-prive-ad-niamey-2000/forgot-password"
             className="text-xs font-semibold text-primary-dark transition hover:text-ink"
           >
             Mot de passe oublié ?
@@ -107,6 +120,20 @@ export default function LoginForm() {
             )}
           </button>
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="captcha" className="mb-1.5 block text-sm font-medium">
+          Captcha : {captchaA} + {captchaB} = ?
+        </label>
+        <input
+          id="captcha"
+          name="captcha"
+          type="number"
+          required
+          className="w-full rounded-xl border border-primary-soft px-4 py-3 text-sm outline-none transition focus:border-primary-dark focus:ring-2 focus:ring-primary-dark/30"
+          placeholder="Réponse"
+        />
       </div>
 
       <button

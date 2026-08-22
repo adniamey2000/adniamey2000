@@ -23,7 +23,7 @@ export default async function AdminEventsPage() {
           </p>
         </div>
         <Link
-          href="/admin/events/new"
+          href="/espace-prive-ad-niamey-2000/events/new"
           className="rounded-full bg-primary-dark px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
         >
           + Nouvel événement
@@ -44,7 +44,7 @@ export default async function AdminEventsPage() {
           >
             <div className="min-w-0">
               <Link
-                href={`/admin/events/${event.id}`}
+                href={`/espace-prive-ad-niamey-2000/events/${event.id}`}
                 className="font-serif text-base font-bold text-ink transition hover:text-primary-dark"
               >
                 {event.titleFr}
@@ -58,12 +58,12 @@ export default async function AdminEventsPage() {
             </div>
             <div className="flex items-center gap-2">
               <Link
-                href={`/admin/events/${event.id}`}
+                href={`/espace-prive-ad-niamey-2000/events/${event.id}`}
                 className="rounded-full border border-primary-soft px-4 py-1.5 text-xs font-semibold text-primary-dark transition hover:bg-primary-soft"
               >
                 Modifier
               </Link>
-              <DeleteButton url={`/api/admin/events/${event.id}`} />
+              <DeleteButton url={`/api/espace-prive-ad-niamey-2000/events/${event.id}`} />
             </div>
           </div>
         ))}

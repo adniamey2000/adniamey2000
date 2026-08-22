@@ -16,7 +16,7 @@ export default function LogoutButton({
   async function handleLogout() {
     setLoading(true);
     await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
+    router.push("/espace-prive-ad-niamey-2000/login");
     router.refresh();
   }
 

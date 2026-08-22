@@ -50,7 +50,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
           Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.
         </p>
         <Link
-          href="/admin/login"
+          href="/espace-prive-ad-niamey-2000/login"
           className="block w-full rounded-full bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
         >
           Se connecter

@@ -50,7 +50,7 @@ export default function AnnouncementForm({
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
-    router.push("/admin/announcements");
+    router.push("/espace-prive-ad-niamey-2000/announcements");
     router.refresh();
   }
 
@@ -126,7 +126,7 @@ export default function AnnouncementForm({
         </button>
         <button
           type="button"
-          onClick={() => router.push("/admin/announcements")}
+          onClick={() => router.push("/espace-prive-ad-niamey-2000/announcements")}
           className="rounded-full border border-primary-soft px-6 py-2.5 text-sm font-semibold text-muted transition hover:bg-slate-50"
         >
           Annuler

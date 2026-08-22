@@ -118,9 +118,11 @@ model SiteSetting {
 }
 
 model NewsletterSubscriber {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  createdAt DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  confirmed    Boolean  @default(false)
+  confirmToken String?
+  createdAt    DateTime @default(now())
 }
 
 model Announcement {

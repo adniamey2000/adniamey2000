@@ -21,7 +21,7 @@ export default async function AdminDepartmentsPage() {
           </p>
         </div>
         <Link
-          href="/admin/departments/new"
+          href="/espace-prive-ad-niamey-2000/departments/new"
           className="rounded-full bg-primary-dark px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
         >
           + Nouveau département
@@ -51,12 +51,12 @@ export default async function AdminDepartmentsPage() {
             </div>
             <div className="mt-4 flex items-center gap-2">
               <Link
-                href={`/admin/departments/${dept.id}`}
+                href={`/espace-prive-ad-niamey-2000/departments/${dept.id}`}
                 className="rounded-full border border-primary-soft px-4 py-1.5 text-xs font-semibold text-primary-dark transition hover:bg-primary-soft"
               >
                 Modifier
               </Link>
-              <DeleteButton url={`/api/admin/departments/${dept.id}`} />
+              <DeleteButton url={`/api/espace-prive-ad-niamey-2000/departments/${dept.id}`} />
             </div>
           </div>
         ))}

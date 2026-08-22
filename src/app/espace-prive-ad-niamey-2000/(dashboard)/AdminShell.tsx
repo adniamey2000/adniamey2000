@@ -9,12 +9,12 @@ import { churchName } from "@/lib/i18n";
 
 const navItems = [
   {
-    href: "/admin",
+    href: "/espace-prive-ad-niamey-2000",
     label: "Tableau de bord",
     icon: <path d="M3 3h8v8H3zM13 3h8v5h-8zM13 12h8v9h-8zM3 15h8v6H3z" />,
   },
   {
-    href: "/admin/sermons",
+    href: "/espace-prive-ad-niamey-2000/sermons",
     label: "Sermons",
     icon: (
       <>
@@ -24,7 +24,7 @@ const navItems = [
     ),
   },
   {
-    href: "/admin/events",
+    href: "/espace-prive-ad-niamey-2000/events",
     label: "Événements",
     icon: (
       <>
@@ -34,12 +34,12 @@ const navItems = [
     ),
   },
   {
-    href: "/admin/announcements",
+    href: "/espace-prive-ad-niamey-2000/announcements",
     label: "Annonces",
     icon: <path d="M3 11l18-5v12L3 13v-2zM11.6 16.8a3 3 0 11-5.8-1.6" />,
   },
   {
-    href: "/admin/gallery",
+    href: "/espace-prive-ad-niamey-2000/gallery",
     label: "Galerie",
     icon: (
       <>
@@ -50,7 +50,7 @@ const navItems = [
     ),
   },
   {
-    href: "/admin/newsletter",
+    href: "/espace-prive-ad-niamey-2000/newsletter",
     label: "Newsletter",
     icon: (
       <>
@@ -60,14 +60,14 @@ const navItems = [
     ),
   },
   {
-    href: "/admin/departments",
+    href: "/espace-prive-ad-niamey-2000/departments",
     label: "Départements",
     icon: (
       <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
     ),
   },
   {
-    href: "/admin/leaders",
+    href: "/espace-prive-ad-niamey-2000/leaders",
     label: "Équipe & Responsables",
     icon: (
       <>
@@ -78,7 +78,7 @@ const navItems = [
     ),
   },
   {
-    href: "/admin/schedule",
+    href: "/espace-prive-ad-niamey-2000/schedule",
     label: "Horaires",
     icon: (
       <>
@@ -88,12 +88,12 @@ const navItems = [
     ),
   },
   {
-    href: "/admin/donations",
+    href: "/espace-prive-ad-niamey-2000/donations",
     label: "Dons",
     icon: <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />,
   },
   {
-    href: "/admin/contact",
+    href: "/espace-prive-ad-niamey-2000/contact",
     label: "Contact",
     icon: (
       <>
@@ -138,7 +138,7 @@ export default function AdminShell({
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === "/admin") return pathname === "/admin";
+    if (href === "/espace-prive-ad-niamey-2000") return pathname === "/espace-prive-ad-niamey-2000";
     return pathname === href || pathname.startsWith(href + "/");
   };
 

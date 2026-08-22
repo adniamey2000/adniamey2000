@@ -31,6 +31,7 @@ export async function POST(request: Request) {
   }
 
   const subscribers = await prisma.newsletterSubscriber.findMany({
+    where: { confirmed: true },
     select: { email: true },
   });
   if (subscribers.length === 0) {

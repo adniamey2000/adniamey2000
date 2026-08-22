@@ -50,7 +50,7 @@ export default function DepartmentForm({
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
-    router.push("/admin/departments");
+    router.push("/espace-prive-ad-niamey-2000/departments");
     router.refresh();
   }
 
@@ -118,7 +118,7 @@ export default function DepartmentForm({
         </button>
         <button
           type="button"
-          onClick={() => router.push("/admin/departments")}
+          onClick={() => router.push("/espace-prive-ad-niamey-2000/departments")}
           className="rounded-full border border-primary-soft px-6 py-2.5 text-sm font-semibold text-muted transition hover:bg-slate-50"
         >
           Annuler

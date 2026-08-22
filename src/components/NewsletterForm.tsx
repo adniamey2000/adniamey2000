@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Dict } from "@/lib/i18n";
 
-type Status = "idle" | "loading" | "success" | "error" | "already";
+type Status = "idle" | "loading" | "success" | "error" | "already" | "confirm";
 
 export default function NewsletterForm({
   dict,
@@ -25,7 +25,7 @@ export default function NewsletterForm({
         body: JSON.stringify({ email }),
       });
       if (res.ok) {
-        setStatus("success");
+        setStatus("confirm");
       } else {
         const data = await res.json().catch(() => ({}));
         setStatus(data.error === "already" ? "already" : "error");
@@ -35,14 +35,18 @@ export default function NewsletterForm({
     }
   }
 
-  if (status === "success" || status === "already") {
+  if (status === "success" || status === "already" || status === "confirm") {
     return (
       <p
         className={`text-sm ${
           dark ? "text-white/80" : "text-muted"
         }`}
       >
-        {status === "success" ? dict.newsletter.success : dict.newsletter.already}
+        {status === "confirm"
+          ? "Vérifiez votre boîte mail pour confirmer votre inscription."
+          : status === "success"
+          ? dict.newsletter.success
+          : dict.newsletter.already}
       </p>
     );
   }

@@ -26,7 +26,7 @@ export default async function AdminAnnouncementsPage() {
           </p>
         </div>
         <Link
-          href="/admin/announcements/new"
+          href="/espace-prive-ad-niamey-2000/announcements/new"
           className="rounded-full bg-primary-dark px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
         >
           + Nouvelle annonce
@@ -48,7 +48,7 @@ export default async function AdminAnnouncementsPage() {
             <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <Link
-                  href={`/admin/announcements/${announcement.id}`}
+                  href={`/espace-prive-ad-niamey-2000/announcements/${announcement.id}`}
                   className="font-serif text-base font-bold text-ink transition hover:text-primary-dark"
                 >
                   {announcement.titleFr || announcement.titleEn}
@@ -68,12 +68,12 @@ export default async function AdminAnnouncementsPage() {
             </div>
             <div className="flex items-center gap-2">
               <Link
-                href={`/admin/announcements/${announcement.id}`}
+                href={`/espace-prive-ad-niamey-2000/announcements/${announcement.id}`}
                 className="rounded-full border border-primary-soft px-4 py-1.5 text-xs font-semibold text-primary-dark transition hover:bg-primary-soft"
               >
                 Modifier
               </Link>
-              <DeleteButton url={`/api/admin/announcements/${announcement.id}`} />
+              <DeleteButton url={`/api/espace-prive-ad-niamey-2000/announcements/${announcement.id}`} />
             </div>
           </div>
         ))}
