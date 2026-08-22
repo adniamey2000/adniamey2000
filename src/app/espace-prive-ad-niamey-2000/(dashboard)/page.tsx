@@ -41,6 +41,7 @@ export default async function AdminDashboardPage() {
     allEvents,
     sermonDates,
     contactMessages,
+    unreadMessages,
   ] = await Promise.all([
     prisma.sermon.count(),
     prisma.churchEvent.count(),
@@ -55,6 +56,7 @@ export default async function AdminDashboardPage() {
     prisma.churchEvent.findMany({ select: { date: true } }),
     prisma.sermon.findMany({ select: { date: true } }),
     prisma.contactMessage.count(),
+    prisma.contactMessage.count({ where: { read: false } }),
   ]);
 
   const stats = [
@@ -98,21 +100,29 @@ export default async function AdminDashboardPage() {
       </p>
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {stats.map((stat) => (
-          <Link
-            key={stat.label}
-            href={stat.href}
-            className="rounded-2xl border border-primary-soft bg-white p-6 shadow-sm transition hover:shadow-md"
-          >
-            <p className="text-sm font-medium text-muted">{stat.label}</p>
-            <p className="mt-2 font-serif text-4xl font-bold text-primary-dark">
-              {stat.value}
-            </p>
-            <p className="mt-3 text-xs font-semibold text-primary-dark">
-              Gérer →
-            </p>
-          </Link>
-        ))}
+        {stats.map((stat) => {
+          const isMessages = stat.label === "Messages";
+          return (
+            <Link
+              key={stat.label}
+              href={stat.href}
+              className="relative rounded-2xl border border-primary-soft bg-white p-6 shadow-sm transition hover:shadow-md"
+            >
+              {isMessages && unreadMessages > 0 && (
+                <span className="absolute right-4 top-4 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-red-500 px-2 text-xs font-bold text-white">
+                  {unreadMessages}
+                </span>
+              )}
+              <p className="text-sm font-medium text-muted">{stat.label}</p>
+              <p className="mt-2 font-serif text-4xl font-bold text-primary-dark">
+                {stat.value}
+              </p>
+              <p className="mt-3 text-xs font-semibold text-primary-dark">
+                Gérer →
+              </p>
+            </Link>
+          );
+        })}
       </div>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
