@@ -20,8 +20,7 @@
     "nodemailer": "^9.0.5",
     "pg": "^8.23.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "tailwindcss-animate": "^1.0.7"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
