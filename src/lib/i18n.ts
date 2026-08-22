@@ -248,6 +248,11 @@ export type Dict = {
     contactDescription: string;
     galleryDescription: string;
   };
+  notFound: {
+    title: string;
+    text: string;
+    backHome: string;
+  };
 };
 
 const fr: Dict = {
@@ -560,6 +565,11 @@ const fr: Dict = {
     galleryDescription:
       "Découvrez les photos et moments forts de la vie de l'AD Niamey 2000 — cultes, événements, baptêmes et vie communautaire.",
   },
+  notFound: {
+    title: "Page introuvable",
+    text: "La page que vous recherchez n'existe pas ou a été déplacée.",
+    backHome: "Retour à l'accueil",
+  },
 };
 
 const en: Dict = {
@@ -870,6 +880,11 @@ const en: Dict = {
       "Contact AD Niamey 2000 — send us a message, ask questions or plan your visit. We'd love to hear from you.",
     galleryDescription:
       "Discover photos and highlights from the life of AD Niamey 2000 — services, events, baptisms and community life.",
+  },
+  notFound: {
+    title: "Page not found",
+    text: "The page you are looking for does not exist or has been moved.",
+    backHome: "Back to home",
   },
 };
 
