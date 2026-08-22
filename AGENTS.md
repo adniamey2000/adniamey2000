@@ -15,3 +15,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Dépôt** : push sur `origin` = `https://github.com/adniamey2000/adniamey2000.git`
 - **Email officiel** : `adniamey2000@gmail.com`
 - **SMTP** : Gmail via `koffilevis21@gmail.com` (app password)
+- **Seed** : ne jamais lancer `npx prisma db seed` en production. Le seed n'est fait que pour la première installation locale. Les données en prod sont gérées via l'admin.
+- **Blob images** : les images uploadées via l'admin utilisent `<img>` (pas `<Image>` de next/image) car le store Vercel Blob est private-only et l'optimizer ne peut pas les fetcher côté serveur.
