@@ -34,10 +34,14 @@ export default function ConfirmDialog({
     <dialog
       ref={dialogRef}
       onCancel={onCancel}
-      className="backdrop:bg-ink/40 rounded-2xl border border-primary-soft bg-white p-0 shadow-2xl backdrop:backdrop-blur-sm"
-      style={{ animation: "zoomIn 0.15s ease-out" }}
+      className="border-0 bg-transparent p-0 shadow-none backdrop:bg-ink/40 backdrop:backdrop-blur-sm"
+      style={{
+        animation: "zoomIn 0.15s ease-out",
+        margin: "auto",
+        inset: 0,
+      }}
     >
-      <div className="w-full max-w-sm p-6">
+      <div className="w-full max-w-sm rounded-2xl border border-primary-soft bg-white p-6 shadow-2xl">
         <div className="flex items-start gap-3">
           <div
             className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
