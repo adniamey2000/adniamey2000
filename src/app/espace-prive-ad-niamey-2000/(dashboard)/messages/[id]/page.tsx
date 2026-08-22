@@ -5,8 +5,11 @@ import DeleteMessageButton from "@/components/admin/DeleteMessageButton";
 
 export const dynamic = "force-dynamic";
 
-function formatDate(date: Date) {
-  return new Intl.DateTimeFormat("fr-FR", { dateStyle: "full", timeStyle: "short" }).format(date);
+function formatFull(date: Date) {
+  return new Intl.DateTimeFormat("fr-FR", {
+    dateStyle: "full",
+    timeStyle: "short",
+  }).format(date);
 }
 
 export default async function AdminMessageDetailPage({
@@ -29,53 +32,72 @@ export default async function AdminMessageDetailPage({
   }
 
   return (
-    <div className="overflow-hidden">
+    <div className="mx-auto max-w-2xl">
+      {/* Back */}
       <Link
         href="/espace-prive-ad-niamey-2000/messages"
-        className="inline-flex items-center gap-2 text-sm font-medium text-primary-dark transition hover:text-ink"
+        className="group inline-flex items-center gap-2 text-sm font-medium text-muted transition hover:text-ink"
       >
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition group-hover:-translate-x-0.5">
           <path d="M19 12H5M12 19l-7-7 7-7" />
         </svg>
-        Retour aux messages
+        Messages
       </Link>
 
-      <div className="mt-6 rounded-2xl border border-primary-soft bg-white p-6 shadow-sm sm:p-8">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h1 className="font-serif text-2xl font-bold text-ink">
-              {msg.subject || "Sans sujet"}
-            </h1>
-            <p className="mt-1 text-sm text-muted">
-              De : <span className="font-semibold text-ink">{msg.name}</span> ({msg.email})
-            </p>
-            <p className="mt-0.5 text-xs text-muted">
-              {formatDate(msg.createdAt)}
-            </p>
+      {/* Card */}
+      <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        {/* Header */}
+        <div className="border-b border-slate-100 px-6 py-5">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-dark text-sm font-bold text-white">
+                {msg.name.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <h1 className="text-base font-bold text-ink">{msg.name}</h1>
+                <p className="text-xs text-muted">{msg.email}</p>
+                <p className="mt-0.5 text-[11px] text-muted/60">{formatFull(msg.createdAt)}</p>
+              </div>
+            </div>
+            <DeleteMessageButton id={msg.id} />
           </div>
-          <DeleteMessageButton id={msg.id} />
         </div>
 
-        <div className="mt-6 whitespace-pre-wrap break-words text-sm leading-relaxed text-ink/85">
-          {msg.message}
-        </div>
-
-        {msg.fileName && (
-          <div className="mt-4 rounded-xl border border-primary-soft bg-primary-soft/30 px-4 py-3 text-sm text-muted">
-            📎 {msg.fileName}
+        {/* Subject */}
+        {msg.subject && (
+          <div className="border-b border-slate-100 px-6 py-3">
+            <p className="text-sm font-semibold text-ink">{msg.subject}</p>
           </div>
         )}
 
-        <div className="mt-6">
+        {/* Body */}
+        <div className="px-6 py-5">
+          <p className="whitespace-pre-wrap break-words text-sm leading-relaxed text-ink/80">
+            {msg.message}
+          </p>
+        </div>
+
+        {/* Attachment */}
+        {msg.fileName && (
+          <div className="mx-6 mb-5 flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="shrink-0 text-muted">
+              <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" />
+            </svg>
+            <span className="truncate text-sm text-muted">{msg.fileName}</span>
+          </div>
+        )}
+
+        {/* Reply */}
+        <div className="border-t border-slate-100 px-6 py-4">
           <a
             href={`mailto:${msg.email}?subject=${encodeURIComponent(`Re: ${msg.subject || "Votre message — AD Niamey 2000"}`)}`}
-            className="inline-flex items-center gap-2 rounded-full bg-primary-dark px-6 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-full bg-primary-dark px-5 py-2 text-sm font-semibold text-white transition hover:bg-primary"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="M22 7l-10 6L2 7" />
+              <path d="M3 10h10a5 5 0 015 5v4" />
+              <path d="M7 14L3 10l4-4" />
             </svg>
-            Répondre par e-mail
+            Répondre
           </a>
         </div>
       </div>
