@@ -38,34 +38,29 @@ export default async function AdminMessagesPage() {
           <Link
             key={msg.id}
             href={`/espace-prive-ad-niamey-2000/messages/${msg.id}`}
-            className={`flex items-center gap-4 overflow-hidden rounded-2xl border p-5 shadow-sm transition hover:shadow-md ${
+            className={`flex items-center gap-3 overflow-hidden rounded-xl border px-4 py-3 transition hover:shadow-sm ${
               msg.read
-                ? "border-primary-soft bg-white"
-                : "border-primary bg-primary-soft/50"
+                ? "border-slate-200 bg-white"
+                : "border-primary bg-primary-soft/30"
             }`}
           >
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <p className="truncate font-serif text-base font-bold text-ink">
-                  {msg.name}
-                </p>
+                <span className="truncate text-sm font-semibold text-ink">{msg.name}</span>
                 {!msg.read && (
-                  <span className="shrink-0 rounded-full bg-primary-dark px-2 py-0.5 text-[11px] font-semibold text-white">
-                    Nouveau
+                  <span className="shrink-0 rounded-full bg-primary-dark px-2 py-0.5 text-[10px] font-bold text-white">
+                    ●
                   </span>
                 )}
+                {msg.subject && (
+                  <span className="truncate text-xs text-muted">— {msg.subject}</span>
+                )}
               </div>
-              <p className="mt-0.5 truncate text-xs text-muted">{msg.email}</p>
-              {msg.subject && (
-                <p className="mt-1 truncate text-sm font-medium text-ink/80">
-                  {msg.subject}
-                </p>
-              )}
-              <p className="mt-1 line-clamp-1 text-xs text-muted/70">
-                {msg.message}
+              <p className="mt-0.5 truncate text-xs text-muted/60">
+                {msg.email}
               </p>
             </div>
-            <p className="shrink-0 text-xs text-muted">
+            <p className="shrink-0 text-[11px] text-muted">
               {formatDate(msg.createdAt)}
             </p>
           </Link>
