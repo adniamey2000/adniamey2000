@@ -73,7 +73,7 @@ export default async function AdminAnnouncementsPage() {
               >
                 Modifier
               </Link>
-              <DeleteButton url={`/api/espace-prive-ad-niamey-2000/announcements/${announcement.id}`} />
+              <DeleteButton url={`/api/admin/announcements/${announcement.id}`} />
             </div>
           </div>
         ))}

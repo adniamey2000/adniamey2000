@@ -58,8 +58,8 @@ export default function ContactForm({
       {/* Toast */}
       {toast && (
         <div
-          className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center rounded-2xl"
-          style={{ animation: "fadeIn 0.15s ease-out" }}
+          className="pointer-events-none fixed bottom-6 left-1/2 z-[100] -translate-x-1/2"
+          style={{ animation: "slideUp 0.2s ease-out" }}
         >
           <div
             className={`pointer-events-auto flex items-center gap-3 rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-2xl ${

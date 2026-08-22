@@ -56,7 +56,7 @@ export default async function AdminDepartmentsPage() {
               >
                 Modifier
               </Link>
-              <DeleteButton url={`/api/espace-prive-ad-niamey-2000/departments/${dept.id}`} />
+              <DeleteButton url={`/api/admin/departments/${dept.id}`} />
             </div>
           </div>
         ))}

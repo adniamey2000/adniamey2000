@@ -61,7 +61,7 @@ export default async function AdminSermonsPage() {
               >
                 Modifier
               </Link>
-              <DeleteButton url={`/api/espace-prive-ad-niamey-2000/sermons/${sermon.id}`} />
+              <DeleteButton url={`/api/admin/sermons/${sermon.id}`} />
             </div>
           </div>
         ))}
