@@ -88,6 +88,16 @@ const navItems = [
     ),
   },
   {
+    href: "/espace-prive-ad-niamey-2000/messages",
+    label: "Messages",
+    icon: (
+      <>
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+        <path d="M22 7l-10 6L2 7" />
+      </>
+    ),
+  },
+  {
     href: "/espace-prive-ad-niamey-2000/donations",
     label: "Dons",
     icon: <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />,

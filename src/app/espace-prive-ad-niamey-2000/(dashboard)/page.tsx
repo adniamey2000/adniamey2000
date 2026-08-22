@@ -40,6 +40,7 @@ export default async function AdminDashboardPage() {
     leaders,
     allEvents,
     sermonDates,
+    contactMessages,
   ] = await Promise.all([
     prisma.sermon.count(),
     prisma.churchEvent.count(),
@@ -53,12 +54,14 @@ export default async function AdminDashboardPage() {
     prisma.leader.count(),
     prisma.churchEvent.findMany({ select: { date: true } }),
     prisma.sermon.findMany({ select: { date: true } }),
+    prisma.contactMessage.count(),
   ]);
 
   const stats = [
     { label: "Sermons", value: sermons, href: "/espace-prive-ad-niamey-2000/sermons" },
     { label: "Événements", value: events, href: "/espace-prive-ad-niamey-2000/events" },
     { label: "Annonces", value: announcements, href: "/espace-prive-ad-niamey-2000/announcements" },
+    { label: "Messages", value: contactMessages, href: "/espace-prive-ad-niamey-2000/messages" },
     { label: "Départements", value: departments, href: "/espace-prive-ad-niamey-2000/departments" },
     { label: "Équipe", value: leaders, href: "/espace-prive-ad-niamey-2000/leaders" },
     { label: "Horaires", value: schedule, href: "/espace-prive-ad-niamey-2000/schedule" },

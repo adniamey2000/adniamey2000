@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { contactTemplate } from "@/lib/email-templates";
 import { isMailConfigured, sendMail } from "@/lib/mail";
+import { prisma } from "@/lib/prisma";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
@@ -49,6 +50,14 @@ export async function POST(request: Request) {
 
   const fileName = attachment?.filename;
 
+  try {
+    await prisma.contactMessage.create({
+      data: { name, email, subject, message, fileName },
+    });
+  } catch (err) {
+    console.error("[contact] erreur sauvegarde message :", err);
+  }
+
   if (!isMailConfigured()) {
     if (process.env.NODE_ENV !== "production") {
       console.log("[contact] SMTP non configuré — e-mail simulé :", {
@@ -84,7 +93,6 @@ export async function POST(request: Request) {
     });
   } catch (err) {
     console.error("[contact] échec d'envoi :", err);
-    return NextResponse.json({ error: "Échec de l'envoi" }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });

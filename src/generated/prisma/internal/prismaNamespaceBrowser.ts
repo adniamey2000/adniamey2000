@@ -63,6 +63,7 @@ export const ModelName = {
   GalleryImage: 'GalleryImage',
   SiteSetting: 'SiteSetting',
   NewsletterSubscriber: 'NewsletterSubscriber',
+  ContactMessage: 'ContactMessage',
   Announcement: 'Announcement'
 } as const
 
@@ -230,6 +231,20 @@ export const NewsletterSubscriberScalarFieldEnum = {
 } as const
 
 export type NewsletterSubscriberScalarFieldEnum = (typeof NewsletterSubscriberScalarFieldEnum)[keyof typeof NewsletterSubscriberScalarFieldEnum]
+
+
+export const ContactMessageScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  subject: 'subject',
+  message: 'message',
+  fileName: 'fileName',
+  read: 'read',
+  createdAt: 'createdAt'
+} as const
+
+export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
 
 
 export const AnnouncementScalarFieldEnum = {

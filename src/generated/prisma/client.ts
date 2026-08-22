@@ -102,6 +102,11 @@ export type SiteSetting = Prisma.SiteSettingModel
  */
 export type NewsletterSubscriber = Prisma.NewsletterSubscriberModel
 /**
+ * Model ContactMessage
+ * 
+ */
+export type ContactMessage = Prisma.ContactMessageModel
+/**
  * Model Announcement
  * 
  */
