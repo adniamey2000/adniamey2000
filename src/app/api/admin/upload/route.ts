@@ -33,10 +33,17 @@ export async function POST(request: Request) {
   const ext = file.name.split(".").pop() || "jpg";
   const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-  const blob = await put(`uploads/${safeName}`, file, {
-    access: "public",
-    contentType: file.type,
-  });
+  try {
+    const blob = await put(`uploads/${safeName}`, file, {
+      access: "public",
+    });
 
-  return NextResponse.json({ url: blob.url });
+    return NextResponse.json({ url: blob.url });
+  } catch (err) {
+    console.error("Blob upload error:", err);
+    return NextResponse.json(
+      { error: "Erreur lors de l'envoi du fichier" },
+      { status: 500 }
+    );
+  }
 }
