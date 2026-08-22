@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { showToast } from "@/components/admin/Toast";
 
 export default function GalleryUploadForm() {
   const router = useRouter();
@@ -34,6 +35,7 @@ export default function GalleryUploadForm() {
       return;
     }
     formRef.current?.reset();
+    showToast("Photo envoyée avec succès");
     router.refresh();
   }
 

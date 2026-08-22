@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { showToast } from "@/components/admin/Toast";
 
 type Sermon = {
   id: number;
@@ -49,6 +50,7 @@ export default function SermonForm({
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
+    showToast(isEdit ? "Sermon modifié avec succès" : "Sermon créé avec succès");
     router.push("/espace-prive-ad-niamey-2000/sermons");
     router.refresh();
   }

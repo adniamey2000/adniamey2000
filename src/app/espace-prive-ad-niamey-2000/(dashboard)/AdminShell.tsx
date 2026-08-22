@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import LogoutButton from "@/components/admin/LogoutButton";
+import ToastProvider from "@/components/admin/Toast";
 import { churchName } from "@/lib/i18n";
 
 const navItems = [
@@ -160,6 +161,8 @@ export default function AdminShell({
   }, [mobileOpen]);
 
   return (
+    <>
+    <ToastProvider />
     <div className="flex min-h-screen bg-slate-50">
       <aside
         className={`fixed inset-y-0 left-0 z-30 hidden flex-col border-r border-primary-soft bg-white transition-[width] duration-300 lg:flex ${
@@ -337,5 +340,6 @@ export default function AdminShell({
         </div>
       )}
     </div>
+    </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { showToast } from "@/components/admin/Toast";
 
 type Announcement = {
   id: number;
@@ -50,6 +51,7 @@ export default function AnnouncementForm({
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
+    showToast(isEdit ? "Annonce modifiée avec succès" : "Annonce créée avec succès");
     router.push("/espace-prive-ad-niamey-2000/announcements");
     router.refresh();
   }

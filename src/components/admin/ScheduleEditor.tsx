@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { showToast } from "@/components/admin/Toast";
 
 type Item = {
   dayFr: string;
@@ -39,6 +40,7 @@ export default function ScheduleEditor({ items }: { items: Item[] }) {
     });
     setSaving(false);
     if (res.ok) {
+      showToast("Horaires enregistrés avec succès");
       setMessage("Horaires enregistrés ✓");
       router.refresh();
     } else {

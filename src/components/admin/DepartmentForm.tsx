@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ImageUploadInput from "@/components/admin/ImageUploadInput";
+import { showToast } from "@/components/admin/Toast";
 
 type Department = {
   id: number;
@@ -50,6 +51,7 @@ export default function DepartmentForm({
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
+    showToast(isEdit ? "Département modifié avec succès" : "Département créé avec succès");
     router.push("/espace-prive-ad-niamey-2000/departments");
     router.refresh();
   }

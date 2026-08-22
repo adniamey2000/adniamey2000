@@ -7,6 +7,7 @@ import { churchName } from "@/lib/i18n";
 import crypto from "crypto";
 
 export const metadata = {
+  title: "Connexion — AD Niamey 2000",
   robots: { index: false, follow: false },
 };
 

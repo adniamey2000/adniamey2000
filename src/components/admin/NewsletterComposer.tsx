@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { showToast } from "@/components/admin/Toast";
 
 export default function NewsletterComposer({ subscriberCount }: { subscriberCount: number }) {
   const [subject, setSubject] = useState("");
@@ -27,6 +28,7 @@ export default function NewsletterComposer({ subscriberCount }: { subscriberCoun
 
     if (!res.ok) {
       setResult({ ok: false, text: data.error ?? "Une erreur est survenue" });
+      showToast("Erreur lors de l'envoi", "error");
       return;
     }
     if (data.dev) {
@@ -41,6 +43,7 @@ export default function NewsletterComposer({ subscriberCount }: { subscriberCoun
       ok: true,
       text: `E-mail envoyé à ${data.sent} abonné(s) sur ${data.total}${data.failed?.length ? ` (${data.failed.length} échec(s))` : ""}.`,
     });
+    showToast(`Newsletter envoyée à ${data.sent} abonné(s)`);
   }
 
   const input =

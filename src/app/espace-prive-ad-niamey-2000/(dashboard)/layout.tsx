@@ -3,6 +3,7 @@ import AdminShell from "./AdminShell";
 import { getSession } from "@/lib/auth";
 
 export const metadata = {
+  title: "Admin — AD Niamey 2000",
   robots: { index: false, follow: false },
 };
 

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ImageUploadInput from "@/components/admin/ImageUploadInput";
+import { showToast } from "@/components/admin/Toast";
 
 type ChurchEvent = {
   id: number;
@@ -52,6 +53,7 @@ export default function EventForm({
       setError(data.error ?? "Une erreur est survenue");
       return;
     }
+    showToast(isEdit ? "Événement modifié avec succès" : "Événement créé avec succès");
     router.push("/espace-prive-ad-niamey-2000/events");
     router.refresh();
   }

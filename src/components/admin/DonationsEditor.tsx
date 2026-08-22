@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { showToast } from "@/components/admin/Toast";
 
 type Item = {
   label: string;
@@ -36,6 +37,7 @@ export default function DonationsEditor({ items }: { items: Item[] }) {
     });
     setSaving(false);
     if (res.ok) {
+      showToast("Informations de don enregistrées");
       setMessage("Dons enregistrés ✓");
       router.refresh();
     } else {

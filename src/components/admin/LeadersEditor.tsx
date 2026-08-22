@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ImageUploadInput from "@/components/admin/ImageUploadInput";
+import { showToast } from "@/components/admin/Toast";
 
 type Leader = {
   name: string;
@@ -54,6 +55,7 @@ export default function LeadersEditor({ leaders }: { leaders: Leader[] }) {
     });
     setSaving(false);
     if (res.ok) {
+      showToast("Équipe enregistrée avec succès");
       setMessage("Équipe enregistrée ✓");
       router.refresh();
     } else {

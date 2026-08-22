@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { showToast } from "@/components/admin/Toast";
 
 type Settings = {
   address?: { valueFr: string; valueEn: string } | null;
@@ -36,6 +37,7 @@ export default function SettingsForm({ settings }: { settings: Settings }) {
     });
     setSaving(false);
     if (res.ok) {
+      showToast("Coordonnées enregistrées avec succès");
       setMessage("Coordonnées enregistrées ✓");
       router.refresh();
     } else {
