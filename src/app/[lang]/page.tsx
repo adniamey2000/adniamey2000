@@ -157,39 +157,6 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Annual theme */}
-      {(themeYear || themeText || verseYear) && (
-        <section className="bg-white">
-          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-            <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-accent-soft via-white to-accent-soft/60 p-8 text-center shadow-lg sm:p-12">
-              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-accent/10" aria-hidden="true" />
-              <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-primary/5" aria-hidden="true" />
-              <span className="relative inline-flex items-center gap-2 rounded-full border border-accent/30 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-widest text-accent shadow-sm">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2l2.4 6.6L21 9.2l-5 4.4 1.5 6.4-5.5-3.7L6.5 20 8 13.6 3 9.2l6.6-.6L12 2z" />
-                </svg>
-                {dict.home.annualTheme.title}
-              </span>
-              {themeYear && (
-                <p className="relative mt-5 text-sm font-bold uppercase tracking-widest text-accent">
-                  {dict.home.annualTheme.yearLabel} {settingValue(themeYear, "", lang as "fr" | "en")}
-                </p>
-              )}
-              {themeText && (
-                <h2 className="relative mt-4 font-serif text-2xl font-bold text-ink sm:text-3xl md:text-4xl">
-                  &laquo; {settingValue(themeText, "", lang as "fr" | "en")} &raquo;
-                </h2>
-              )}
-              {verseYear && (
-                <p className="relative mt-5 text-sm italic leading-relaxed text-muted">
-                  {dict.home.annualTheme.verseLabel} : {settingValue(verseYear, "", lang as "fr" | "en")}
-                </p>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Welcome */}
       <section className="relative">
         {schedule[0] && (
@@ -296,6 +263,39 @@ export default async function HomePage({
           </div>
         </div>
       </section>
+
+      {/* Annual theme */}
+      {(themeYear || themeText || verseYear) && (
+        <section className="bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+            <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-accent-soft via-white to-accent-soft/60 p-8 text-center shadow-lg sm:p-12">
+              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-accent/10" aria-hidden="true" />
+              <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-primary/5" aria-hidden="true" />
+              <span className="relative inline-flex items-center gap-2 rounded-full border border-accent/30 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-widest text-accent shadow-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l2.4 6.6L21 9.2l-5 4.4 1.5 6.4-5.5-3.7L6.5 20 8 13.6 3 9.2l6.6-.6L12 2z" />
+                </svg>
+                {dict.home.annualTheme.title}
+              </span>
+              {themeYear && (
+                <p className="relative mt-5 text-sm font-bold uppercase tracking-widest text-accent">
+                  {dict.home.annualTheme.yearLabel} {settingValue(themeYear, "", lang as "fr" | "en")}
+                </p>
+              )}
+              {themeText && (
+                <h2 className="relative mt-4 font-serif text-2xl font-bold text-ink sm:text-3xl md:text-4xl">
+                  &laquo; {settingValue(themeText, "", lang as "fr" | "en")} &raquo;
+                </h2>
+              )}
+              {verseYear && (
+                <p className="relative mt-5 text-sm italic leading-relaxed text-muted">
+                  {settingValue(verseYear, "", lang as "fr" | "en")}
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Verse of the day */}
       <VerseOfTheDay
