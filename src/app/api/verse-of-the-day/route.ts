@@ -43,15 +43,13 @@ function emptyResponse() {
 
 async function translateToFrench(text: string): Promise<string | null> {
   try {
-    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=fr&dt=t&q=${encodeURIComponent(text)}`;
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|fr`;
     const res = await fetch(url, { next: { revalidate: 86400 } });
     if (!res.ok) return null;
     const data = await res.json();
-    if (!Array.isArray(data) || !Array.isArray(data[0])) return null;
-    return data[0]
-      .map((seg: unknown[]) => (Array.isArray(seg) ? seg[0] : ""))
-      .join("")
-      .trim() || null;
+    const translated = data?.responseData?.translatedText;
+    if (!translated || translated === text) return null;
+    return translated.trim();
   } catch {
     return null;
   }
