@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { requireAdmin, unauthorized } from "@/lib/admin";
 import { prisma } from "@/lib/prisma";
+import { notifyNewEvent } from "@/lib/notify";
 
 export async function GET() {
   const session = await requireAdmin();
@@ -38,5 +39,10 @@ export async function POST(request: Request) {
   });
 
   revalidatePath("/", "layout");
+
+  notifyNewEvent(event).catch((err) =>
+    console.error("Event notification error:", err)
+  );
+
   return NextResponse.json({ event });
 }

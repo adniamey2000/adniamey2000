@@ -59,10 +59,10 @@ export default async function Footer({
       <div className="h-1 bg-gradient-to-r from-primary via-primary-dark to-accent" />
 
       <div className="border-b border-white/10 bg-white/5">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-10 sm:flex-row sm:px-6">
           <div className="text-center sm:text-left">
             <h3 className="font-serif text-lg font-bold">{dict.newsletter.title}</h3>
-            <p className="mt-1 text-sm text-white/75">{dict.newsletter.text}</p>
+            <p className="mt-1 text-sm text-white/70">{dict.newsletter.text}</p>
           </div>
           <div className="w-full max-w-md">
             <NewsletterForm dict={dict} dark />

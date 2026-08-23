@@ -1,4 +1,4 @@
-const SITE_URL =
+export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://adniamey2000.org";
 
 const COLORS = {
@@ -179,4 +179,68 @@ export function newsletterConfirmTemplate({
     ${text("Si vous n'avez pas demandé cette inscription, vous pouvez ignorer cet e-mail.", { muted: true, small: true })}
   `;
   return layout("Confirmation d'inscription", content);
+}
+
+export function eventNotificationTemplate({
+  title,
+  date,
+  time,
+  place,
+  summary,
+  detailUrl,
+  lang,
+}: {
+  title: string;
+  date: string;
+  time: string;
+  place: string;
+  summary: string;
+  detailUrl: string;
+  lang: "fr" | "en";
+}) {
+  const isEn = lang === "en";
+  const content = `
+    ${heading(isEn ? "New Event" : "Nouvel événement")}
+    ${text(isEn ? "A new event has been published on the AD Niamey 2000 website:" : "Un nouvel événement a été publié sur le site de l'AD Niamey 2000 :")}
+    ${field(isEn ? "Event" : "Événement", title)}
+    ${field(isEn ? "Date" : "Date", date)}
+    ${field(isEn ? "Time" : "Heure", time || (isEn ? "N/A" : "N/C"))}
+    ${field(isEn ? "Location" : "Lieu", place || (isEn ? "N/A" : "N/C"))}
+    ${field(isEn ? "Summary" : "Résumé", summary || "—")}
+    ${ctaButton(detailUrl, isEn ? "View event" : "Voir l'événement")}
+    ${text(isEn ? "To unsubscribe from these notifications, contact us at the church." : "Pour ne plus recevoir ces notifications, contactez-nous à l'église.", { muted: true, small: true })}
+  `;
+  return layout(isEn ? "New Event" : "Nouvel événement", content);
+}
+
+export function sermonNotificationTemplate({
+  title,
+  speaker,
+  date,
+  videoUrl,
+  summary,
+  detailUrl,
+  lang,
+}: {
+  title: string;
+  speaker: string;
+  date: string;
+  videoUrl: string;
+  summary: string;
+  detailUrl: string;
+  lang: "fr" | "en";
+}) {
+  const isEn = lang === "en";
+  const content = `
+    ${heading(isEn ? "New Sermon" : "Nouveau sermon")}
+    ${text(isEn ? "A new sermon has been published on the AD Niamey 2000 website:" : "Un nouveau sermon a été publié sur le site de l'AD Niamey 2000 :")}
+    ${field(isEn ? "Sermon" : "Sermon", title)}
+    ${field(isEn ? "Speaker" : "Prédicateur", speaker || "—")}
+    ${field(isEn ? "Date" : "Date", date)}
+    ${field(isEn ? "Summary" : "Résumé", summary || "—")}
+    ${ctaButton(detailUrl, isEn ? "Watch sermon" : "Voir le sermon")}
+    ${videoUrl ? ctaButton(videoUrl, isEn ? "Watch on YouTube" : "Voir sur YouTube") : ""}
+    ${text(isEn ? "To unsubscribe from these notifications, contact us at the church." : "Pour ne plus recevoir ces notifications, contactez-nous à l'église.", { muted: true, small: true })}
+  `;
+  return layout(isEn ? "New Sermon" : "Nouveau sermon", content);
 }

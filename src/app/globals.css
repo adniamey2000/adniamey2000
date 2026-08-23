@@ -41,4 +41,11 @@ html {
 body {
   background-color: #ffffff;
   color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(82, 86, 199, 0.2);
+  color: #1b2a4a;
 }
