@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactTemplate } from "@/lib/email-templates";
+import { contactTemplate, contactAutoReplyTemplate } from "@/lib/email-templates";
 import { isMailConfigured, sendMail } from "@/lib/mail";
 import { prisma } from "@/lib/prisma";
 
@@ -93,6 +93,16 @@ export async function POST(request: Request) {
     });
   } catch (err) {
     console.error("[contact] échec d'envoi :", err);
+  }
+
+  try {
+    await sendMail({
+      to: email,
+      subject: lang === "en" ? "We received your message — AD Niamey 2000" : "Votre message a bien été reçu — AD Niamey 2000",
+      html: contactAutoReplyTemplate({ name, lang }),
+    });
+  } catch (err) {
+    console.error("[contact] échec auto-reply :", err);
   }
 
   return NextResponse.json({ ok: true });

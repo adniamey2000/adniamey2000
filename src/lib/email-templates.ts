@@ -244,3 +244,23 @@ export function sermonNotificationTemplate({
   `;
   return layout(isEn ? "New Sermon" : "Nouveau sermon", content);
 }
+
+export function contactAutoReplyTemplate({
+  name,
+  lang,
+}: {
+  name: string;
+  lang: "fr" | "en";
+}) {
+  const isEn = lang === "en";
+  const content = `
+    ${heading(isEn ? "Thank you for contacting us" : "Merci de nous avoir contactés")}
+    ${text(isEn
+      ? `Dear ${escapeHtml(name)}, we have received your message and our team will get back to you as soon as possible.`
+      : `Cher(e) ${escapeHtml(name)}, nous avons bien reçu votre message. Notre équipe vous répondra dans les plus brefs délais.`)}
+    ${text(isEn
+      ? "We thank you for your interest and pray that God blesses you."
+      : "Nous vous remercions de votre intérêt et prions que Dieu vous bénisse.", { muted: true })}
+  `;
+  return layout(isEn ? "Message received" : "Message bien reçu", content);
+}
