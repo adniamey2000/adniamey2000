@@ -86,6 +86,12 @@ export type Dict = {
       title: string;
       subtitle: string;
     };
+    annualTheme: {
+      title: string;
+      yearLabel: string;
+      themeLabel: string;
+      verseLabel: string;
+    };
   };
   announcements: {
     title: string;
@@ -187,6 +193,9 @@ export type Dict = {
     error: string;
     already: string;
     invalid: string;
+    confirm: string;
+    choiceTitle: string;
+    choiceText: string;
   };
   footer: {
     aboutText: string;
@@ -331,6 +340,12 @@ const fr: Dict = {
       title: "Verset du jour",
       subtitle: "Une Parole pour méditer chaque jour.",
     },
+    annualTheme: {
+      title: "Thème de l'année",
+      yearLabel: "Année",
+      themeLabel: "Thème",
+      verseLabel: "Verset de l'année",
+    },
   },
   announcements: {
     title: "Annonces",
@@ -471,7 +486,7 @@ const fr: Dict = {
     },
   },
   newsletter: {
-    title: "Newsletter",
+    title: "Infolettre",
     text: "Recevez les actualités de l'église par e-mail.",
     placeholder: "Votre adresse e-mail",
     button: "S'abonner",
@@ -479,6 +494,9 @@ const fr: Dict = {
     error: "Une erreur est survenue, veuillez réessayer.",
     already: "Cette adresse est déjà inscrite à la newsletter.",
     invalid: "Adresse e-mail invalide.",
+    confirm: "Vérifiez votre boîte mail pour confirmer votre inscription.",
+    choiceTitle: "Choisissez votre langue",
+    choiceText: "Dans quelle langue souhaitez-vous recevoir l'infolettre ?",
   },
   footer: {
     aboutText:
@@ -648,6 +666,12 @@ const en: Dict = {
       title: "Verse of the Day",
       subtitle: "A word to meditate on each day.",
     },
+    annualTheme: {
+      title: "Theme of the Year",
+      yearLabel: "Year",
+      themeLabel: "Theme",
+      verseLabel: "Verse of the Year",
+    },
   },
   announcements: {
     title: "Announcements",
@@ -795,6 +819,9 @@ const en: Dict = {
     error: "Something went wrong, please try again.",
     already: "This address is already subscribed.",
     invalid: "Invalid email address.",
+    confirm: "Check your inbox to confirm your subscription.",
+    choiceTitle: "Choose your language",
+    choiceText: "In which language would you like to receive the newsletter?",
   },
   footer: {
     aboutText:

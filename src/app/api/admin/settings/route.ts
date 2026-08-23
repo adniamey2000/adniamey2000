@@ -22,6 +22,12 @@ export async function PUT(request: Request) {
     phoneEn?: string;
     emailFr?: string;
     emailEn?: string;
+    themeYearFr?: string;
+    themeYearEn?: string;
+    themeTextFr?: string;
+    themeTextEn?: string;
+    verseYearFr?: string;
+    verseYearEn?: string;
   };
   try {
     body = await request.json();
@@ -33,6 +39,9 @@ export async function PUT(request: Request) {
     address: { valueFr: body.addressFr ?? "", valueEn: body.addressEn ?? "" },
     phone: { valueFr: body.phoneFr ?? "", valueEn: body.phoneEn ?? "" },
     email: { valueFr: body.emailFr ?? "", valueEn: body.emailEn ?? "" },
+    themeYear: { valueFr: body.themeYearFr ?? "", valueEn: body.themeYearEn ?? "" },
+    themeText: { valueFr: body.themeTextFr ?? "", valueEn: body.themeTextEn ?? "" },
+    verseYear: { valueFr: body.verseYearFr ?? "", valueEn: body.verseYearEn ?? "" },
   };
 
   await prisma.$transaction(

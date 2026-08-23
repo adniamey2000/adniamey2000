@@ -273,7 +273,7 @@ export default function AdminShell({
             <LogoutButton compact />
           </div>
         </header>
-        <main className="p-6 lg:p-10">{children}</main>
+        <main className="overflow-x-hidden p-6 lg:p-10">{children}</main>
       </div>
 
       {mobileOpen && (

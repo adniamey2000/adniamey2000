@@ -28,12 +28,13 @@ export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
   return (
     <header className="sticky top-0 z-40 border-b border-primary-soft bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href={`/${lang}`} className="flex items-center gap-3">
+        <Link href={`/${lang}`} className="flex items-center gap-4">
           <Image
             src="/adlogo.jpg"
             alt={churchName}
             width={40}
             height={40}
+            priority
             className="h-12 w-12 rounded-full object-cover"
           />
           <span className="font-serif text-xl font-bold tracking-tight text-ink">

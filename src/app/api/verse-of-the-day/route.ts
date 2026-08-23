@@ -32,30 +32,6 @@ function usfmToBibleApiRef(usfm: string): string {
   return verse ? `${bookName}+${chapter}:${verse}` : `${bookName}+${chapter}`;
 }
 
-async function fetchVerseText(usfm: string, lang: string): Promise<{ text: string; reference: string } | null> {
-  const bibleApiRef = usfmToBibleApiRef(usfm);
-  const translation = lang === "fr" ? "kjv" : "web";
-
-  const res = await fetch(
-    `https://bible-api.com/${bibleApiRef}?translation=${translation}`,
-    { next: { revalidate: 86400 } }
-  );
-  if (!res.ok) return null;
-
-  const json = await res.json();
-  const text = json?.text?.trim();
-  const reference = json?.reference?.trim();
-  if (!text) return null;
-
-  if (lang === "fr") {
-    const translated = await translateToFrench(text);
-    const translatedRef = reference ? await translateToFrench(reference) : null;
-    return { text: translated || text, reference: translatedRef || reference || usfm.replace(/\./g, " ") };
-  }
-
-  return { text, reference: reference || usfm.replace(/\./g, " ") };
-}
-
 async function translateToFrench(text: string): Promise<string | null> {
   try {
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=fr&dt=t&q=${encodeURIComponent(text)}`;
@@ -97,8 +73,14 @@ export async function GET(req: Request) {
       });
     }
 
-    const verse = await fetchVerseText(passageId, lang);
-    if (!verse) {
+    const bibleApiRef = usfmToBibleApiRef(passageId);
+    const translation = lang === "fr" ? "kjv" : "web";
+
+    const res = await fetch(
+      `https://bible-api.com/${bibleApiRef}?translation=${translation}`,
+      { next: { revalidate: 86400 } }
+    );
+    if (!res.ok) {
       return NextResponse.json({
         text: null,
         reference: null,
@@ -107,9 +89,32 @@ export async function GET(req: Request) {
       });
     }
 
+    const json = await res.json();
+    const text = json?.text?.trim();
+    const reference = json?.reference?.trim();
+    if (!text) {
+      return NextResponse.json({
+        text: null,
+        reference: null,
+        date: new Date().toISOString().slice(0, 10),
+        source: null,
+      });
+    }
+
+    if (lang === "fr") {
+      const translated = await translateToFrench(text);
+      const translatedRef = reference ? await translateToFrench(reference) : null;
+      return NextResponse.json({
+        text: translated || text,
+        reference: translatedRef || reference || passageId.replace(/\./g, " "),
+        date: new Date().toISOString().slice(0, 10),
+        source: "youversion",
+      });
+    }
+
     return NextResponse.json({
-      text: verse.text,
-      reference: verse.reference,
+      text,
+      reference: reference || passageId.replace(/\./g, " "),
       date: new Date().toISOString().slice(0, 10),
       source: "youversion",
     });

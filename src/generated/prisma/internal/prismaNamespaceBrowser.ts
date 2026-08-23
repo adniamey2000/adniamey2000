@@ -229,6 +229,7 @@ export const NewsletterSubscriberScalarFieldEnum = {
   email: 'email',
   confirmed: 'confirmed',
   confirmToken: 'confirmToken',
+  lang: 'lang',
   createdAt: 'createdAt'
 } as const
 

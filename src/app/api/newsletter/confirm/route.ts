@@ -19,13 +19,13 @@ export async function GET(request: Request) {
 
   await prisma.newsletterSubscriber.update({
     where: { id: subscriber.id },
-    data: { confirmed: true, confirmToken: null },
+    data: { confirmed: true },
   });
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://adniamey2000.vercel.app";
 
   return NextResponse.redirect(
-    new URL(`${siteUrl}/fr/newsletter-confirmee`)
+    new URL(`${siteUrl}/newsletter-choice?token=${token}`)
   );
 }

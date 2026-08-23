@@ -14,19 +14,29 @@ export default function VerseOfTheDay({
   lang: string;
 }) {
   const [verse, setVerse] = useState<Verse | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
+    const timer = setTimeout(() => {
+      if (active) setLoading(false);
+    }, 8000);
+
     fetch(`/api/verse-of-the-day?lang=${encodeURIComponent(lang)}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (active && data?.text && data?.reference) {
           setVerse({ text: data.text, reference: data.reference });
         }
+        if (active) setLoading(false);
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) setLoading(false);
+      });
+
     return () => {
       active = false;
+      clearTimeout(timer);
     };
   }, [lang]);
 
@@ -47,19 +57,21 @@ export default function VerseOfTheDay({
         <blockquote className="mt-6 min-h-[7.5rem] font-serif text-xl font-medium leading-relaxed text-ink sm:text-2xl">
           {verse ? (
             <>
-              <span className="text-accent">«&nbsp;</span>
+              <span className="text-accent">&laquo;&nbsp;</span>
               {verse.text}
-              <span className="text-accent">&nbsp;»</span>
+              <span className="text-accent">&nbsp;&raquo;</span>
             </>
-          ) : (
+          ) : loading ? (
             <span className="block animate-pulse space-y-3">
               <span className="block h-4 w-full rounded bg-primary-soft" />
               <span className="block h-4 w-3/4 rounded bg-primary-soft" />
             </span>
+          ) : (
+            <span className="text-muted">{subtitle}</span>
           )}
         </blockquote>
         <p className="mt-5 text-sm font-semibold uppercase tracking-widest text-primary-dark">
-          {verse ? verse.reference : subtitle}
+          {verse ? verse.reference : ""}
         </p>
       </div>
     </section>

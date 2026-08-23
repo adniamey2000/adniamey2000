@@ -123,6 +123,7 @@ model NewsletterSubscriber {
   email        String   @unique
   confirmed    Boolean  @default(false)
   confirmToken String?
+  lang         String   @default("fr")
   createdAt    DateTime @default(now())
 }
 

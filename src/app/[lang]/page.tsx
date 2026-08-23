@@ -13,7 +13,7 @@ import {
 } from "@/lib/i18n";
 import { images, isValidImageUrl } from "@/lib/images";
 import { prisma } from "@/lib/prisma";
-import { getSchedule } from "@/lib/site";
+import { getSchedule, getSettingByKey, settingValue } from "@/lib/site";
 import { toDetailPath } from "@/lib/slug";
 
 export async function generateMetadata({
@@ -58,7 +58,7 @@ export default async function HomePage({
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const [sermons, events, schedule, announcements] = await Promise.all([
+  const [sermons, events, schedule, announcements, themeYear, themeText, verseYear] = await Promise.all([
     prisma.sermon.findMany({ orderBy: { date: "desc" }, take: 3 }),
     prisma.churchEvent.findMany({
       where: { date: { gte: today } },
@@ -71,6 +71,9 @@ export default async function HomePage({
       orderBy: [{ date: "desc" }, { createdAt: "desc" }],
       take: 8,
     }),
+    getSettingByKey("themeYear"),
+    getSettingByKey("themeText"),
+    getSettingByKey("verseYear"),
   ]);
 
   const homeAnnouncements = announcements.slice(0, 3);
@@ -150,6 +153,37 @@ export default async function HomePage({
           </div>
         </div>
       </section>
+
+      {/* Annual theme */}
+      {(themeYear || themeText || verseYear) && (
+        <section className="bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+            <div className="rounded-2xl border border-primary-soft bg-gradient-to-br from-primary-soft/50 via-white to-primary-soft/30 p-8 text-center sm:p-12">
+              <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent-soft px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l2.4 6.6L21 9.2l-5 4.4 1.5 6.4-5.5-3.7L6.5 20 8 13.6 3 9.2l6.6-.6L12 2z" />
+                </svg>
+                {dict.home.annualTheme.title}
+              </span>
+              {themeYear && (
+                <p className="mt-4 text-sm font-semibold uppercase tracking-widest text-primary-dark">
+                  {dict.home.annualTheme.yearLabel} {settingValue(themeYear, "", lang as "fr" | "en")}
+                </p>
+              )}
+              {themeText && (
+                <h2 className="mt-3 font-serif text-2xl font-bold text-ink sm:text-3xl">
+                  &laquo; {settingValue(themeText, "", lang as "fr" | "en")} &raquo;
+                </h2>
+              )}
+              {verseYear && (
+                <p className="mt-4 text-sm italic leading-relaxed text-muted">
+                  {dict.home.annualTheme.verseLabel} : {settingValue(verseYear, "", lang as "fr" | "en")}
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Welcome */}
       <section className="relative">

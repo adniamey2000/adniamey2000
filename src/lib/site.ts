@@ -11,6 +11,10 @@ export async function getSettings() {
   };
 }
 
+export async function getSettingByKey(key: string) {
+  return prisma.siteSetting.findUnique({ where: { key } });
+}
+
 export function settingValue(
   setting: { valueFr: string; valueEn: string } | null,
   fallback: string,

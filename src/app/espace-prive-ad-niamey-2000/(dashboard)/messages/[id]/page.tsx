@@ -53,9 +53,9 @@ export default async function AdminMessageDetailPage({
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-dark text-sm font-bold text-white">
               {msg.name.charAt(0).toUpperCase()}
             </div>
-            <div>
-              <p className="text-base font-bold text-ink">{msg.name}</p>
-              <p className="text-xs text-muted">{msg.email}</p>
+            <div className="min-w-0">
+              <p className="truncate text-base font-bold text-ink">{msg.name}</p>
+              <p className="truncate text-xs text-muted">{msg.email}</p>
               <p className="mt-0.5 text-[11px] text-muted/60">{formatFull(msg.createdAt)}</p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default async function AdminMessageDetailPage({
                 <span className="text-xs font-medium text-primary-dark">Vous</span>
                 <span className="text-[11px] text-muted/60">{formatFull(reply.createdAt)}</span>
               </div>
-              <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-ink/75">
+              <p className="mt-2 whitespace-pre-wrap break-words text-sm leading-relaxed text-ink/75">
                 {reply.body}
               </p>
             </div>

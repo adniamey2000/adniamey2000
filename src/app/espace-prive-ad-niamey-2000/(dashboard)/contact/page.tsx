@@ -22,6 +22,9 @@ export default async function AdminContactPage() {
             address: map.get("address") ?? null,
             phone: map.get("phone") ?? null,
             email: map.get("email") ?? null,
+            themeYear: map.get("themeYear") ?? null,
+            themeText: map.get("themeText") ?? null,
+            verseYear: map.get("verseYear") ?? null,
           }}
         />
       </div>

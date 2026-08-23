@@ -43,7 +43,7 @@ export default function NewsletterForm({
         }`}
       >
         {status === "confirm"
-          ? "Vérifiez votre boîte mail pour confirmer votre inscription."
+          ? dict.newsletter.confirm
           : status === "success"
           ? dict.newsletter.success
           : dict.newsletter.already}

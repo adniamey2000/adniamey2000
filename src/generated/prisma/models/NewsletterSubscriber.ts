@@ -39,6 +39,7 @@ export type NewsletterSubscriberMinAggregateOutputType = {
   email: string | null
   confirmed: boolean | null
   confirmToken: string | null
+  lang: string | null
   createdAt: Date | null
 }
 
@@ -47,6 +48,7 @@ export type NewsletterSubscriberMaxAggregateOutputType = {
   email: string | null
   confirmed: boolean | null
   confirmToken: string | null
+  lang: string | null
   createdAt: Date | null
 }
 
@@ -55,6 +57,7 @@ export type NewsletterSubscriberCountAggregateOutputType = {
   email: number
   confirmed: number
   confirmToken: number
+  lang: number
   createdAt: number
   _all: number
 }
@@ -73,6 +76,7 @@ export type NewsletterSubscriberMinAggregateInputType = {
   email?: true
   confirmed?: true
   confirmToken?: true
+  lang?: true
   createdAt?: true
 }
 
@@ -81,6 +85,7 @@ export type NewsletterSubscriberMaxAggregateInputType = {
   email?: true
   confirmed?: true
   confirmToken?: true
+  lang?: true
   createdAt?: true
 }
 
@@ -89,6 +94,7 @@ export type NewsletterSubscriberCountAggregateInputType = {
   email?: true
   confirmed?: true
   confirmToken?: true
+  lang?: true
   createdAt?: true
   _all?: true
 }
@@ -184,6 +190,7 @@ export type NewsletterSubscriberGroupByOutputType = {
   email: string
   confirmed: boolean
   confirmToken: string | null
+  lang: string
   createdAt: Date
   _count: NewsletterSubscriberCountAggregateOutputType | null
   _avg: NewsletterSubscriberAvgAggregateOutputType | null
@@ -215,6 +222,7 @@ export type NewsletterSubscriberWhereInput = {
   email?: Prisma.StringFilter<"NewsletterSubscriber"> | string
   confirmed?: Prisma.BoolFilter<"NewsletterSubscriber"> | boolean
   confirmToken?: Prisma.StringNullableFilter<"NewsletterSubscriber"> | string | null
+  lang?: Prisma.StringFilter<"NewsletterSubscriber"> | string
   createdAt?: Prisma.DateTimeFilter<"NewsletterSubscriber"> | Date | string
 }
 
@@ -223,6 +231,7 @@ export type NewsletterSubscriberOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   confirmed?: Prisma.SortOrder
   confirmToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  lang?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -234,6 +243,7 @@ export type NewsletterSubscriberWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.NewsletterSubscriberWhereInput | Prisma.NewsletterSubscriberWhereInput[]
   confirmed?: Prisma.BoolFilter<"NewsletterSubscriber"> | boolean
   confirmToken?: Prisma.StringNullableFilter<"NewsletterSubscriber"> | string | null
+  lang?: Prisma.StringFilter<"NewsletterSubscriber"> | string
   createdAt?: Prisma.DateTimeFilter<"NewsletterSubscriber"> | Date | string
 }, "id" | "email">
 
@@ -242,6 +252,7 @@ export type NewsletterSubscriberOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   confirmed?: Prisma.SortOrder
   confirmToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  lang?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.NewsletterSubscriberCountOrderByAggregateInput
   _avg?: Prisma.NewsletterSubscriberAvgOrderByAggregateInput
@@ -258,6 +269,7 @@ export type NewsletterSubscriberScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"NewsletterSubscriber"> | string
   confirmed?: Prisma.BoolWithAggregatesFilter<"NewsletterSubscriber"> | boolean
   confirmToken?: Prisma.StringNullableWithAggregatesFilter<"NewsletterSubscriber"> | string | null
+  lang?: Prisma.StringWithAggregatesFilter<"NewsletterSubscriber"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"NewsletterSubscriber"> | Date | string
 }
 
@@ -265,6 +277,7 @@ export type NewsletterSubscriberCreateInput = {
   email: string
   confirmed?: boolean
   confirmToken?: string | null
+  lang?: string
   createdAt?: Date | string
 }
 
@@ -273,6 +286,7 @@ export type NewsletterSubscriberUncheckedCreateInput = {
   email: string
   confirmed?: boolean
   confirmToken?: string | null
+  lang?: string
   createdAt?: Date | string
 }
 
@@ -280,6 +294,7 @@ export type NewsletterSubscriberUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   confirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lang?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -288,6 +303,7 @@ export type NewsletterSubscriberUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   confirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lang?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -296,6 +312,7 @@ export type NewsletterSubscriberCreateManyInput = {
   email: string
   confirmed?: boolean
   confirmToken?: string | null
+  lang?: string
   createdAt?: Date | string
 }
 
@@ -303,6 +320,7 @@ export type NewsletterSubscriberUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   confirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lang?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -311,6 +329,7 @@ export type NewsletterSubscriberUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   confirmed?: Prisma.BoolFieldUpdateOperationsInput | boolean
   confirmToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lang?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -319,6 +338,7 @@ export type NewsletterSubscriberCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   confirmed?: Prisma.SortOrder
   confirmToken?: Prisma.SortOrder
+  lang?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -331,6 +351,7 @@ export type NewsletterSubscriberMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   confirmed?: Prisma.SortOrder
   confirmToken?: Prisma.SortOrder
+  lang?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -339,6 +360,7 @@ export type NewsletterSubscriberMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   confirmed?: Prisma.SortOrder
   confirmToken?: Prisma.SortOrder
+  lang?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -357,6 +379,7 @@ export type NewsletterSubscriberSelect<ExtArgs extends runtime.Types.Extensions.
   email?: boolean
   confirmed?: boolean
   confirmToken?: boolean
+  lang?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["newsletterSubscriber"]>
 
@@ -365,6 +388,7 @@ export type NewsletterSubscriberSelectCreateManyAndReturn<ExtArgs extends runtim
   email?: boolean
   confirmed?: boolean
   confirmToken?: boolean
+  lang?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["newsletterSubscriber"]>
 
@@ -373,6 +397,7 @@ export type NewsletterSubscriberSelectUpdateManyAndReturn<ExtArgs extends runtim
   email?: boolean
   confirmed?: boolean
   confirmToken?: boolean
+  lang?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["newsletterSubscriber"]>
 
@@ -381,10 +406,11 @@ export type NewsletterSubscriberSelectScalar = {
   email?: boolean
   confirmed?: boolean
   confirmToken?: boolean
+  lang?: boolean
   createdAt?: boolean
 }
 
-export type NewsletterSubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "confirmed" | "confirmToken" | "createdAt", ExtArgs["result"]["newsletterSubscriber"]>
+export type NewsletterSubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "confirmed" | "confirmToken" | "lang" | "createdAt", ExtArgs["result"]["newsletterSubscriber"]>
 
 export type $NewsletterSubscriberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "NewsletterSubscriber"
@@ -394,6 +420,7 @@ export type $NewsletterSubscriberPayload<ExtArgs extends runtime.Types.Extension
     email: string
     confirmed: boolean
     confirmToken: string | null
+    lang: string
     createdAt: Date
   }, ExtArgs["result"]["newsletterSubscriber"]>
   composites: {}
@@ -822,6 +849,7 @@ export interface NewsletterSubscriberFieldRefs {
   readonly email: Prisma.FieldRef<"NewsletterSubscriber", 'String'>
   readonly confirmed: Prisma.FieldRef<"NewsletterSubscriber", 'Boolean'>
   readonly confirmToken: Prisma.FieldRef<"NewsletterSubscriber", 'String'>
+  readonly lang: Prisma.FieldRef<"NewsletterSubscriber", 'String'>
   readonly createdAt: Prisma.FieldRef<"NewsletterSubscriber", 'DateTime'>
 }
     
