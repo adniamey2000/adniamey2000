@@ -27,29 +27,29 @@ export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-primary-soft bg-white/90 backdrop-blur">
-      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href={`/${lang}`} className="flex items-center gap-4">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
+        <Link href={`/${lang}`} className="flex items-center gap-3">
           <Image
             src="/adlogo.jpg"
             alt={churchName}
             width={40}
             height={40}
             priority
-            className="h-12 w-12 rounded-full object-cover"
+            className="h-11 w-11 rounded-full object-cover"
           />
-          <span className="font-serif text-xl font-bold tracking-tight text-ink">
+          <span className="font-serif text-lg font-bold tracking-tight text-ink">
             {churchName}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {links.map((link) => {
             const active = isActive(link.href);
             return (
               <Link
                 key={link.href}
                 href={`/${lang}${link.href}`}
-                className={`group relative text-base font-medium transition ${
+                className={`group relative text-sm font-medium transition ${
                   active
                     ? "font-bold text-primary-dark"
                     : "text-ink/80 hover:text-primary-dark"
@@ -66,7 +66,7 @@ export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <Link
             href={`/${lang}/contact`}
             className="hidden rounded-full bg-primary-dark px-5 py-2 text-sm font-semibold text-white shadow-md shadow-primary/25 transition hover:opacity-90 lg:inline-flex"

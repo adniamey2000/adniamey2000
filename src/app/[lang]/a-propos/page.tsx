@@ -50,7 +50,7 @@ export default async function AboutPage({
   const team = leaders.slice(1);
 
   const stats = [
-    { value: new Date().getFullYear() - 2000, label: dict.about.stats.years },
+    { value: "7+", label: dict.about.stats.years },
     { value: departments.length, label: dict.about.stats.departments },
     { value: sermonCount, label: dict.about.stats.sermons },
     { value: upcomingEvents, label: dict.about.stats.events },
@@ -92,7 +92,7 @@ export default async function AboutPage({
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               {[
-                { value: new Date().getFullYear() - 2000, label: dict.about.stats.years },
+                { value: "7+", label: dict.about.stats.years },
                 { value: departments.length, label: dict.about.stats.departments },
                 { value: upcomingEvents, label: dict.about.stats.events },
               ].map((stat) => (
