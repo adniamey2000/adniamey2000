@@ -30,6 +30,16 @@ export default function ScheduleEditor({ items }: { items: Item[] }) {
     setRows((prev) => prev.filter((_, i) => i !== index));
   }
 
+  function moveRow(index: number, direction: -1 | 1) {
+    setRows((prev) => {
+      const target = index + direction;
+      if (target < 0 || target >= prev.length) return prev;
+      const next = [...prev];
+      [next[index], next[target]] = [next[target], next[index]];
+      return next;
+    });
+  }
+
   async function save() {
     setSaving(true);
     setMessage("");
@@ -57,6 +67,31 @@ export default function ScheduleEditor({ items }: { items: Item[] }) {
       <div className="space-y-3">
         {rows.map((row, i) => (
           <div key={i} className="rounded-2xl border border-primary-soft bg-white p-4 shadow-sm">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted">
+                Ligne {i + 1}
+              </span>
+              <div className="flex gap-1">
+                <button
+                  type="button"
+                  onClick={() => moveRow(i, -1)}
+                  disabled={i === 0}
+                  title="Monter"
+                  className="rounded-lg border border-primary-soft px-2.5 py-1 text-xs font-semibold text-primary-dark transition hover:bg-primary-soft disabled:opacity-40"
+                >
+                  ↑
+                </button>
+                <button
+                  type="button"
+                  onClick={() => moveRow(i, 1)}
+                  disabled={i === rows.length - 1}
+                  title="Descendre"
+                  className="rounded-lg border border-primary-soft px-2.5 py-1 text-xs font-semibold text-primary-dark transition hover:bg-primary-soft disabled:opacity-40"
+                >
+                  ↓
+                </button>
+              </div>
+            </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
                 <label className={label}>Jour (FR)</label>
