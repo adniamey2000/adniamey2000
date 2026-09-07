@@ -178,7 +178,7 @@ export default async function AboutPage({
         <p className="mx-auto mt-3 max-w-2xl text-center text-muted">
           {dict.about.values.text}
         </p>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {dict.about.valuesList.map((value, i) => (
             <div
               key={value.title}

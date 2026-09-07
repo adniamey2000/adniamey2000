@@ -103,7 +103,7 @@ export default async function HomePage({
               longitude: 2.1128,
             },
             sameAs: [],
-            foundingDate: "2000",
+            foundingDate: "2019",
             areaServed: {
               "@type": "City",
               name: "Niamey",

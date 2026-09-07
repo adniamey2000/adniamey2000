@@ -125,7 +125,6 @@ export type Dict = {
     bannerTitle: string;
     bannerText: string;
     departments: { title: string; text: string };
-    departmentsList: { name: string; description: string }[];
   };
   events: {
     title: string;
@@ -362,29 +361,27 @@ const fr: Dict = {
   about: {
     title: "À propos de nous",
     subtitle:
-      "Une église au cœur de Niamey : une famille, une foi, une mission.",
+      "Vision pour l'église AD Niamey 2000 : les 3G — le Grand Engagement, le Grand Commandement et la Grande Commission.",
     intro:
-      "L'Assemblée de Dieu Niamey 2000 est une église de la famille des Assemblées de Dieu au Niger, engagée à annoncer l'Évangile et à former des disciples de Jésus-Christ.",
+      "L'Assemblée de Dieu Niamey 2000 est une église de la famille des Assemblées de Dieu au Niger, fondée en 2019 et engagée à annoncer l'Évangile et à former des disciples de Jésus-Christ.",
     intro2:
-      "Depuis l'an 2000, nous nous réunissons pour adorer Dieu, grandir dans sa Parole et servir la ville de Niamey dans l'amour et l'unité. Chaque dimanche, des familles, des jeunes et des enfants se retrouvent pour vivre ensemble la joie de l'Évangile, dans un esprit de fraternité et d'entraide.",
+      "Notre vision, inspirée de Matthieu 22:37-40 et Matthieu 28:19-20, est résumée par les « 3G » : le Grand Engagement envers le Grand Commandement et la Grande Commission. Chaque dimanche, des familles, des jeunes et des enfants se retrouvent pour adorer Dieu, grandir dans sa Parole et servir la ville de Niamey dans l'amour et l'unité.",
     mission: {
       title: "Notre mission",
       text: "Annoncer la bonne nouvelle de Jésus-Christ, évangéliser, partager la Parole de Dieu et toucher de nouvelles personnes par l'amour et le témoignage.",
     },
     vision: {
-      title: "Notre vision",
-      text: "Être une église rayonnante dans la ville de Niamey, où chaque personne rencontre Dieu, grandit dans la foi et sert sa génération.",
+      title: "Notre vision — les 3G",
+      text: "Vivre le Grand Engagement envers le Grand Commandement et la Grande Commission : aimer Dieu et son prochain, faire des disciples et servir avec persévérance et enthousiasme.",
     },
     values: {
       title: "Nos valeurs",
       text: "La foi, l'amour, l'unité, la prière et le service sont au cœur de notre vie communautaire.",
     },
     valuesList: [
-      { title: "La foi", text: "Confiance en Dieu et en sa Parole." },
-      { title: "L'amour", text: "Aimer Dieu et son prochain comme soi-même." },
-      { title: "L'unité", text: "Vivre ensemble dans la paix et la fraternité." },
-      { title: "La prière", text: "Une église qui prie et intercède pour les autres." },
-      { title: "Le service", text: "Servir Dieu et la communauté avec joie." },
+      { title: "Grand Commandement", text: "Aimer le Seigneur de tout notre cœur et aimer notre prochain comme nous-mêmes (Matthieu 22:37-39 ; 1 Jean 4:7 ; Matthieu 4:10)." },
+      { title: "Grande Commission", text: "Allez et faites des disciples : annoncer l'Évangile et accompagner ceux qui croient pour qu'ils grandissent dans la foi (Matthieu 28:19-20 ; Marc 16:15-16)." },
+      { title: "Grand Engagement", text: "Servir avec persévérance et enthousiasme : zèle, fidélité et service rendu avec amour (Matthieu 4:10)." },
     ],
     leadership: {
       title: "Notre équipe",
@@ -405,14 +402,6 @@ const fr: Dict = {
       title: "Nos départements",
       text: "Découvrez les différents départements de l'église.",
     },
-    departmentsList: [
-      { name: "Chorale", description: "La louange et l'adoration par le chant." },
-      { name: "Jeunesse", description: "Encadrement et formation des jeunes." },
-      { name: "Femmes", description: "Épanouissement et soutien des femmes." },
-      { name: "Hommes", description: "Fratrie et édification des hommes." },
-      { name: "Enfants", description: "École du dimanche pour les enfants." },
-      { name: "Évangélisation", description: "Témoigner et partager l'Évangile." },
-    ],
   },
   events: {
     title: "Événements",
@@ -687,29 +676,28 @@ const en: Dict = {
   },
   about: {
     title: "About us",
-    subtitle: "A church at the heart of Niamey: one family, one faith, one mission.",
+    subtitle:
+      "Vision for the AD Niamey 2000 church: the 3G — the Great Commitment, the Great Commandment and the Great Commission.",
     intro:
-      "The Assemblies of God Niamey 2000 is a church of the Assemblies of God family in Niger, committed to proclaiming the Gospel and making disciples of Jesus Christ.",
+      "The Assemblies of God Niamey 2000 is a church of the Assemblies of God family in Niger, founded in 2019 and committed to proclaiming the Gospel and making disciples of Jesus Christ.",
     intro2:
-      "Since the year 2000, we gather to worship God, grow in his Word and serve the city of Niamey in love and unity. Every Sunday, families, youth and children come together to share the joy of the Gospel, in a spirit of fellowship and mutual support.",
+      "Our vision, inspired by Matthew 22:37-40 and Matthew 28:19-20, is summed up by the '3G': the Great Commitment to the Great Commandment and the Great Commission. Every Sunday, families, youth and children come together to worship God, grow in his Word and serve the city of Niamey in love and unity.",
     mission: {
       title: "Our mission",
       text: "To proclaim the good news of Jesus Christ, to evangelise, to share the Word of God and to reach new people through love and witness.",
     },
     vision: {
-      title: "Our vision",
-      text: "To be a shining church in the city of Niamey, where every person encounters God, grows in faith and serves their generation.",
+      title: "Our vision — the 3G",
+      text: "To live the Great Commitment to the Great Commandment and the Great Commission: to love God and our neighbour, to make disciples and to serve with perseverance and enthusiasm.",
     },
     values: {
       title: "Our values",
       text: "Faith, love, unity, prayer and service are at the heart of our community life.",
     },
     valuesList: [
-      { title: "Faith", text: "Trust in God and in his Word." },
-      { title: "Love", text: "Loving God and your neighbour as yourself." },
-      { title: "Unity", text: "Living together in peace and fellowship." },
-      { title: "Prayer", text: "A church that prays and intercedes for others." },
-      { title: "Service", text: "Serving God and the community with joy." },
+      { title: "Great Commandment", text: "Love the Lord with all our heart and love our neighbour as ourselves (Matthew 22:37-39; 1 John 4:7; Matthew 4:10)." },
+      { title: "Great Commission", text: "Go and make disciples: proclaim the Gospel and help those who believe to grow in faith (Matthew 28:19-20; Mark 16:15-16)." },
+      { title: "Great Commitment", text: "Serve with perseverance and enthusiasm: zeal, faithfulness and service rendered with love (Matthew 4:10)." },
     ],
     leadership: {
       title: "Our team",
@@ -730,14 +718,6 @@ const en: Dict = {
       title: "Our departments",
       text: "Discover the different departments of the church.",
     },
-    departmentsList: [
-      { name: "Choir", description: "Praise and worship through singing." },
-      { name: "Youth", description: "Supporting and discipling young people." },
-      { name: "Women", description: "Growth and support of women." },
-      { name: "Men", description: "Fellowship and edification of men." },
-      { name: "Children", description: "Sunday school for children." },
-      { name: "Evangelism", description: "Witnessing and sharing the Gospel." },
-    ],
   },
   events: {
     title: "Events",
