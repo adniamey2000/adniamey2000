@@ -22,11 +22,11 @@ export default async function AdminLoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-100 via-white to-slate-200 px-4">
       <div className="flex w-full max-w-sm flex-col items-center gap-6">
         <Image
-          src="/adlogo.jpg"
+          src="/images/logo/logo-blue.jpeg"
           alt={churchName}
           width={96}
           height={96}
-          className="h-24 w-24 rounded-full border-4 border-white object-cover shadow-xl ring-2 ring-primary-soft"
+          className="h-24 w-24 border-4 border-white object-contain shadow-xl"
         />
         <LoginForm captchaA={a} captchaB={b} />
         <Link

@@ -46,6 +46,40 @@ body {
 }
 
 ::selection {
-  background-color: rgba(82, 86, 199, 0.2);
-  color: #1b2a4a;
+  background-color: rgba(16, 24, 229, 0.16);
+  color: #1e293b;
+}
+
+/* Focus clavier visible partout (WCAG 2.4.7) */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Lien « Aller au contenu » (visible au focus clavier) */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  border-radius: 0.375rem;
+  background: var(--color-primary);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

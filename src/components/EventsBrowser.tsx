@@ -84,7 +84,7 @@ export default function EventsBrowser({
     <Link
       key={e.id}
       href={toDetailPath("evenements", e.id, e.titleFr, lang)}
-      className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
+      className="group overflow-hidden rounded-2xl border border-primary-soft bg-white shadow-sm transition hover:shadow-md"
     >
       {e.imageUrl ? (
         <img
@@ -100,7 +100,7 @@ export default function EventsBrowser({
           </span>
         </div>
       )}
-      <div className="p-6">
+      <div className="p-5">
         <p className="text-sm font-semibold uppercase tracking-wide text-primary-dark">
           {fmt(e.dateISO)}
         </p>
@@ -146,7 +146,7 @@ export default function EventsBrowser({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={labels.searchPlaceholder}
-            className="w-full rounded-full border border-slate-200 bg-white py-3 pl-11 pr-5 text-sm text-ink outline-none transition placeholder:text-muted/60 focus:border-primary-dark focus:ring-2 focus:ring-primary-dark/30"
+            className="w-full rounded-md border border-slate-200 bg-white py-3 pl-11 pr-5 text-sm text-ink outline-none transition placeholder:text-muted/60 focus:border-primary-dark focus:ring-2 focus:ring-primary-dark/30"
           />
         </div>
         {monthOptions.length > 0 && (
@@ -155,7 +155,7 @@ export default function EventsBrowser({
               value={month}
               onChange={(e) => setMonth(e.target.value)}
               aria-label={labels.filterLabel}
-              className="w-full rounded-full border border-slate-200 bg-white py-3 pl-5 pr-10 text-sm text-ink outline-none transition focus:border-primary-dark focus:ring-2 focus:ring-primary-dark/30 sm:w-auto"
+              className="w-full rounded-md border border-slate-200 bg-white py-3 pl-5 pr-10 text-sm text-ink outline-none transition focus:border-primary-dark focus:ring-2 focus:ring-primary-dark/30 sm:w-auto"
             >
               <option value="all">{labels.allMonths}</option>
               {monthOptions.map(([key, label]) => (
@@ -177,7 +177,7 @@ export default function EventsBrowser({
               <h2 className="font-serif text-2xl font-bold text-primary-dark">
                 {labels.upcoming}
               </h2>
-              <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {upcomingFiltered.map(card)}
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function EventsBrowser({
               <h2 className="font-serif text-2xl font-bold text-primary-dark">
                 {labels.past}
               </h2>
-              <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {pastFiltered.map(card)}
               </div>
             </div>

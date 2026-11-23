@@ -68,7 +68,7 @@ export default async function AboutPage({
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="relative fade-up">
-            <div className="absolute -left-4 -top-4 h-full w-full rounded-3xl bg-accent-soft" aria-hidden="true" />
+            <div className="absolute -left-4 -top-4 h-full w-full rounded-3xl bg-primary-soft" aria-hidden="true" />
             <Image
               src="/images/about/worship.jpg"
               alt={dict.about.title}
@@ -100,7 +100,7 @@ export default async function AboutPage({
                   key={stat.label}
                   className="rounded-2xl border border-primary-soft bg-primary-soft/40 p-4 text-center"
                 >
-                  <p className="font-serif text-2xl font-bold text-accent">
+                  <p className="font-serif text-2xl font-bold text-primary-dark">
                     {stat.value}
                   </p>
                   <p className="mt-1 text-xs font-medium text-muted">{stat.label}</p>
@@ -120,7 +120,7 @@ export default async function AboutPage({
           <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="font-serif text-4xl font-bold text-accent sm:text-5xl">
+                <p className="font-serif text-4xl font-bold text-primary-dark sm:text-5xl">
                   {stat.value}
                 </p>
                 <p className="mt-1 text-sm text-white/90">{stat.label}</p>
@@ -291,7 +291,7 @@ export default async function AboutPage({
                   )}
                 </div>
                 <div className="flex flex-col justify-center p-8">
-                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-primary-dark px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                  <span className="inline-flex w-fit items-center gap-1.5 rounded-md bg-primary-dark px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
                     {dict.about.leadership.senior}
                   </span>
                   <h3 className="mt-3 font-serif text-2xl font-bold text-ink">

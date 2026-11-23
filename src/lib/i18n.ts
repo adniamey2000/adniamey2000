@@ -50,6 +50,7 @@ export type Dict = {
       subtitle: string;
       cta1: string;
       cta2: string;
+      slides: { title: string; highlight: string; subtitle: string }[];
     };
     welcome: {
       title: string;
@@ -292,6 +293,26 @@ const fr: Dict = {
         "Une communauté de foi au cœur de Niamey. Venez adorer, grandir et servir ensemble.",
       cta1: "Rejoignez-nous",
       cta2: "Écouter un sermon",
+      slides: [
+        {
+          title: "Bienvenue à l'",
+          highlight: "AD Niamey 2000",
+          subtitle:
+            "Une communauté de foi au cœur de Niamey. Venez adorer, grandir et servir ensemble.",
+        },
+        {
+          title: "Un lieu de",
+          highlight: "prière et d'espérance",
+          subtitle:
+            "Chaque semaine, nous nous rassemblons pour louer Dieu, écouter sa Parole et marcher ensemble dans la foi.",
+        },
+        {
+          title: "Découvrez notre",
+          highlight: "communauté",
+          subtitle:
+            "Des assemblées, des études bibliques et des moments de partage pour tous les âges et toutes les langues.",
+        },
+      ],
     },
     welcome: {
       title: "Bienvenue dans notre église",
@@ -608,6 +629,26 @@ const en: Dict = {
         "A community of faith in the heart of Niamey. Come worship, grow and serve together.",
       cta1: "Join us",
       cta2: "Listen to a sermon",
+      slides: [
+        {
+          title: "Welcome to ",
+          highlight: "AD Niamey 2000",
+          subtitle:
+            "A community of faith in the heart of Niamey. Come worship, grow and serve together.",
+        },
+        {
+          title: "A place of",
+          highlight: "prayer and hope",
+          subtitle:
+            "Every week we gather to praise God, listen to His Word and walk together in faith.",
+        },
+        {
+          title: "Discover our",
+          highlight: "community",
+          subtitle:
+            "Services, Bible studies and moments of fellowship for all ages and all languages.",
+        },
+      ],
     },
     welcome: {
       title: "Welcome to our church",

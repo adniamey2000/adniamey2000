@@ -17,7 +17,7 @@ export default function NewsletterConfirmPage() {
         </p>
         <Link
           href="/fr"
-          className="inline-block rounded-full bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+          className="inline-block rounded-md bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
         >
           Retour à l&apos;accueil
         </Link>

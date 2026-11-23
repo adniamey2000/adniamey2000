@@ -99,7 +99,7 @@ export default async function AnnouncementsPage({
         <div className="fade-up-delay-2 mt-14 text-center">
           <Link
             href={`/${lang}`}
-            className="inline-flex items-center gap-2 rounded-full border border-primary-soft bg-white px-6 py-3 text-sm font-semibold text-primary-dark transition hover:bg-primary-soft"
+            className="inline-flex items-center gap-2 rounded-md border border-primary-soft bg-white px-6 py-3 text-sm font-semibold text-primary-dark transition hover:bg-primary-soft"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M12 19l-7-7 7-7" />

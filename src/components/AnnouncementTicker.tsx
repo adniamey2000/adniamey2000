@@ -64,7 +64,7 @@ export default function AnnouncementTicker({
         </div>
         <Link
           href={href}
-          className="absolute left-3 top-1/2 z-10 flex -translate-y-1/2 items-center gap-1.5 rounded-full bg-primary-dark px-4 py-1.5 text-xs font-bold text-white shadow-md transition hover:opacity-90 sm:left-5"
+          className="absolute left-3 top-1/2 z-10 flex -translate-y-1/2 items-center gap-1.5 rounded-md bg-primary-dark px-4 py-1.5 text-xs font-bold text-white shadow-md transition hover:opacity-90 sm:left-5"
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
             <path d="M3 11l18-5v12L3 13v-2zM11.6 16.8a3 3 0 11-5.8-1.6" />

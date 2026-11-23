@@ -55,8 +55,8 @@ export default async function Footer({
   ];
 
   return (
-    <footer className="mt-auto bg-ink text-white">
-      <div className="h-1 bg-gradient-to-r from-primary via-primary-dark to-accent" />
+    <footer className="mt-auto bg-[#181F4E] text-white">
+      <div className="h-1 bg-primary-bright" />
 
       <div className="border-b border-white/10 bg-white/5">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-10 sm:flex-row sm:px-6">
@@ -74,11 +74,11 @@ export default async function Footer({
         <div>
           <div className="flex items-center gap-3">
             <Image
-              src="/adlogo.jpg"
+              src="/images/logo/logo-blue.jpeg"
               alt={churchName}
-              width={40}
-              height={40}
-              className="h-10 w-10 rounded-full object-cover"
+              width={64}
+              height={64}
+              className="h-16 w-16 object-contain"
             />
             <h3 className="font-serif text-lg font-bold">{churchName}</h3>
           </div>
@@ -88,7 +88,7 @@ export default async function Footer({
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-soft">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-bright">
             {dict.footer.quickLinks}
           </h4>
           <ul className="mt-4 space-y-2.5">
@@ -96,7 +96,7 @@ export default async function Footer({
               <li key={link.href}>
                 <Link
                   href={`/${lang}${link.href}`}
-                  className="text-sm text-white/85 transition hover:text-primary-bright"
+                  className="text-sm text-white/85 transition hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -106,7 +106,7 @@ export default async function Footer({
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-soft">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-bright">
             {dict.footer.contactTitle}
           </h4>
           <ul className="mt-4 space-y-3 text-sm text-white/85">
@@ -121,7 +121,7 @@ export default async function Footer({
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="mt-0.5 shrink-0 text-primary-soft"
+                  className="mt-0.5 shrink-0 text-primary-bright"
                 >
                   {row.icon}
                 </svg>
@@ -132,7 +132,7 @@ export default async function Footer({
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-soft">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-bright">
             {dict.footer.servicesTitle}
           </h4>
           <ul className="mt-4 space-y-3 text-sm text-white/85">

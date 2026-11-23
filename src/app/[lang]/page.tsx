@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import DonationSection from "@/components/DonationSection";
+import HeroCarousel from "@/components/HeroCarousel";
 import VerseOfTheDay from "@/components/VerseOfTheDay";
 import {
   churchName,
@@ -113,47 +114,24 @@ export default async function HomePage({
       />
     <div>
       {/* Hero */}
-      <section className="relative isolate bg-slate-950">
+      <section className="relative isolate flex min-h-[540px] items-center overflow-hidden bg-[#181F4E] md:min-h-[620px]">
         <Image
           src={images.hero}
-          alt={churchName}
+          alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-slate-900/50 to-slate-950/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent" />
-        <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 py-32 text-center sm:px-6 md:py-44">
-          <span className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-widest text-white/90 backdrop-blur-md">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="text-accent-bright">
-              <path d="M12 2l2.4 6.6L21 9.2l-5 4.4 1.5 6.4-5.5-3.7L6.5 20 8 13.6 3 9.2l6.6-.6L12 2z" />
-            </svg>
-            {dict.home.hero.badge}
-          </span>
-          <h1 className="max-w-4xl font-serif text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            {dict.home.hero.title}{" "}
-            <span className="bg-gradient-to-r from-accent-bright via-accent to-accent-bright bg-clip-text text-transparent">
-              {dict.home.hero.highlight}
-            </span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg md:text-xl">
-            {dict.home.hero.subtitle}
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link
-              href={`/${lang}/contact`}
-              className="rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
-            >
-              {dict.home.hero.cta1}
-            </Link>
-            <Link
-              href={`/${lang}/sermons`}
-              className="rounded-full border-2 border-white/40 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:border-white/60 hover:bg-white/20"
-            >
-              {dict.home.hero.cta2}
-            </Link>
-          </div>
+        <div className="absolute inset-0 bg-[#181F4E]/45" />
+        <div className="absolute inset-x-0 bottom-0 h-1 bg-primary-bright" />
+        <div className="relative w-full">
+          <HeroCarousel
+            slides={dict.home.hero.slides}
+            cta1={dict.home.hero.cta1}
+            cta2={dict.home.hero.cta2}
+            lang={lang}
+          />
         </div>
       </section>
 
@@ -182,7 +160,7 @@ export default async function HomePage({
                 <p className="text-sm leading-snug text-muted">{schedule[0].name}</p>
                 <Link
                   href={`/${lang}/evenements`}
-                  className="shrink-0 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-dark"
+                  className="shrink-0 rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-dark"
                 >
                   {dict.home.schedule.viewEvents}
                 </Link>
@@ -217,7 +195,7 @@ export default async function HomePage({
             </p>
             <Link
               href={`/${lang}/a-propos`}
-              className="mt-6 inline-block rounded-full bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+              className="mt-6 inline-block rounded-md bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
             >
               {dict.actions.learnMore}
             </Link>
@@ -268,17 +246,17 @@ export default async function HomePage({
       {(themeYear || themeText || verseYear) && (
         <section className="bg-white">
           <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-            <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-accent-soft via-white to-accent-soft/60 p-8 text-center shadow-lg sm:p-12">
-              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-accent/10" aria-hidden="true" />
+            <div className="relative overflow-hidden rounded-3xl border border-primary/10 bg-primary-soft/40 p-8 text-center sm:p-12">
+              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/5" aria-hidden="true" />
               <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-primary/5" aria-hidden="true" />
-              <span className="relative inline-flex items-center gap-2 rounded-full border border-accent/30 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-widest text-accent shadow-sm">
+              <span className="relative inline-flex items-center gap-2 rounded-md border border-primary/20 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-widest text-primary-dark">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2l2.4 6.6L21 9.2l-5 4.4 1.5 6.4-5.5-3.7L6.5 20 8 13.6 3 9.2l6.6-.6L12 2z" />
                 </svg>
                 {dict.home.annualTheme.title}
               </span>
               {themeYear && (
-                <p className="relative mt-5 text-sm font-bold uppercase tracking-widest text-accent">
+                <p className="relative mt-5 text-sm font-bold uppercase tracking-widest text-primary-dark">
                   {dict.home.annualTheme.yearLabel} {settingValue(themeYear, "", lang as "fr" | "en")}
                 </p>
               )}
@@ -332,7 +310,7 @@ export default async function HomePage({
                   className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:border-primary-soft hover:shadow-md"
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-primary-dark">
+                    <span className="hidden sm:inline-flex items-center gap-1.5 rounded-md bg-primary-soft px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-primary-dark">
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M3 11l18-5v12L3 13v-2z" />
                       </svg>
@@ -362,17 +340,17 @@ export default async function HomePage({
       )}
 
       {/* Worship */}
-      <section className="relative isolate overflow-hidden">
+      <section className="relative isolate overflow-hidden bg-[#181F4E]">
         <Image
           src={images.worship}
           alt=""
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/60 to-slate-950/80" />
+        <div className="absolute inset-0 bg-[#181F4E]/70" />
         <div className="relative mx-auto max-w-3xl px-4 py-24 text-center sm:px-6">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" className="mx-auto text-accent/80">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" className="mx-auto text-white/70">
             <path d="M9.6 4C6.3 4 3.6 6.7 3.6 10c0 3.7 2.9 6.2 5.4 7.5.3-1 .6-1.9 1-2.7-1.7-.9-3.4-2.5-3.4-4.8 0-2.5 2-4.4 4.4-4.4 1.2 0 2.3.5 3.1 1.3l2.1 2.1-2.3 2.3c.3 1.6 1 3.3 2 4.4l3.4-3.4c1.8-1.8 2.7-4.2 2.7-6.6C20 6.6 15.9 4 9.6 4z" />
           </svg>
           <blockquote className="relative mt-8 font-serif text-2xl font-semibold leading-snug text-white sm:text-3xl">

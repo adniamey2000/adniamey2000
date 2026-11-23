@@ -65,12 +65,12 @@ export default function NewsletterForm({
           onChange={(e) => setEmail(e.target.value)}
           placeholder={dict.newsletter.placeholder}
           aria-label={dict.newsletter.placeholder}
-          className={`min-w-0 flex-1 rounded-full border px-4 py-2.5 text-sm outline-none transition ${darkInput}`}
+          className={`min-w-0 flex-1 rounded-md border px-4 py-2.5 text-sm outline-none transition ${darkInput}`}
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-dark disabled:opacity-60"
+          className="shrink-0 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-dark disabled:opacity-60"
         >
           {status === "loading" ? "…" : dict.newsletter.button}
         </button>

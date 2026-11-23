@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
-import { churchName, type Locale, locales } from "@/lib/i18n";
+import { churchName, type Locale } from "@/lib/i18n";
 
 export default function MobileMenu({
   lang,
@@ -49,11 +49,11 @@ export default function MobileMenu({
             <div className="flex h-16 items-center justify-between border-b border-primary-soft px-4 sm:px-6">
               <Link href={`/${lang}`} className="flex items-center gap-3" onClick={() => setOpen(false)}>
                 <Image
-                  src="/adlogo.jpg"
+                  src="/images/logo/logo-blue.jpeg"
                   alt={churchName}
                   width={40}
                   height={40}
-                  className="h-10 w-10 rounded-full object-cover"
+                  className="h-10 w-10 object-contain"
                 />
                 <span className="font-serif text-lg font-bold tracking-tight text-ink">
                   {churchName}
@@ -91,25 +91,7 @@ export default function MobileMenu({
               })}
             </nav>
 
-            <div className="flex flex-col items-center gap-4 border-t border-primary-soft px-6 py-6">
-              <div className="flex items-center gap-1 rounded-full bg-primary-soft p-1">
-                {locales.map((l) => {
-                  const switchPath = pathname.replace(`/${lang}`, `/${l}`) || `/${l}`;
-                  return (
-                    <Link
-                      key={l}
-                      href={switchPath}
-                      className={`rounded-full px-3.5 py-1.5 text-sm font-semibold uppercase transition ${
-                        lang === l
-                          ? "bg-primary-dark text-white"
-                          : "text-primary-dark hover:bg-white"
-                      }`}
-                    >
-                      {l}
-                    </Link>
-                  );
-                })}
-              </div>
+            <div className="border-t border-primary-soft px-6 py-6 text-center">
               <p className="text-xs text-muted">© {churchName}</p>
             </div>
           </div>,

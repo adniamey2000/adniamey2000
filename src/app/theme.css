@@ -1,47 +1,77 @@
 /*
  * ============================================================
- *  PALETTE DE COULEURS DU SITE — AD Niamey 2000
+ *  PALETTE — AD Niamey 2000
+ *  Couleurs de marque : les bleus des 3 variantes du logo.
+ *  Le reste est neutre (blanc, gris, ardoise). Aucun dégradé,
+ *  aucune couleur dorée / pervenche.
  *  Modifie les valeurs ici pour changer les couleurs partout.
- *
- *  Palette dérivée du logo : indigo doux #3A41C7, pervenche
- *  #5256C7, pervenche très claire #EEF0FB.
  * ============================================================
  */
 
 @theme {
-  /* Pervenche (couleur principale du logo) — boutons, liens, accents */
-  --color-primary: #5256c7;
+  /* Bleu nuit du logo — actions, liens, accents */
+  --color-primary: #212e60;
 
-  /* Indigo doux — titres, pied de page, survol */
-  --color-primary-dark: #3a41c7;
+  /* Variante sombre — texte sur fond clair, survols */
+  --color-primary-dark: #181f4e;
 
-  /* Perle claire pour accents sur fond sombre */
-  --color-primary-bright: #b0b2ea;
+  /* Variante claire — texte sur fond sombre */
+  --color-primary-bright: #b8bcff;
 
-  /* Pervenche très clair — arrière-plans doux */
-  --color-primary-soft: #eef0fb;
+  /* Bleu très pâle — fonds doux, bordures */
+  --color-primary-soft: #eef0ff;
 
-  /* Doré chaud — accent secondaire (étoile, chiffres, citations) */
-  --color-accent: #c9992f;
-  --color-accent-bright: #d9b45b;
-  --color-accent-soft: #f5ecd8;
-
-  /* Texte principal (bleu très foncé, presque noir) */
-  --color-ink: #1b2a4a;
-
-  /* Texte secondaire (gris bleuté) */
-  --color-muted: #5b6b8c;
+  /* Neutres */
+  --color-ink: #1e293b;
+  --color-muted: #5b6472;
 
   /* Polices */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-lora), ui-serif, Georgia, serif;
 }
 
-/* Animation douce d'apparition */
+/* Bouton standard — même style que « Rejoignez-nous » du topbar.
+   Couleur et libellé peuvent varier, la forme reste identique partout. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: 0.625rem 1.25rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+.btn-outline:hover {
+  background-color: var(--color-primary-soft);
+}
+
+/* Animations discrètes (modernes, sans dégradé ni mouvement lourd) */
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -50,15 +80,15 @@
 }
 
 .fade-up {
-  animation: fade-up 0.6s ease-out both;
+  animation: fade-up 0.5s ease-out both;
 }
 
 .fade-up-delay-1 {
-  animation: fade-up 0.6s ease-out 0.1s both;
+  animation: fade-up 0.5s ease-out 0.08s both;
 }
 
 .fade-up-delay-2 {
-  animation: fade-up 0.6s ease-out 0.2s both;
+  animation: fade-up 0.5s ease-out 0.16s both;
 }
 
 /* Bandeau défilant des annonces */
@@ -82,7 +112,8 @@
 @media (prefers-reduced-motion: reduce) {
   .fade-up,
   .fade-up-delay-1,
-  .fade-up-delay-2 {
+  .fade-up-delay-2,
+  .ticker-track {
     animation: none;
   }
 }

@@ -1,7 +1,7 @@
 export const images = {
   hero: "/images/hero.jpg",
   welcome: "/images/welcome.jpg",
-  worship: "/images/worship.jpg",
+  worship: "/images/about/worship.jpg",
   schedule: "/images/schedule.jpg",
   pageHeader: "/images/pageHeader.jpg",
   pageHeaders: {

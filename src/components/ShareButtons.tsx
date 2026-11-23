@@ -40,7 +40,7 @@ export default function ShareButtons({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Partager sur Facebook"
-        className="inline-flex items-center gap-2 rounded-full bg-[#1877F2] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#166FE5]"
+        className="inline-flex items-center gap-2 rounded-md bg-[#1877F2] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#166FE5]"
       >
         Facebook
       </a>
@@ -49,7 +49,7 @@ export default function ShareButtons({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Partager sur WhatsApp"
-        className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#20BD5A]"
+        className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#20BD5A]"
       >
         WhatsApp
       </a>
@@ -58,14 +58,14 @@ export default function ShareButtons({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Partager sur Instagram"
-        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCB045] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
+        className="inline-flex items-center gap-2 rounded-md bg-[#E1306C] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
       >
         Instagram
       </a>
       <button
         type="button"
         onClick={copy}
-        className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-ink transition hover:bg-slate-50"
+        className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-ink transition hover:bg-slate-50"
       >
         {copied ? (
           <>

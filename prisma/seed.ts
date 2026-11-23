@@ -186,9 +186,9 @@ async function main() {
   if (galleryCount === 0) {
     await prisma.galleryImage.createMany({
       data: [
-        { url: "/adlogo.jpg", captionFr: "Logo AD Niamey 2000", captionEn: "AD Niamey 2000 logo", sortOrder: 1 },
-        { url: "/adlogo.jpg", captionFr: "Bienvenue à l'église", captionEn: "Welcome to church", sortOrder: 2 },
-        { url: "/adlogo.jpg", captionFr: "Culte du dimanche", captionEn: "Sunday service", sortOrder: 3 },
+        { url: "/images/logo/logo-blue.jpeg", captionFr: "Logo AD Niamey 2000", captionEn: "AD Niamey 2000 logo", sortOrder: 1 },
+        { url: "/images/logo/logo-blue.jpeg", captionFr: "Bienvenue à l'église", captionEn: "Welcome to church", sortOrder: 2 },
+        { url: "/images/logo/logo-blue.jpeg", captionFr: "Culte du dimanche", captionEn: "Sunday service", sortOrder: 3 },
       ],
     });
     console.log("Galerie de démo créée.");

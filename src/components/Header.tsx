@@ -2,9 +2,50 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import MobileMenu from "@/components/MobileMenu";
-import { churchName, type Dict, type Locale, locales } from "@/lib/i18n";
+import { churchName, type Dict, type Locale } from "@/lib/i18n";
+
+const languageNames: Record<Locale, string> = {
+  fr: "Français",
+  en: "English",
+};
+
+function LanguageSelect({ lang, pathname }: { lang: Locale; pathname: string }) {
+  const router = useRouter();
+  return (
+    <label className="relative inline-flex items-center">
+      <span className="sr-only">Langue / Language</span>
+      <select
+        value={lang}
+        onChange={(e) => {
+          const next = e.target.value as Locale;
+          const target = pathname.replace(`/${lang}`, `/${next}`) || `/${next}`;
+          router.push(target);
+        }}
+        className="cursor-pointer appearance-none rounded-md border border-primary/15 bg-white py-2 pl-3 pr-8 text-sm font-semibold text-primary-dark outline-none transition hover:border-primary/40 focus-visible:ring-2 focus-visible:ring-primary"
+      >
+        {(Object.keys(languageNames) as Locale[]).map((l) => (
+          <option key={l} value={l}>
+            {languageNames[l]}
+          </option>
+        ))}
+      </select>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="pointer-events-none absolute right-2.5 h-4 w-4 text-primary-dark"
+      >
+        <path
+          fillRule="evenodd"
+          d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </label>
+  );
+}
 
 export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
   const pathname = usePathname();
@@ -26,16 +67,16 @@ export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-primary-soft bg-white/90 backdrop-blur">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <Link href={`/${lang}`} className="flex items-center gap-3">
+    <header className="sticky top-0 z-40 border-b border-primary/10 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
+        <Link href={`/${lang}`} className="flex shrink-0 items-center gap-3">
           <Image
-            src="/adlogo.jpg"
+            src="/images/logo/logo-blue.jpeg"
             alt={churchName}
-            width={40}
-            height={40}
+            width={48}
+            height={48}
             priority
-            className="h-11 w-11 rounded-full object-cover"
+            className="h-12 w-12 object-contain"
           />
           <span className="font-serif text-lg font-bold tracking-tight text-ink">
             {churchName}
@@ -69,28 +110,11 @@ export default function Header({ dict, lang }: { dict: Dict; lang: Locale }) {
         <div className="flex items-center gap-4">
           <Link
             href={`/${lang}/contact`}
-            className="hidden rounded-full bg-primary-dark px-5 py-2 text-sm font-semibold text-white shadow-md shadow-primary/25 transition hover:opacity-90 lg:inline-flex"
+            className="hidden rounded-md bg-primary px-5 py-2 text-sm font-semibold text-white transition hover:bg-primary-dark lg:inline-flex"
           >
             {dict.actions.joinUs}
           </Link>
-          <div className="flex items-center gap-1 rounded-full bg-primary-soft p-1">
-            {locales.map((l) => {
-              const switchPath = pathname.replace(`/${lang}`, `/${l}`) || `/${l}`;
-              return (
-                <Link
-                  key={l}
-                  href={switchPath}
-                  className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase transition ${
-                    lang === l
-                      ? "bg-primary-dark text-white"
-                      : "text-primary-dark hover:bg-white"
-                  }`}
-                >
-                  {l}
-                </Link>
-              );
-            })}
-          </div>
+          <LanguageSelect lang={lang} pathname={pathname} />
           <MobileMenu lang={lang} links={links} />
         </div>
       </div>

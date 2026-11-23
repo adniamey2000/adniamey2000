@@ -35,7 +35,7 @@ function layout(title: string, content: string) {
           <!-- En-tête -->
           <tr>
             <td style="background:${COLORS.primaryDark};padding:30px 32px;text-align:center;">
-              <img src="${SITE_URL}/adlogo.jpg" alt="AD Niamey 2000" width="64" height="64" style="width:64px;height:64px;border-radius:50%;border:3px solid ${COLORS.bright};display:inline-block;" />
+              <img src="${SITE_URL}/images/logo/logo-blue.jpeg" alt="AD Niamey 2000" width="64" height="64" style="width:64px;height:64px;border:3px solid ${COLORS.bright};display:inline-block;" />
               <p style="margin:14px 0 0;color:#ffffff;font-family:Georgia,serif;font-size:22px;font-weight:bold;letter-spacing:0.5px;">AD Niamey 2000</p>
               <p style="margin:4px 0 0;color:${COLORS.bright};font-family:Georgia,serif;font-size:13px;">Assemblée de Dieu Niamey 2000</p>
             </td>

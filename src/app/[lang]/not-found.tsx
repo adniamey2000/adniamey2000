@@ -12,7 +12,7 @@ export default function LangNotFound() {
       <p className="mt-2 max-w-md text-muted">{nf.text}</p>
       <Link
         href="/fr"
-        className="mt-8 inline-flex rounded-full bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+        className="mt-8 inline-flex rounded-md bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
       >
         {nf.backHome}
       </Link>

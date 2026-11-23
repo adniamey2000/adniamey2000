@@ -7,7 +7,7 @@ export default async function DonationSection({ dict }: { dict: Dict }) {
   });
 
   return (
-    <section className="bg-gradient-to-b from-white to-primary-soft/30">
+    <section className="bg-primary-soft/30">
       <div className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
         <h2 className="font-serif text-3xl font-bold sm:text-4xl">
           {dict.home.donation.title}

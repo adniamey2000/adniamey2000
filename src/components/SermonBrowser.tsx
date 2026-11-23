@@ -77,16 +77,16 @@ export default function SermonBrowser({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={labels.searchPlaceholder}
-            className="w-full rounded-full border border-primary-soft bg-white py-3 pl-11 pr-5 text-sm text-ink outline-none transition placeholder:text-muted/60 focus:border-primary-dark focus:ring-2 focus:ring-primary-dark/30"
+            className="w-full rounded-md border border-primary-soft bg-white py-3 pl-11 pr-5 text-sm text-ink outline-none transition placeholder:text-muted/60 focus:border-primary-dark focus:ring-2 focus:ring-primary-dark/30"
           />
         </div>
-        <div className="flex rounded-full border border-primary-soft bg-white p-1 text-sm">
+        <div className="flex rounded-md border border-primary-soft bg-white p-1 text-sm">
           {(["newest", "oldest"] as const).map((opt) => (
             <button
               key={opt}
               type="button"
               onClick={() => setOrder(opt)}
-              className={`rounded-full px-4 py-1.5 font-medium transition ${
+              className={`rounded-md px-4 py-1.5 font-medium transition ${
                 order === opt
                   ? "bg-primary-dark text-white"
                   : "text-muted hover:text-primary-dark"
@@ -101,7 +101,7 @@ export default function SermonBrowser({
       {filtered.length === 0 ? (
         <p className="mt-14 text-center text-muted">{labels.noResults}</p>
       ) : (
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((sermon) => (
             <div
               key={sermon.id}
@@ -119,7 +119,7 @@ export default function SermonBrowser({
                     className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-300 group-hover:scale-105 group-hover:opacity-100"
                   />
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950">
+                  <div className="absolute inset-0 flex items-center justify-center bg-slate-900">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" className="text-white/40">
                       <path d="M8 5v14l11-7z" />
                     </svg>
@@ -133,10 +133,10 @@ export default function SermonBrowser({
                   </span>
                 </span>
               </Link>
-              <div className="p-6">
+              <div className="p-5">
                 <Link
                   href={toDetailPath("sermons", sermon.id, sermon.titleFr, lang)}
-                  className="font-serif text-xl font-bold transition hover:text-primary-dark"
+                  className="font-serif text-lg font-bold transition hover:text-primary-dark"
                 >
                   {sermon.title}
                 </Link>
@@ -149,7 +149,7 @@ export default function SermonBrowser({
                 </p>
                 <Link
                   href={toDetailPath("sermons", sermon.id, sermon.titleFr, lang)}
-                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary-dark px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+                  className="mt-5 inline-flex items-center gap-2 rounded-md bg-primary-dark px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z" />

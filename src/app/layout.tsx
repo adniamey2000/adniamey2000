@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     images: ["/og-default.jpg"],
   },
   other: {
-    "theme-color": "#5256C7",
+    "theme-color": "#212E60",
   },
   alternates: {
     canonical: "https://adniamey2000.vercel.app/fr",
@@ -69,10 +70,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const requestHeaders = await headers();
+  const locale = requestHeaders.get("x-ad-lang") === "en" ? "en" : "fr";
   return (
     <html
-      lang="fr"
+      lang={locale}
       data-scroll-behavior="smooth"
       className="antialiased"
     >
@@ -80,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#5256C7" />
+        <meta name="theme-color" content="#212E60" />
         <meta name="contact" content="adniamey2000@gmail.com" />
         <meta name="google-site-verification" content="TXAQ3P0aYcCFOJvZrrDnxQY0V4OTXJi_jlY0TxlCGeU" />
         <meta name="msvalidate.01" content="C1B2B591B7E5F16F07AF49BCF2784DFC" />

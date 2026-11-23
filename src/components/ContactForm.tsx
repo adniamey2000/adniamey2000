@@ -62,7 +62,7 @@ export default function ContactForm({
           style={{ animation: "slideUp 0.2s ease-out" }}
         >
           <div
-            className={`pointer-events-auto flex items-center gap-3 rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-2xl ${
+            className={`pointer-events-auto flex items-center gap-3 rounded-md px-6 py-3.5 text-sm font-semibold text-white shadow-2xl ${
               toast === "success" ? "bg-green-600" : "bg-red-600"
             }`}
           >
@@ -113,21 +113,36 @@ export default function ContactForm({
           <label htmlFor="subject" className="mb-1.5 block text-sm font-medium">
             {dict.contact.form.subject}
           </label>
-          <select
-            id="subject"
-            name="subject"
-            required
-            className={`${inputClass} appearance-none bg-white`}
-          >
-            <option value="" disabled selected>
-              {dict.contact.form.subjectPlaceholder}
-            </option>
-            {dict.contact.form.subjects.map((subject) => (
-              <option key={subject} value={subject}>
-                {subject}
+          <div className="relative">
+            <select
+              id="subject"
+              name="subject"
+              required
+              defaultValue=""
+              className={`${inputClass} appearance-none bg-white pr-10`}
+            >
+              <option value="" disabled>
+                {dict.contact.form.subjectPlaceholder}
               </option>
-            ))}
-          </select>
+              {dict.contact.form.subjects.map((subject) => (
+                <option key={subject} value={subject}>
+                  {subject}
+                </option>
+              ))}
+            </select>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
         </div>
         <div>
           <label htmlFor="message" className="mb-1.5 block text-sm font-medium">
@@ -183,7 +198,7 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={sending}
-          className="rounded-full bg-primary-dark px-8 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
+          className="rounded-md bg-primary-dark px-8 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
         >
           {sending ? dict.contact.form.sending : dict.contact.form.send}
         </button>

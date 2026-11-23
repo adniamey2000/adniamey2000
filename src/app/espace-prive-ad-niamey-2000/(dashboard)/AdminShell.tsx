@@ -185,11 +185,11 @@ export default function AdminShell({
           }`}
         >
           <Image
-            src="/adlogo.jpg"
+            src="/images/logo/logo-blue.jpeg"
             alt={churchName}
             width={36}
             height={36}
-            className="h-9 w-9 shrink-0 rounded-full object-cover"
+            className="h-9 w-9 shrink-0 object-contain"
           />
           {!collapsed && (
             <div>
@@ -287,11 +287,11 @@ export default function AdminShell({
             <div className="flex items-center justify-between gap-3 border-b border-primary-soft px-5 py-5">
               <div className="flex items-center gap-3">
                 <Image
-                  src="/adlogo.jpg"
+                  src="/images/logo/logo-blue.jpeg"
                   alt={churchName}
                   width={36}
                   height={36}
-                  className="h-9 w-9 shrink-0 rounded-full object-cover"
+                  className="h-9 w-9 shrink-0 object-contain"
                 />
                 <div>
                   <p className="font-serif text-sm font-bold text-ink">{churchName}</p>

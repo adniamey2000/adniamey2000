@@ -30,13 +30,16 @@ export default async function LangLayout({
 
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        {pick(lang, "Aller au contenu", "Skip to content")}
+      </a>
       <Header dict={dict} lang={lang} />
       <AnnouncementTicker
         items={tickerItems}
         label={dict.home.announcements.tickerLabel}
         href={`/${lang}/annonces`}
       />
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="flex-1">{children}</main>
       <Footer dict={dict} lang={lang} />
       <BackToTop />
     </>

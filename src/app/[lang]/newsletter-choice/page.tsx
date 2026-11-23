@@ -51,14 +51,14 @@ function ChoiceContent() {
           <button
             onClick={() => choose("fr")}
             disabled={loading !== null}
-            className="rounded-full bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
+            className="rounded-md bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
           >
             Français
           </button>
           <button
             onClick={() => choose("en")}
             disabled={loading !== null}
-            className="rounded-full bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
+            className="rounded-md bg-primary-dark px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
           >
             English
           </button>
